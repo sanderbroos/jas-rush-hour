@@ -1,4 +1,4 @@
-from code.classes import board
+from code.classes.board import Board
 
 if __name__ == "__main__":
     # use command line araguments?
