@@ -1,4 +1,7 @@
+import csv
+
 from .car import Car
+
 
 class Board():
 
@@ -6,10 +9,22 @@ class Board():
         self.size = size
         # load board and everything on it
         
-        def load_cars(self):
-            # load dictionary with key name car and value the car
-            # car attributes: name, orientation, col, row, length, carX
-            pass
+        def load_cars(self, source_file):
+            # load dictionary with key name car and value the car 
+            # not tested yet!
+            cars = {}
+            with open(source_file, 'r') as readfile:
+                reader = csv.DictReader(readfile)
+
+                for row in reader:
+                    if row['car'] == 'X':
+                        carX = True
+                    else:
+                        carX = False
+                    cars[row['car']] = Car(row['car'], row['orientation'], row['col'], row['row'], row['length'], carX)
+
+            return cars
+            
 
 
     def draw_board(self):
