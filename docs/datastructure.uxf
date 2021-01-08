@@ -1,0 +1,16 @@
+<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>70</x><y>50</y><w>220</w><h>200</h></coordinates><panel_attributes>Board
+--
+cars: [Car]
+--
+is_solution(self): Bool
+is_valid(self): Bool
+is_empty(self, col, row): Bool</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>570</x><y>50</y><w>230</w><h>200</h></coordinates><panel_attributes>Car
+--
+name: String
+orientation: String
+col: Int
+row: Int
+length: Int
+--
+move(self, shift): Bool</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>280</x><y>70</y><w>310</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+m1=0..n</panel_attributes><additional_attributes>10;10;290;10</additional_attributes></element></diagram>
