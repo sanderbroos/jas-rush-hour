@@ -12,7 +12,6 @@ class Board():
         
     def load_cars(self, source_file):
         # load dictionary with key name car and value the car 
-        # not tested yet!
         cars = {}
         with open(source_file, 'r') as readfile:
             reader = csv.DictReader(readfile)
@@ -54,4 +53,6 @@ class Board():
         pass
     
     def is_valid_move(self):
+        # conditions for valid move: if car horizontal move needs to be horizontal, vertical car vertical move,
+        # space to be moved to needs to be empty, If border game move cant pass it.
         pass
