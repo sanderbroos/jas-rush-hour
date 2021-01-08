@@ -8,6 +8,7 @@ class Board():
         
         def load_cars(self):
             # load dictionary with key name car and value the car
+            # car attributes: name, orientation, col, row, length, carX
             pass
 
 
@@ -23,5 +24,5 @@ class Board():
         # game won, car in space just before gate means game is won
         pass
     
-    def is_validMove(self):
+    def is_valid_move(self):
         pass
