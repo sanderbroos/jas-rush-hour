@@ -3,7 +3,7 @@ import csv
 from .car import Car
 
 
-class Board():
+class Board:
     def __init__ (self, size, source_file):
         self.size = size
 
@@ -12,7 +12,6 @@ class Board():
         
     def load_cars(self, source_file):
         # load dictionary with key name car and value the car 
-        # not tested yet!
         cars = {}
         with open(source_file, 'r') as readfile:
             reader = csv.DictReader(readfile)
@@ -30,20 +29,19 @@ class Board():
         # draw board and everthing on it
         
         # initialize empty 2D list representation of board
-        to_draw = [["_" for i in range(self.size)] for j in range(self.size)]
+        to_draw = [['_' for i in range(self.size)] for j in range(self.size)]
 
-        for key in self.cars:
-            car = self.cars[key]
+        for car in self.cars.values():
             for i in range(car.length):
-                if car.orientation == "H":
+                if car.orientation == 'H':
                     to_draw[car.row - 1][car.col - 1 + i] = car.name
-                if car.orientation == "V":
+                if car.orientation == 'V':
                     to_draw[car.row - 1 + i][car.col - 1] = car.name
         
         for row in to_draw:
             for item in row:
-                print(f"{item} ", end='')
-            print("")
+                print(f'{item} ', end='')
+            print('')
     
     def move(self, direction):
         # move trucks or cars, check is validmove etc the save new place in car class, save moves made for output file
