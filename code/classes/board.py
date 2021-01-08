@@ -2,9 +2,7 @@ import csv
 
 from .car import Car
 
-
 class Board:
-
     def __init__ (self, size, source_file):
         self.size = size
 
@@ -27,13 +25,12 @@ class Board:
 
         return cars
     
-
     def create_board(self):
-
         # initialize empty 2D list representation of board
         board = [['_' for i in range(self.size)] for j in range(self.size)]
 
-        for car in self.cars.values():
+        for key in self.cars:
+            car = self.cars[key]
             for i in range(car.length):
                 if car.orientation == 'H':
                     board[car.row - 1][car.col - 1 + i] = car.name
