@@ -1,4 +1,6 @@
 import csv
+import numpy as np
+
 
 from .car import Car
 
@@ -57,7 +59,14 @@ class Board:
         # game won, car in space just before gate means game is won
         pass
     
-    def is_valid_move(self):
+    def is_valid_move(self,car,coordinaat, move):
         # conditions for valid move: if car horizontal move needs to be horizontal, vertical car vertical move,
         # space to be moved to needs to be empty, If border game move cant pass it.
-        pass
+        
+        empty_square = '_'
+
+        if car.orientation == 'H':
+            if max(coordinaat[1] + move) < self.size and min(coordinaat[1] + move) > 0:
+                pass
+
+        
