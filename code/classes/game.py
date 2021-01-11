@@ -2,6 +2,13 @@ import csv
 from .car import Car
 from ..util import *
 
+
+
+"""
+-1/+1 bij het inladen van de cars te veranderen naar array style om code beter 
+leesbaar te houden.
+"""
+
 class Game:
 
     def __init__ (self, size, source_file):
@@ -56,18 +63,29 @@ class Game:
     def move(self, car, direction):
         # move trucks or cars, check is validmove etc the save new place in car class, save moves made for output file
         # and save the moves in self.moves
-        moved_car = self.cars.get(car)
+        moved_car = car
+        old_car = moved_car
 
+        """
         if is_valid_move(car, direction) is False:
             return False
+        """
         
         if moved_car.orientation == 'H':
-                    moved_car.col = moved_car.col + direction
+            moved_car.col = moved_car.col + direction
+
+            self.board[old_car.row][old_car.col] = None
+            self.board[old_car.row][old_car.col + car.length] = None
+
+            self.board[moved_car.row][moved_car.col] = moved_car
+            self.board[moved_car.row][moved_car.col + car.length - 1] = moved_car
+        
+                    
         if moved_car.orientation == 'V':
                     moved_car.row = moved_car.row + direction
 
         # need to append the car name and direction to moves to save for output
-        self.moves.append()
+        self.moves.append([car.name, direction])
 
 
     def is_valid_move(self, car, move):
