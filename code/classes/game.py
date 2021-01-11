@@ -56,10 +56,21 @@ class Game:
     def move(self, car, direction):
         # move trucks or cars, check is validmove etc the save new place in car class, save moves made for output file
         # and save the moves in self.moves
-        pass
+        moved_car = self.cars.get(car)
+
+        if is_valid_move(car, direction) is False:
+            return False
+        
+        if moved_car.orientation == 'H':
+                    moved_car.col = moved_car.col + direction
+        if moved_car.orientation == 'V':
+                    moved_car.row = moved_car.row + direction
+
+        # need to append the car name and direction to moves to save for output
+        self.moves.append()
 
 
-    def is_valid_move(self, car, coordinate, move):
+    def is_valid_move(self, car, move):
         # conditions for valid move: if car horizontal move needs to be horizontal, vertical car vertical move,
         # space to be moved to needs to be empty, If border game move cant pass it.
         
