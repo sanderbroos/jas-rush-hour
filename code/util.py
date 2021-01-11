@@ -10,10 +10,10 @@ def get_lane(car, board):
 
     if car.orientation == 'V':
         for i in range(0,len(board)):
-            array.append(board[i][col - 1])
+            array.append(board[i][col])
         return array
     
-    return board[row - 1]
+    return board[row]
 
 
 
