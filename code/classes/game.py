@@ -1,16 +1,15 @@
 import csv
-import numpy as np
-
-
 from .car import Car
 
-class Board:
+class Game:
+
     def __init__ (self, size, source_file):
         self.size = size
 
         # load board and everything on it
         self.cars = self.load_cars(source_file)
         self.board = self.create_board()
+        self.moves = []
         
     def load_cars(self, source_file):
         # load dictionary with key name car and value the car 
@@ -29,15 +28,16 @@ class Board:
     
     def create_board(self):
         # initialize empty 2D list representation of board
-        board = [['_' for i in range(self.size)] for j in range(self.size)]
+        # car objects in array 
+        board = [[None for i in range(self.size)] for j in range(self.size)]
 
         for key in self.cars:
             car = self.cars[key]
             for i in range(car.length):
                 if car.orientation == 'H':
-                    board[car.row - 1][car.col - 1 + i] = car.name
+                    board[car.row - 1][car.col - 1 + i] = car
                 if car.orientation == 'V':
-                    board[car.row - 1 + i][car.col - 1] = car.name
+                    board[car.row - 1 + i][car.col - 1] = car
 
         return board
         
@@ -47,26 +47,31 @@ class Board:
 
         for row in to_draw:
             for item in row:
-                print(f'{item} ', end='')
+                if item is None:
+                    print('_', end=' ')
+                else:
+                    print(f'{item.name}', end=' ')
             print('')
     
     def move(self, direction):
         # move trucks or cars, check is validmove etc the save new place in car class, save moves made for output file
-        
+        # and save the moves in self.moves
         pass
+
 
     def won(self):
         # game won, car in space just before gate means game is won
+        # or carX has empty lane.
         pass
     
     def is_valid_move(self,car,coordinaat, move):
         # conditions for valid move: if car horizontal move needs to be horizontal, vertical car vertical move,
         # space to be moved to needs to be empty, If border game move cant pass it.
         
-        empty_square = '_'
+        pass
 
-        if car.orientation == 'H':
-            if max(coordinaat[1] + move) < self.size and min(coordinaat[1] + move) > 0:
-                pass
 
+    def output(self):
+        # maak van lijst moves een csv-achtig iets.
+        pass
         
