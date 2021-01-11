@@ -11,6 +11,7 @@ if __name__ == "__main__":
         car = input("Please the name of the car that should be moved:\n")
         direction = input("Please enter your move from -4 to 4:\n")
         game.move(car.upper(), int(direction))
+<<<<<<< HEAD
         game.draw_board()
     """
 
@@ -18,3 +19,6 @@ if __name__ == "__main__":
     print(game.board)
     
     game.draw_board()
+=======
+        game.draw_board()
+>>>>>>> af889dfdd2a93046de6a4e2eabe32a08322f0f9e
