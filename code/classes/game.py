@@ -23,7 +23,7 @@ class Game:
                     carX = True
                 else:
                     carX = False
-                cars[row['car']] = Car(row['car'], row['orientation'], int(row['col']), int(row['row']), int(row['length']), carX)
+                cars[row['car']] = Car(row['car'], row['orientation'], int(row['col']) - 1, int(row['row']) - 1, int(row['length']), carX)
 
         return cars
     
@@ -35,9 +35,9 @@ class Game:
         for car in self.cars.values():
             for i in range(car.length):
                 if car.orientation == 'H':
-                    board[car.row - 1][car.col - 1 + i] = car
+                    board[car.row][car.col + i] = car
                 if car.orientation == 'V':
-                    board[car.row - 1 + i][car.col - 1] = car
+                    board[car.row + i][car.col] = car
 
         return board
         
