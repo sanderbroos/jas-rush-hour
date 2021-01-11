@@ -53,7 +53,7 @@ class Game:
                     print(item.name, end=' ')
             print('')
     
-    def move(self, direction):
+    def move(self, car, direction):
         # move trucks or cars, check is validmove etc the save new place in car class, save moves made for output file
         # and save the moves in self.moves
         pass
@@ -79,7 +79,7 @@ class Game:
             return False
 
         # otherwise the path is free, so move the car to the exit
-        self.move(car_x, self.size - car_x.col - 1)
+        self.move(car_x.name, self.size - car_x.col - 1)
         return True
 
 
