@@ -1,5 +1,6 @@
 import csv
 from .car import Car
+from ..util import *
 
 class Game:
 
@@ -31,8 +32,7 @@ class Game:
         # car objects in array 
         board = [[None for i in range(self.size)] for j in range(self.size)]
 
-        for key in self.cars:
-            car = self.cars[key]
+        for car in self.cars.values():
             for i in range(car.length):
                 if car.orientation == 'H':
                     board[car.row - 1][car.col - 1 + i] = car
@@ -50,7 +50,7 @@ class Game:
                 if item is None:
                     print('_', end=' ')
                 else:
-                    print(f'{item.name}', end=' ')
+                    print(item.name, end=' ')
             print('')
     
     def move(self, direction):
@@ -59,16 +59,28 @@ class Game:
         pass
 
 
-    def won(self):
-        # game won, car in space just before gate means game is won
-        # or carX has empty lane.
-        pass
-    
-    def is_valid_move(self,car,coordinaat, move):
+    def is_valid_move(self, car, coordinate, move):
         # conditions for valid move: if car horizontal move needs to be horizontal, vertical car vertical move,
         # space to be moved to needs to be empty, If border game move cant pass it.
         
         pass
+
+
+    def won(self):
+        """
+        Game is won if the path to the exit is cleared for car X.
+        If won, move the car to the exit.
+        """
+        
+        car_x = self.cars.get('X')
+
+        # if any spot in the path to the exit is occupied, the game is not won
+        if any(get_lane(car_x, self.board)[car_x.col + 1:]):
+            return False
+
+        # otherwise the path is free, so move the car to the exit
+        self.move(car_x, self.size - car_x.col - 1)
+        return True
 
 
     def output(self):
