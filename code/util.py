@@ -1,7 +1,7 @@
 def get_lane(car, board):
     """
     Gets whole row/col in which the car/truck is located.
-    Makes is_valid function easier to read
+    Makes is_valid function easier to read.
     """
 
     row = car.row
@@ -10,10 +10,10 @@ def get_lane(car, board):
 
     if car.orientation == 'V':
         for i in range(0,len(board)):
-            array.append(board[i][col])
+            array.append(board[i][col - 1])
         return array
     
-    return board[row]
+    return board[row - 1]
 
 
 
