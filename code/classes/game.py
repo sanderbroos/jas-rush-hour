@@ -62,7 +62,8 @@ class Game:
     def won(self):
         # game won, car in space just before gate means game is won
         # or carX has empty lane.
-        pass
+        
+        return False
     
     def is_valid_move(self,car,coordinaat, move):
         # conditions for valid move: if car horizontal move needs to be horizontal, vertical car vertical move,
