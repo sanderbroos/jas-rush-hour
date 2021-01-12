@@ -1,13 +1,10 @@
 import csv
 from .car import Car
-from code.util import get_lane, get_possiblities
 from ..util import *
 
 
 """
 -1/+1 bij het inladen van de cars te veranderen naar array style om code beter
-leesbaar te houden. Input object wel naam bij move. CarX weggehaald, Welke output lijst bij moves.append? 
-tried playing game, moves bug out at the bottom right corner
 """
 
 class Game:
@@ -18,7 +15,7 @@ class Game:
         # load board and everything on it
         self.cars = self.load_cars(source_file)
         self.board = self.create_board()
-        self.moves = []
+        self.output_string = "car,move"
         
     def load_cars(self, source_file):
         # load dictionary with key name car and value the car 
@@ -59,8 +56,8 @@ class Game:
     
 
     def move(self, car, direction):
-        # move trucks or cars, check is validmove etc the save new place in car class, save moves made for output file
-        # and save the moves in self.moves
+        # move trucks or cars, check is validmove etc the save new place in car class
+        # and save the moves in self.output_string
         moved_car = self.cars.get(car)
 
         if self.is_valid_move(moved_car, direction) is False:
@@ -85,9 +82,8 @@ class Game:
             for i in range(moved_car.length):
                 self.board[moved_car.row + i][moved_car.col] = moved_car
 
-        # need to append the car name and direction to moves to save for output
-        self.moves.append(f'{car}, {direction}')
-        self.moves.append([moved_car.name, direction])
+        # need to append the car name and direction to save for output
+        self.output_string += f'\n{car},{direction}'
         return True
 
 
@@ -102,7 +98,6 @@ class Game:
             
         return False
     
-
 
     def won(self):
         """
@@ -125,6 +120,8 @@ class Game:
 
 
     def output(self):
-        # maak van lijst moves een csv-achtig iets. need to clear list after game is won?
-        pass
+        # need to clear list after game is won?
+        f = open("output.csv", "w")
+        f.write(self.output_string)
+        f.close()
         

@@ -33,7 +33,7 @@ def get_possiblities(car, board, size):
 
     for i in range(1, size - 1):
         if (index + i + car.length <= size and
-                lane[index  + (i + car.length) - 1] is None):
+                lane[index + (i + car.length) - 1] is None):
             moves.append(i)
         else:
             break

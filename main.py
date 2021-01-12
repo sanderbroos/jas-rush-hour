@@ -9,6 +9,11 @@ if __name__ == "__main__":
 
     while not game.won():
         car = input("Please the name of the car that should be moved:\n")
+        if car == "stop":
+            break
+            
         direction = input("Please enter your move from -4 to 4:\n")
         game.move(car.upper(), int(direction))
         game.draw_board()
+
+    game.output()
