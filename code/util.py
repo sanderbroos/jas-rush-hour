@@ -23,30 +23,27 @@ def get_possiblities(car, board, size):
     """
 
     moves = []
-    row = car.row
-    col = car.col
+
+    lane = get_lane(car, board)
 
     if car.orientation == 'H':
-        for i in range(1, size - 1):
-            if (col + i + car.length < size and
-                    board[row][col  + (i + car.length)] is None):
-                moves.append(i)
-            elif (col - i > -1
-                    and board[row][col - i] is None):
-                moves[:0] = [-i]
-            else:
-                break
-    
+        index = car.col
     if car.orientation == 'V':
-        for i in range(1, size - 1):
-            if (row + i + car.length < size and
-                    board[row + (i + car.length)][col] is None):
-                moves.append(i)
-            elif (row - i > -1
-                    and board[row- i][col] is None):
-                moves[:0] = [-i]
-            else:
-                break
+        index = car.row
+
+    for i in range(1, size - 1):
+        if (index + i + car.length <= size and
+                lane[index  + (i + car.length) - 1] is None):
+            moves.append(i)
+        else:
+            break
+    
+    for i in range(1, size - 1): 
+        if (index - i > -1
+                and lane[index - i] is None):
+            moves[:0] = [-i]
+        else:
+            break
         
     return moves
 

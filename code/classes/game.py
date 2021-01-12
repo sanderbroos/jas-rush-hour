@@ -71,6 +71,8 @@ class Game:
 
             for i in range(moved_car.length):
                 self.board[moved_car.row][moved_car.col - direction + i] = None
+
+            for i in range(moved_car.length):
                 self.board[moved_car.row][moved_car.col + i] = moved_car
                 
                             
@@ -79,6 +81,8 @@ class Game:
 
             for i in range(moved_car.length):
                 self.board[moved_car.row - direction + i][moved_car.col] = None
+
+            for i in range(moved_car.length):
                 self.board[moved_car.row + i][moved_car.col] = moved_car
 
         # need to append the car name and direction to moves to save for output
