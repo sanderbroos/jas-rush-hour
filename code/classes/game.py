@@ -2,13 +2,6 @@ import csv
 from .car import Car
 from ..util import *
 
-
-
-"""
--1/+1 bij het inladen van de cars te veranderen naar array style om code beter 
-leesbaar te houden.
-"""
-
 class Game:
 
     def __init__ (self, size, source_file):
@@ -63,36 +56,34 @@ class Game:
     def move(self, car, direction):
         # move trucks or cars, check is validmove etc the save new place in car class, save moves made for output file
         # and save the moves in self.moves
-        moved_car = car
-        old_car = moved_car
+        moved_car = self.cars.get(car)
 
-        """
-        if is_valid_move(car, direction) is False:
+        if self.is_valid_move(moved_car, direction) is False:
             return False
-        """
-        
+
         if moved_car.orientation == 'H':
             moved_car.col = moved_car.col + direction
-
-            self.board[old_car.row][old_car.col] = None
-            self.board[old_car.row][old_car.col + car.length] = None
-
-            self.board[moved_car.row][moved_car.col] = moved_car
-            self.board[moved_car.row][moved_car.col + car.length - 1] = moved_car
-        
-                    
+            for i in range(moved_car.length):
+                self.board[moved_car.row][moved_car.col - direction + i] = None
+                self.board[moved_car.row][moved_car.col + i] = moved_car
+                
+                            
         if moved_car.orientation == 'V':
-                    moved_car.row = moved_car.row + direction
+            moved_car.row = moved_car.row + direction
+            for i in range(moved_car.length):
+                self.board[moved_car.row - direction + i][moved_car.col] = None
+                self.board[moved_car.row + i][moved_car.col] = moved_car
 
         # need to append the car name and direction to moves to save for output
-        self.moves.append([car.name, direction])
+        self.moves.append(f'{car}, {direction}')
+        return True
 
 
     def is_valid_move(self, car, move):
         # conditions for valid move: if car horizontal move needs to be horizontal, vertical car vertical move,
         # space to be moved to needs to be empty, If border game move cant pass it.
+        return True
         
-        pass
 
 
     def won(self):
@@ -113,6 +104,6 @@ class Game:
 
 
     def output(self):
-        # maak van lijst moves een csv-achtig iets.
+        # maak van lijst moves een csv-achtig iets. need to clear list after game is won?
         pass
         
