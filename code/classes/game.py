@@ -143,7 +143,7 @@ class Game:
             if move[1] != 0:
                 output_string += f'\n{move[0]},{move[1]}'
 
-        f = open("output.csv", "w")
+        f = open("docs/output.csv", "w")
         f.write(output_string)
         f.close()
         
