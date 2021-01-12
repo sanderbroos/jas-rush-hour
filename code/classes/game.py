@@ -76,6 +76,7 @@ class Game:
 
         # need to append the car name and direction to moves to save for output
         self.moves.append(f'{car}, {direction}')
+        self.moves.append([car.name, direction])
         return True
 
 
