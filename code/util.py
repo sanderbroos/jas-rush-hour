@@ -3,7 +3,7 @@ def get_lane(car, board):
     Gets whole row/col in which the car/truck is located.
     Makes is_valid function easier to read.
     """
-
+    
     row = car.row
     col = car.col
     array = []
@@ -16,12 +16,13 @@ def get_lane(car, board):
     return board[row]
 
 
-def get_possiblities(car, board, size):
+def get_possiblities(car, board):
     """
     gives all possible moves of a car in a given lane
     """
 
     moves = []
+    size = len(board)
 
     lane = get_lane(car, board)
 

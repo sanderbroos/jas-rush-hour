@@ -92,7 +92,7 @@ class Game:
         # conditions for valid move: if car horizontal move needs to be horizontal, vertical car vertical move,
         # space to be moved to needs to be empty, If border game move cant pass it.
 
-        moves = get_possiblities(car, self.board, self.size)
+        moves = get_possiblities(car, self.board)
 
         return move in moves
     
