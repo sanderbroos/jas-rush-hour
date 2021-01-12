@@ -12,15 +12,13 @@ if __name__ == "__main__":
     best_yet = 9999999
     N = int(input("How many times do you want to run the randomise algorithm?\n"))
 
-    for i in range(N):
+    for _ in range(N):
         # create a new game
         game = Game(6, "data/Rushhour6x6_1.csv")
         
         # move cars around randomly until the game is won
         while not game.won():
-            car = random_car(game.cars)
-            move = random_move(car, game.board)
-            game.move(car.name, move)
+            game.move(random_car(game.cars).name, random_move(car, game.board))
 
         # if this solution has the least amount of moves yet, overwrite the output
         if len(game.moves) < best_yet:

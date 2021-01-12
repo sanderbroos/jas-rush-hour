@@ -51,7 +51,7 @@ class Game:
 
         for row in to_draw:
             for item in row:
-                if item is None:
+                if item == None:
                     print('_', end=' ')
                 else:
                     print(item.name, end=' ')
@@ -74,7 +74,6 @@ class Game:
 
             for i in range(moved_car.length):
                 self.board[moved_car.row][moved_car.col + i] = moved_car
-                
                             
         if moved_car.orientation == 'V':
             moved_car.row = moved_car.row + direction
@@ -94,9 +93,7 @@ class Game:
         # conditions for valid move: if car horizontal move needs to be horizontal, vertical car vertical move,
         # space to be moved to needs to be empty, If border game move cant pass it.
 
-        moves = get_possiblities(car, self.board)
-
-        return move in moves
+        return move in get_possiblities(car, self.board)
     
 
     def won(self):
@@ -107,16 +104,12 @@ class Game:
         
         car_x = self.cars.get('X')
 
-
-        # snap dit neit [car_x.col + 1:]):
-
-
         # if any spot in the path to the exit is occupied, the game is not won
-        if any(get_lane(car_x, self.board)[car_x.col + 2:]):
+        if any(get_lane(car_x, self.board)[car_x.col + car_x.length:]):
             return False
 
         # otherwise the path is free, so move the car to the exit
-        self.move(car_x.name, self.size - car_x.col - 2)
+        self.move(car_x.name, self.size - car_x.col - car_x.length)
 
         return True
 
