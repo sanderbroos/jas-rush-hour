@@ -61,7 +61,7 @@ class Game:
         # and save the moves in self.output_string
         moved_car = self.cars.get(car)
 
-        if self.is_valid_move(moved_car, direction) is False:
+        if not self.is_valid_move(moved_car, direction):
             return False
 
         if moved_car.orientation == 'H':
@@ -94,10 +94,7 @@ class Game:
 
         moves = get_possiblities(car, self.board, self.size)
 
-        if move in moves:
-            return True
-            
-        return False
+        return move in moves
     
 
     def won(self):
@@ -117,6 +114,7 @@ class Game:
 
         # otherwise the path is free, so move the car to the exit
         self.move(car_x.name, self.size - car_x.col - 1)
+        
         return True
 
 

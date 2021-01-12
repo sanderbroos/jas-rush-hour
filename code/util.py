@@ -16,7 +16,6 @@ def get_lane(car, board):
     return board[row]
 
 
-
 def get_possiblities(car, board, size):
     """
     gives all possible moves of a car in a given lane
@@ -46,4 +45,3 @@ def get_possiblities(car, board, size):
             break
         
     return moves
-
