@@ -4,15 +4,16 @@ from code.util import *
 from code.algorithms.randomise import * 
 
 if __name__ == "__main__":
-    game = Game(6, "data/Rushhour6x6_1.csv")
-    print('Instructions: Left and down are negative numbers, right and up are positive numbers')
-    game.draw_board()
+    #game = Game(6, "data/Rushhour6x6_3.csv")
+    # print('Instructions: Left and down are negative numbers, right and up are positive numbers')
+    # game.draw_board()
+    # print()
 
-    while not game.won():
-        car = random_car(game.cars)
-        move = random_move(car, game.board)
-        game.move(car.name, move)
-    game.draw_board()
+    # while not game.won():
+    #     car = random_car(game.cars)
+    #     move = random_move(car, game.board)
+    #     game.move(car.name, move)
+    # game.draw_board()
 
 
     # while not game.won():
@@ -24,4 +25,6 @@ if __name__ == "__main__":
     #     game.move(car.upper(), int(direction))
     #     game.draw_board()
 
-    game.output()
+    # game.output()
+
+    print(random_benchmark(100))
