@@ -18,7 +18,8 @@ if __name__ == "__main__":
         
         # move cars around randomly until the game is won
         while not game.won():
-            game.move(random_car(game.cars).name, random_move(car, game.board))
+            car = random_car(game.cars)
+            game.move(car.name, random_move(car, game.board))
 
         # if this solution has the least amount of moves yet, overwrite the output
         if len(game.moves) < best_yet:
