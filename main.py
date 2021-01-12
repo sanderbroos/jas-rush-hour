@@ -1,4 +1,5 @@
 from code.classes.game import Game
+# load all utility functions
 from code.util import *
 
 if __name__ == "__main__":
