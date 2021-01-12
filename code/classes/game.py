@@ -123,7 +123,7 @@ class Game:
 
     def output(self):
         # need to clear list after game is won?
-        f = open("output.csv", "w")
+        f = open("docs/output.csv", "w")
         f.write(self.output_string)
         f.close()
         
