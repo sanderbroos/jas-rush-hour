@@ -108,13 +108,14 @@ class Game:
 
         # snap dit neit [car_x.col + 1:]):
 
+
         # if any spot in the path to the exit is occupied, the game is not won
-        if any(get_lane(car_x, self.board)[car_x.col + 1:]):
+        if any(get_lane(car_x, self.board)[car_x.col + 2:]):
             return False
 
         # otherwise the path is free, so move the car to the exit
-        self.move(car_x.name, self.size - car_x.col - 1)
-        
+        self.move(car_x.name, self.size - car_x.col - 2)
+
         return True
 
 
