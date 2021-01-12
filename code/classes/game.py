@@ -6,7 +6,7 @@ from ..util import *
 
 """
 -1/+1 bij het inladen van de cars te veranderen naar array style om code beter
-leesbaar te houden. Input object niet naam bij move.
+leesbaar te houden. Input object wel naam bij move. CarX weggehaald, Welke output lijst bij moves.append? 
 """
 
 class Game:
@@ -26,11 +26,7 @@ class Game:
             reader = csv.DictReader(readfile)
 
             for row in reader:
-                if row['car'] == 'X':
-                    carX = True
-                else:
-                    carX = False
-                cars[row['car']] = Car(row['car'], row['orientation'], int(row['col']) - 1, int(row['row']) - 1, int(row['length']), carX)
+                cars[row['car']] = Car(row['car'], row['orientation'], int(row['col']) - 1, int(row['row']) - 1, int(row['length']))
 
         return cars
     
@@ -71,6 +67,7 @@ class Game:
 
         if moved_car.orientation == 'H':
             moved_car.col = moved_car.col + direction
+
             for i in range(moved_car.length):
                 self.board[moved_car.row][moved_car.col - direction + i] = None
                 self.board[moved_car.row][moved_car.col + i] = moved_car
@@ -78,6 +75,7 @@ class Game:
                             
         if moved_car.orientation == 'V':
             moved_car.row = moved_car.row + direction
+            
             for i in range(moved_car.length):
                 self.board[moved_car.row - direction + i][moved_car.col] = None
                 self.board[moved_car.row + i][moved_car.col] = moved_car
