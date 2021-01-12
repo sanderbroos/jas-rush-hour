@@ -72,6 +72,7 @@ class Game:
 
             for i in range(moved_car.length):
                 self.board[moved_car.row][moved_car.col + i] = moved_car
+            self.output_string += f'\n{car},{direction}'
                 
                             
         if moved_car.orientation == 'V':
@@ -84,7 +85,8 @@ class Game:
                 self.board[moved_car.row + i][moved_car.col] = moved_car
 
         # need to append the car name and direction to save for output
-        self.output_string += f'\n{car},{direction}'
+            self.output_string += f'\n{car},{-direction}'
+        
         return True
 
 
