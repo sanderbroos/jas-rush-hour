@@ -1,6 +1,13 @@
 import csv
 from .car import Car
+from code.util import get_lane, get_possiblities
 from ..util import *
+
+
+"""
+-1/+1 bij het inladen van de cars te veranderen naar array style om code beter
+leesbaar te houden. Input object niet naam bij move.
+"""
 
 class Game:
 
@@ -29,7 +36,7 @@ class Game:
     
     def create_board(self):
         # initialize empty 2D list representation of board
-        # car objects in array 
+        # car objects in array
         board = [[None for i in range(self.size)] for j in range(self.size)]
 
         for car in self.cars.values():
@@ -53,6 +60,7 @@ class Game:
                     print(item.name, end=' ')
             print('')
     
+
     def move(self, car, direction):
         # move trucks or cars, check is validmove etc the save new place in car class, save moves made for output file
         # and save the moves in self.moves
@@ -83,8 +91,14 @@ class Game:
     def is_valid_move(self, car, move):
         # conditions for valid move: if car horizontal move needs to be horizontal, vertical car vertical move,
         # space to be moved to needs to be empty, If border game move cant pass it.
-        return True
-        
+
+        moves = get_possiblities(car, self.board, self.size)
+
+        if move in moves:
+            return True
+            
+        return False
+    
 
 
     def won(self):
@@ -94,6 +108,9 @@ class Game:
         """
         
         car_x = self.cars.get('X')
+
+
+        # snap dit neit [car_x.col + 1:]):
 
         # if any spot in the path to the exit is occupied, the game is not won
         if any(get_lane(car_x, self.board)[car_x.col + 1:]):
