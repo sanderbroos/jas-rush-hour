@@ -15,8 +15,6 @@ if __name__ == "__main__":
     game.draw_board()
 
 
-
-
     # while not game.won():
     #     car = input("Please the name of the car that should be moved:\n")
     #     if car == "stop":

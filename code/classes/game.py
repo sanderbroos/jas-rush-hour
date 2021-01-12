@@ -9,15 +9,15 @@ leesbaar te houden. Input object wel naam bij move.
 """
 
 class Game:
-
     def __init__ (self, size, source_file):
         self.size = size
 
         # load board and everything on it
         self.cars = self.load_cars(source_file)
         self.board = self.create_board()
-        self.output_string = "car,move"
+        self.moves = []
         
+
     def load_cars(self, source_file):
         # load dictionary with key name car and value the car 
         cars = {}
@@ -29,6 +29,7 @@ class Game:
 
         return cars
     
+
     def create_board(self):
         # initialize empty 2D list representation of board
         # car objects in array
@@ -43,6 +44,7 @@ class Game:
 
         return board
         
+
     def draw_board(self):
         # draw board and everthing on it
         to_draw = self.board
@@ -58,7 +60,7 @@ class Game:
 
     def move(self, car, direction):
         # move trucks or cars, check is validmove etc the save new place in car class
-        # and save the moves in self.output_string
+        # and save the moves in self.moves
         moved_car = self.cars.get(car)
 
         if not self.is_valid_move(moved_car, direction):
@@ -72,7 +74,6 @@ class Game:
 
             for i in range(moved_car.length):
                 self.board[moved_car.row][moved_car.col + i] = moved_car
-            self.output_string += f'\n{car},{direction}'
                 
                             
         if moved_car.orientation == 'V':
@@ -85,8 +86,7 @@ class Game:
                 self.board[moved_car.row + i][moved_car.col] = moved_car
 
         # need to append the car name and direction to save for output
-            self.output_string += f'\n{car},{-direction}'
-        
+        self.moves.append([car, direction])
         return True
 
 
@@ -122,8 +122,28 @@ class Game:
 
 
     def output(self):
-        # need to clear list after game is won?
+        i = 0
+
+        while i < len(self.moves):
+            move = self.moves[i]
+
+            # output format sees "up" as the positive direction
+            if self.cars.get(move[0]).orientation == "V":
+                move[1] *= -1
+            
+            # if one car makes two moves directly after each other, combine these moves into 1
+            if move[0] == self.moves[i-1][0]:
+                move[1] += self.moves.pop(i-1)[1]
+                i -= 1
+
+            i += 1
+
+        output_string = "car,move"
+        for move in self.moves:
+            if move[1] != 0:
+                output_string += f'\n{move[0]},{move[1]}'
+
         f = open("docs/output.csv", "w")
-        f.write(self.output_string)
+        f.write(output_string)
         f.close()
         
