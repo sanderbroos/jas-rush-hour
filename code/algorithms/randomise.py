@@ -14,6 +14,17 @@ def random_move(car, board):
 
     return random.choice(possibilities)
 
+def all_random_moves(game):
+    
+    moves = []
+    for car in game.cars.keys():
+        possibilities = get_possiblities(game.cars.get(car), game.board)
+
+        for move in possibilities:
+            moves.append([car, move])
+    
+    return random.choice(moves)
+
 
 def random_benchmark(repeats):
      
@@ -33,6 +44,28 @@ def random_benchmark(repeats):
     return (f"mean: {int(np.mean(numb_moves))}\n"
             f"std:  {int(np.std(numb_moves))}\n"
             f"min:  {min(numb_moves)}\n"
-            f"max:  {max(numb_moves)}")
+            f"max:  {max(numb_moves)}",
+            numb_moves)
+    
 
-         
+
+def random_benchmarkv1(repeats):
+     
+    numb_moves = []
+
+    for _ in itertools.repeat(None,repeats):
+
+        game = Game(6, "data/Rushhour6x6_3.csv")
+
+        while not game.won():
+            moves = all_random_moves(game)
+            car = moves[0]
+            move = moves[1]
+            game.move(car, move)
+
+        numb_moves.append(len(game.moves))
+    
+    return (f"mean: {int(np.mean(numb_moves))}\n"
+            f"std:  {int(np.std(numb_moves))}\n"
+            f"min:  {min(numb_moves)}\n"
+            f"max:  {max(numb_moves)}")

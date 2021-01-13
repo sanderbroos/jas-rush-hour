@@ -2,32 +2,33 @@ from code.classes.game import Game
 # load all utility functions
 from code.util import *
 from code.algorithms.randomise import * 
+import matplotlib.pyplot as plt
 
 if __name__ == "__main__":
     game = Game(6, "data/Rushhour6x6_1.csv")
-    game.draw_board()
+    # game.draw_board()
 
-    # --------------------------- Randomise --------------------------
+    # # --------------------------- Randomise --------------------------
 
-    best_yet = 9999999
-    N = int(input("How many times do you want to run the randomise algorithm?\n"))
+    # best_yet = 9999999
+    # N = int(input("How many times do you want to run the randomise algorithm?\n"))
 
-    for _ in range(N):
-        # create a new game
-        game = Game(6, "data/Rushhour6x6_1.csv")
+    # for _ in range(N):
+    #     # create a new game
+    #     game = Game(6, "data/Rushhour6x6_1.csv")
         
-        # move cars around randomly until the game is won
-        while not game.won():
-            car = random_car(game.cars)
-            game.move(car.name, random_move(car, game.board))
+    #     # move cars around randomly until the game is won
+    #     while not game.won():
+    #         car = random_car(game.cars)
+    #         game.move(car.name, random_move(car, game.board))
 
-        # if this solution has the least amount of moves yet, overwrite the output
-        if len(game.moves) < best_yet:
-            best_yet = len(game.moves)
-            game.output()
-            game.draw_board()
+    #     # if this solution has the least amount of moves yet, overwrite the output
+    #     if len(game.moves) < best_yet:
+    #         best_yet = len(game.moves)
+    #         game.output()
+    #         game.draw_board()
 
-    game.draw_board()
+    # game.draw_board()
 
     # --------------------------- Manual -----------------------------
 
@@ -45,5 +46,10 @@ if __name__ == "__main__":
 
 
     # --------------------------- test -----------------------------
+    # array = random_benchmark(100)
     
-    # print(random_benchmark(100))
+    # plt.hist(array[1], 10)
+    # plt.savefig('foo.png')
+
+    
+    
