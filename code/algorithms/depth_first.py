@@ -1,11 +1,17 @@
 import copy
 from code.util import *
 
+<<<<<<< HEAD
 import os
 
 class DepthFirst:
     """
     A Depth First algorithm that builds a stack of graphs with a unique assignment of nodes for each instance.
+=======
+class Depth:
+     """
+    A Depth First algorithm that builds a stack of games with each a different set of positions for the cars.
+>>>>>>> 5f5c268e2be7a41a0d34e8e0461ff3ccc827a1fd
     """
     def __init__(self, game):
         self.game = copy.deepcopy(game)
@@ -17,6 +23,7 @@ class DepthFirst:
         self.depth = 22
     
     def get_next_state(self):
+<<<<<<< HEAD
         """
         Chose next state of the game
         """
@@ -27,6 +34,10 @@ class DepthFirst:
         Creates all child states and add to a list
         """
         possibilities = all_moves(game)
+=======
+        # choose next car
+        pass
+>>>>>>> 5f5c268e2be7a41a0d34e8e0461ff3ccc827a1fd
 
         # adds a new possibile move to the stack of game states
         for value in possibilities:
@@ -48,6 +59,7 @@ class DepthFirst:
             print(f"New best value: {self.best_value}")
 
     def run(self):
+<<<<<<< HEAD
         """
         Runs the algorithm untill all possible states are visited.
         """
@@ -68,6 +80,10 @@ class DepthFirst:
             elif new_game.won():
                 # stop if we find a solution
                 # break
+=======
+        # runs algorithm untill all possible solutions are found
+        pass    
+>>>>>>> 5f5c268e2be7a41a0d34e8e0461ff3ccc827a1fd
 
                 # or continue looking for better game
                 self.check_solution(new_game)
