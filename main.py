@@ -3,6 +3,7 @@ from code.classes.game import Game
 from code.util import *
 from code.algorithms.randomise import * 
 import matplotlib.pyplot as plt
+import numpy as np
 
 if __name__ == "__main__":
     game = Game(6, "data/Rushhour6x6_1.csv")
@@ -46,10 +47,8 @@ if __name__ == "__main__":
 
 
     # --------------------------- test -----------------------------
-    # array = random_benchmark(100)
     
-    # plt.hist(array[1], 10)
-    # plt.savefig('foo.png')
 
-    
+    # bench = Benchmark(game,20)
+    # print(bench)
     

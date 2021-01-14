@@ -3,11 +3,6 @@ from .car import Car
 from ..util import *
 
 
-"""
--1/+1 bij het inladen van de cars te veranderen naar array style om code beter
-leesbaar te houden. Input object wel naam bij move.
-"""
-
 class Game:
     def __init__ (self, size, source_file):
         self.size = size
