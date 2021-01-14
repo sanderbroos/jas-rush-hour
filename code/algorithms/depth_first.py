@@ -2,7 +2,7 @@ import copy
 
 class Depth:
      """
-    A Depth First algorithm that builds a stack of graphs with a unique assignment of nodes for each instance.
+    A Depth First algorithm that builds a stack of games with each a different set of positions for the cars.
     """
     def __init__(self, game):
         self.game = copy.deepcopy(game)
@@ -12,8 +12,8 @@ class Depth:
         self.best_solution = None
         self.best_value = float('inf')
     
-    def get_next_car(self):
-        # chose next car
+    def get_next_state(self):
+        # choose next car
         pass
 
     def build_children(self, car):
@@ -25,7 +25,7 @@ class Depth:
         pass
 
     def run(self):
-        # runs algorithm untill all possible solutions are fount
+        # runs algorithm untill all possible solutions are found
         pass    
 
 
