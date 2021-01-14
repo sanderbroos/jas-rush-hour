@@ -4,6 +4,9 @@ from ..util import *
 
 
 class Game:
+    """
+    Class which facilitates the playability of the game
+    """
     def __init__ (self, size, source_file):
         self.size = size
 
@@ -11,10 +14,15 @@ class Game:
         self.cars = self.load_cars(source_file)
         self.board = self.create_board()
         self.moves = []
+
+        # self.possible_moves = all_moves(self.cars, self.board)
         
 
     def load_cars(self, source_file):
-        # load dictionary with key name car and value the car 
+        """
+        Loads dictionary with the name of the car as key and the car as value 
+        """
+
         cars = {}
         with open(source_file, 'r') as readfile:
             reader = csv.DictReader(readfile)
@@ -26,8 +34,10 @@ class Game:
     
 
     def create_board(self):
-        # initialize empty 2D list representation of board
-        # car objects in array
+        """
+        Initialize empty 2D list representation of board and adds the car objects
+        """
+
         board = [[None for i in range(self.size)] for j in range(self.size)]
 
         for car in self.cars.values():
@@ -40,8 +50,18 @@ class Game:
         return board
         
 
+    # def get_next_move(self):
+    #     if self.possible_moves:
+    #         return self.possible_moves.pop()
+        
+    #     return None
+
+
     def draw_board(self):
-        # draw board and everthing on it
+        """
+        Draws board and everthing on it
+        """
+
         to_draw = self.board
 
         for row in to_draw:
@@ -54,8 +74,10 @@ class Game:
     
 
     def move(self, car, direction):
-        # move trucks or cars, check is validmove etc the save new place in car class
-        # and save the moves in self.moves
+        """
+        If the move is vaild, moves the car and saves the move
+        """
+
         moved_car = self.cars.get(car)
 
         if not self.is_valid_move(moved_car, direction):
@@ -79,22 +101,21 @@ class Game:
             for i in range(moved_car.length):
                 self.board[moved_car.row + i][moved_car.col] = moved_car
 
-        # need to append the car name and direction to save for output
         self.moves.append([car, direction])
         return True
 
 
     def is_valid_move(self, car, move):
-        # conditions for valid move: if car horizontal move needs to be horizontal, vertical car vertical move,
-        # space to be moved to needs to be empty, If border game move cant pass it.
+        """
+        Checks for validity of the to be played move
+        """
 
         return move in get_possiblities(car, self.board)
     
 
     def won(self):
         """
-        Game is won if the path to the exit is cleared for car X.
-        If won, move the car to the exit.
+        Returns true when the game is won, if no cars are blocking the exit
         """
         
         car_x = self.cars.get('X')
@@ -112,6 +133,9 @@ class Game:
 
 
     def output(self):
+        """
+        Cleans and saves the made moves to an output file
+        """
         self.moves = clean_moves(self.moves)
 
         output_string = "car,move"

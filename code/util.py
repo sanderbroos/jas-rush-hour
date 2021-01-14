@@ -45,6 +45,19 @@ def get_possiblities(car, board):
         
     return moves
 
+def all_moves(game):
+    """ Returns list with all possible moves for all cars 
+    like [[car1,move1], [car1,move2], etc]"""
+    
+    moves = []
+    for car in game.cars.keys():
+        possibilities = get_possiblities(game.cars.get(car), game.board)
+
+        for move in possibilities:
+            moves.append([car, move])
+
+    return moves
+
 
 def clean_moves(moves):
     i = 0
