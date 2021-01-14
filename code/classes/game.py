@@ -106,32 +106,19 @@ class Game:
         # otherwise the path is free, so move the car to the exit
         self.move(car_x.name, self.size - car_x.col - car_x.length)
 
+        self.moves = clean_moves(self.moves)
+
         return True
 
 
     def output(self):
-        i = 0
-
-        while i < len(self.moves):
-            move = self.moves[i]
-
-            # output format sees "up" as the positive direction
-            if self.cars.get(move[0]).orientation == "V":
-                move[1] *= -1
-            
-            # if one car makes two moves directly after each other, combine these moves into 1
-            if move[0] == self.moves[i-1][0]:
-                move[1] += self.moves.pop(i-1)[1]
-                i -= 1
-
-            i += 1
+        self.moves = clean_moves(self.moves)
 
         output_string = "car,move"
         for move in self.moves:
             if move[1] != 0:
                 output_string += f'\n{move[0]},{move[1]}'
 
-        f = open("docs/output.csv", "w")
+        f = open("output.csv", "w")
         f.write(output_string)
         f.close()
-        

@@ -44,3 +44,19 @@ def get_possiblities(car, board):
             break
         
     return moves
+
+
+def clean_moves(moves):
+    i = 0
+
+    while i < len(moves):
+        move = moves[i]
+        
+        # if one car makes two moves directly after each other, combine these moves into 1
+        if move[0] == moves[i-1][0]:
+            move[1] += moves.pop(i-1)[1]
+            i -= 1
+
+        i += 1
+
+    return moves
