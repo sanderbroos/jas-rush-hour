@@ -15,7 +15,7 @@ class Game:
         self.cars = self.load_cars(source_file)
         self.board = Board(self.size, self.cars)
         self.moves = []
-        
+        self.previous_move = None
 
     def load_cars(self, source_file):
         """
