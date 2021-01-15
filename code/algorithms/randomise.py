@@ -7,7 +7,6 @@ import copy
 
 
 class RandomAlgoritm():
-
     def __init__(self,game):
         self.game = copy.deepcopy(game)
 
@@ -19,7 +18,7 @@ class RandomAlgoritm():
 
     def get_move(self,car):
         """ Randomly chooses a move for a given car """
-        possibilities = get_possiblities(car, self.game.board)
+        possibilities = get_possiblities(car, self.game.board.get_board())
 
         if not possibilities:
             return None
@@ -32,7 +31,7 @@ class RandomAlgoritm():
     
         moves = []
         for car in self.game.cars.keys():
-            possibilities = get_possiblities(self.game.cars.get(car), self.game.board)
+            possibilities = get_possiblities(self.game.cars.get(car), self.game.board.get_board())
 
             for move in possibilities:
                 moves.append([car, move])
@@ -71,18 +70,19 @@ def Benchmark_random(game, repeats):
 def random_car(cars):
     return random.choice(list(cars.values()))
 
+
 def random_move(car, board):
-    possibilities = get_possiblities(car, board)
+    possibilities = get_possiblities(car, board.get_board())
     if not possibilities:
         return None
 
     return random.choice(possibilities)
 
+
 def all_random_moves(game):
-    
     moves = []
     for car in game.cars.keys():
-        possibilities = get_possiblities(game.cars.get(car), game.board)
+        possibilities = get_possiblities(game.cars.get(car), game.board.get_board())
 
         for move in possibilities:
             moves.append([car, move])
@@ -91,7 +91,6 @@ def all_random_moves(game):
 
 
 def random_benchmark(repeats):
-     
     numb_moves = []
 
     for _ in itertools.repeat(None,repeats):
@@ -112,9 +111,7 @@ def random_benchmark(repeats):
             numb_moves)
     
 
-
 def random_benchmarkv1(repeats):
-     
     numb_moves = []
 
     for _ in itertools.repeat(None,repeats):

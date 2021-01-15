@@ -51,7 +51,7 @@ def all_moves(game):
     
     moves = []
     for car in game.cars.keys():
-        possibilities = get_possiblities(game.cars.get(car), game.board)
+        possibilities = get_possiblities(game.cars.get(car), game.board.get_board())
 
         for move in possibilities:
             moves.append([car, move])
