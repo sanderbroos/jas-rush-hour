@@ -1,5 +1,6 @@
 from code.classes.game import Game
 from code.algorithms import depth_first as df
+from code.algorithms import breadth_first as bf
 # load all utility functions
 from code.util import *
 from code.algorithms.randomise import * 
@@ -53,5 +54,10 @@ if __name__ == "__main__":
     
     # --------------------------- Depth first ----------------------
 
-    depth_first = df.DepthFirst(game)
-    depth_first.run()
+    # depth_first = df.DepthFirst(game)
+    # depth_first.run()
+    
+    # --------------------------- Depth first ----------------------
+
+    breadth_first = bf.BreadthFirst(game)
+    breadth_first.run()

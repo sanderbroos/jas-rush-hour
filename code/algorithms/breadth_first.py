@@ -1,7 +1,5 @@
-from .depth_first import Depth
+from .depth_first import DepthFirst
 
-
-class Breadth(Depth):
-
-        def get_next_state(self):
-            pass
+class BreadthFirst(DepthFirst):
+    def get_next_state(self):
+        return self.states.pop(0)
