@@ -10,10 +10,10 @@ class DepthFirst:
         self.states = [copy.deepcopy(self.game)]
         self.best_solution = None
         self.best_value = float('inf')
-
+        
         # the maximum number of moves to try
-        self.archive = [self.game.board.get_board()]
         self.depth = 22
+        self.archive = [self.game.board.get_board()]
     
     def get_next_state(self):
         """
@@ -61,7 +61,7 @@ class DepthFirst:
             if len(new_game.moves) < self.depth and not new_game.won():
                 xcol = new_game.cars.get('X').col
                 if xcol:
-                    print(f"depth: {len(new_game.moves)}        i = {i}      X at {xcol}         archive size: {len(self.archive)}")
+                    print(f"depth: {len(new_game.moves)}        i = {i}      X at {xcol}         archive size: {len(self.archive)}      stack size: {len(self.states)}")
                 
                 self.build_children(new_game)
             elif new_game.won():
