@@ -3,7 +3,7 @@ from code.util import *
 
 class DepthFirst:
     """
-    A Depth First algorithm that builds a stack of graphs with a unique assignment of nodes for each instance.
+    A Depth First algorithm that builds a stack of games each with cars in an unique position
     """
     def __init__(self, game):
         self.game = copy.deepcopy(game)
@@ -17,7 +17,7 @@ class DepthFirst:
     
     def get_next_state(self):
         """
-        Chose next state of the game
+        Choose next state of the game
         """
         return self.states.pop()
 
@@ -40,7 +40,7 @@ class DepthFirst:
         """
         Checks and accepts better solutions than the current solution.
         """
-        new_value = len(new_game.moves)
+        new_value = len(new_game.get_moves())
         
         # looking for solutions with the least amount of moves
         if new_value < self.best_value:
@@ -58,10 +58,10 @@ class DepthFirst:
 
             i += 1
             
-            if len(new_game.moves) < self.depth and not new_game.won():
+            if len(new_game.get_moves()) < self.depth and not new_game.won():
                 xcol = new_game.cars.get('X').col
                 if xcol:
-                    print(f"depth: {len(new_game.moves)}        i = {i}      X at {xcol}         archive size: {len(self.archive)}      stack size: {len(self.states)}")
+                    print(f"depth: {len(new_game.get_moves())}        i = {i}      X at {xcol}         archive size: {len(self.archive)}      stack size: {len(self.states)}")
                 
                 self.build_children(new_game)
             elif new_game.won():

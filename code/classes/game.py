@@ -88,6 +88,12 @@ class Game:
         return move in get_possiblities(car, self.board.get_board())
     
 
+    def get_moves(self):
+        """
+        Returns list of moves
+        """
+        return self.moves
+
     def won(self):
         """
         Returns true when the game is won, if no cars are blocking the exit

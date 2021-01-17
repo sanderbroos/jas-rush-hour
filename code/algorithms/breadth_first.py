@@ -1,11 +1,12 @@
-from .depth_first import DepthFirst
 from code.util import *
 from queue import Queue
 import copy
 
 
 class BreadthFirst():
-
+    """
+    A Breadth First algorithm that builds a queue of games each with cars in an unique position
+    """
     def __init__(self, game):
         self.game = copy.deepcopy(game)
         self.states = Queue()
@@ -13,9 +14,15 @@ class BreadthFirst():
         self.best_value = float('inf')
         
     def get_next_state(self):
+        """
+        Choose next state of the game
+        """
         return self.states.get()
     
     def build_children(self, game):
+        """
+        Creates all child states and add to a list
+        """
         
         moves = all_moves(game)
 
@@ -33,7 +40,7 @@ class BreadthFirst():
         """
         Checks and accepts better solutions than the current solution.
         """
-        new_value = len(new_game.moves)
+        new_value = len(new_game.get_moves())
         
         # looking for solutions with the least amount of moves
         if new_value < self.best_value:
@@ -56,7 +63,7 @@ class BreadthFirst():
           
             if not new_game.won():
                 xcol = new_game.cars.get('X').col
-                print(f"depth: {len(new_game.moves)}        i = {i}      X at {xcol}    queue size: {self.states.qsize()}")
+                print(f"depth: {len(new_game.get_moves())}        i = {i}      X at {xcol}    queue size: {self.states.qsize()}")
                 
                 self.build_children(new_game)
             elif new_game.won():

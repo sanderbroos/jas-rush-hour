@@ -47,7 +47,7 @@ class RandomAlgoritm():
             move = self.get_move(car)
             self.game.move(car.name, move)
 
-        return len(self.game.moves)
+        return len(self.game.get_moves())
 
 
 def Benchmark_random(game, repeats):

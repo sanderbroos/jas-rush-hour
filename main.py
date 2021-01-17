@@ -26,8 +26,8 @@ if __name__ == "__main__":
     #         game.move(car.name, random_move(car, game.board))
 
     #     # if this solution has the least amount of moves yet, overwrite the output
-    #     if len(game.moves) < best_yet:
-    #         best_yet = len(game.moves)
+    #     if len(game.get_moves()) < best_yet:
+    #         best_yet = len(game.get_moves())
     #         game.output()
     #         game.draw_board()
 
@@ -57,7 +57,7 @@ if __name__ == "__main__":
     # depth_first = df.DepthFirst(game)
     # depth_first.run()
     
-    # --------------------------- Depth first ----------------------
+    # --------------------------- Breadth first ----------------------
 
     breadth_first = bf.BreadthFirst(game)
     breadth_first.run()
