@@ -27,8 +27,8 @@ if __name__ == "__main__":
 
     # --------------------------- Randomise -----------------------------
 
-    randomiser = RandomAlgorithm(game)
-    print(f"{randomiser.run()} moves made")
+    #randomiser = RandomAlgorithm(game)
+    #print(f"{randomiser.run()} moves made")
 
     # --------------------------- Benchmark test randomise -----------------------------
     
@@ -37,10 +37,11 @@ if __name__ == "__main__":
     
     # --------------------------- Depth first ----------------------
 
-    depth_first = df.DepthFirst(game)
-    depth_first.run()
+    #depth_first = df.DepthFirst(game)
+    #depth_first.run()
     
     # --------------------------- Breadth first ----------------------
 
-    # breadth_first = bf.BreadthFirst(game)
-    # breadth_first.run()
+    breadth_first = bf.BreadthFirst(game)
+    moves = breadth_first.TEST_best_moves(game,0)
+    print(moves)
