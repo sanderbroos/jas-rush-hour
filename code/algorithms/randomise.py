@@ -6,7 +6,7 @@ import numpy as np
 import copy
 
 
-class RandomAlgoritm():
+class RandomAlgorithm():
     def __init__(self,game):
         self.game = copy.deepcopy(game)
 
@@ -47,6 +47,9 @@ class RandomAlgoritm():
             move = self.get_move(car)
             self.game.move(car.name, move)
 
+        # do we want this in run, gets looped by benchmark? in main better?
+        # self.game.output()
+        # self.game.draw_board()
         return len(self.game.get_moves())
 
 
@@ -57,7 +60,7 @@ def Benchmark_random(game, repeats):
     numb_moves = []
 
     for _ in itertools.repeat(None,repeats):
-        algorithm = RandomAlgoritm(game)
+        algorithm = RandomAlgorithm(game)
         numb_moves.append(algorithm.run())
     
     return (f"mean: {int(np.mean(numb_moves))}\n"
@@ -66,68 +69,69 @@ def Benchmark_random(game, repeats):
             f"max:  {max(numb_moves)}",
             numb_moves)
 
+# van mij mag dit allemaal weg
 
-def random_car(cars):
-    return random.choice(list(cars.values()))
-
-
-def random_move(car, board):
-    possibilities = get_possiblities(car, board.get_board())
-    if not possibilities:
-        return None
-
-    return random.choice(possibilities)
+# def random_car(cars):
+#     return random.choice(list(cars.values()))
 
 
-def all_random_moves(game):
-    moves = []
-    for car in game.cars.keys():
-        possibilities = get_possiblities(game.cars.get(car), game.board.get_board())
+# def random_move(car, board):
+#     possibilities = get_possiblities(car, board.get_board())
+#     if not possibilities:
+#         return None
 
-        for move in possibilities:
-            moves.append([car, move])
+#     return random.choice(possibilities)
+
+
+# def all_random_moves(game):
+#     moves = []
+#     for car in game.cars.keys():
+#         possibilities = get_possiblities(game.cars.get(car), game.board.get_board())
+
+#         for move in possibilities:
+#             moves.append([car, move])
     
-    return random.choice(moves)
+#     return random.choice(moves)
 
 
-def random_benchmark(repeats):
-    numb_moves = []
+# def random_benchmark(repeats):
+#     numb_moves = []
 
-    for _ in itertools.repeat(None,repeats):
+#     for _ in itertools.repeat(None,repeats):
 
-        game = Game(6, "data/Rushhour6x6_1.csv")
+#         game = Game(6, "data/Rushhour6x6_1.csv")
 
-        while not game.won():
-            car = random_car(game.cars)
-            move = random_move(car, game.board)
-            game.move(car.name, move)
+#         while not game.won():
+#             car = random_car(game.cars)
+#             move = random_move(car, game.board)
+#             game.move(car.name, move)
 
-        numb_moves.append(len(game.moves))
+#         numb_moves.append(len(game.moves))
     
-    return (f"mean: {int(np.mean(numb_moves))}\n"
-            f"std:  {int(np.std(numb_moves))}\n"
-            f"min:  {min(numb_moves)}\n"
-            f"max:  {max(numb_moves)}",
-            numb_moves)
+#     return (f"mean: {int(np.mean(numb_moves))}\n"
+#             f"std:  {int(np.std(numb_moves))}\n"
+#             f"min:  {min(numb_moves)}\n"
+#             f"max:  {max(numb_moves)}",
+#             numb_moves)
     
 
-def random_benchmarkv1(repeats):
-    numb_moves = []
+# def random_benchmarkv1(repeats):
+#     numb_moves = []
 
-    for _ in itertools.repeat(None,repeats):
+#     for _ in itertools.repeat(None,repeats):
 
-        game = Game(6, "data/Rushhour6x6_3.csv")
+#         game = Game(6, "data/Rushhour6x6_3.csv")
         
 
-        while not game.won():
-            moves = all_random_moves(game)
-            car = moves[0]
-            move = moves[1]
-            game.move(car, move)
+#         while not game.won():
+#             moves = all_random_moves(game)
+#             car = moves[0]
+#             move = moves[1]
+#             game.move(car, move)
        
-        numb_moves.append(len(game.moves))
+#         numb_moves.append(len(game.moves))
     
-    return (f"mean: {int(np.mean(numb_moves))}\n"
-            f"std:  {int(np.std(numb_moves))}\n"
-            f"min:  {min(numb_moves)}\n"
-            f"max:  {max(numb_moves)}")
+#     return (f"mean: {int(np.mean(numb_moves))}\n"
+#             f"std:  {int(np.std(numb_moves))}\n"
+#             f"min:  {min(numb_moves)}\n"
+#             f"max:  {max(numb_moves)}")

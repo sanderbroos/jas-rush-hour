@@ -11,28 +11,6 @@ if __name__ == "__main__":
     game = Game(6, "data/Rushhour6x6_1.csv")
     game.draw_board()
 
-    # --------------------------- Randomise --------------------------
-
-    # best_yet = 9999999
-    # N = int(input("How many times do you want to run the randomise algorithm?\n"))
-
-    # for _ in range(N):
-    #     # create a new game
-    #     game = Game(6, "data/Rushhour6x6_1.csv")
-        
-    #     # move cars around randomly until the game is won
-    #     while not game.won():
-    #         car = random_car(game.cars)
-    #         game.move(car.name, random_move(car, game.board))
-
-    #     # if this solution has the least amount of moves yet, overwrite the output
-    #     if len(game.get_moves()) < best_yet:
-    #         best_yet = len(game.get_moves())
-    #         game.output()
-    #         game.draw_board()
-
-    # game.draw_board()
-
     # --------------------------- Manual -----------------------------
 
     # while not game.won():
@@ -47,7 +25,12 @@ if __name__ == "__main__":
 
     # game.output()
 
-    # --------------------------- test -----------------------------
+    # --------------------------- Randomise -----------------------------
+
+    randomiser = RandomAlgorithm(game)
+    print(f"{randomiser.run()} moves made")
+
+    # --------------------------- Benchmark test randomise -----------------------------
     
     # bench = Benchmark_random(game,100)
     # print(bench[0])
@@ -59,5 +42,5 @@ if __name__ == "__main__":
     
     # --------------------------- Breadth first ----------------------
 
-    breadth_first = bf.BreadthFirst(game)
-    breadth_first.run()
+    # breadth_first = bf.BreadthFirst(game)
+    # breadth_first.run()
