@@ -1,13 +1,14 @@
 import copy
 from code.util import *
+from queue import LifoQueue
 
-class DepthFirst:
+class DepthFirst():
     """
     A Depth First algorithm that builds a stack of games each with cars in an unique position
     """
     def __init__(self, game):
         self.game = copy.deepcopy(game)
-        self.states = [copy.deepcopy(self.game)]
+        self.states = LifoQueue()
         self.best_solution = None
         self.best_value = float('inf')
         
@@ -19,21 +20,27 @@ class DepthFirst:
         """
         Choose next state of the game
         """
-        return self.states.pop()
+        return self.states.get()
 
     def build_children(self, game):
         """
         Creates all child states and add to a list
         """
-        possibilities = all_moves(game)
+        moves = all_moves(game)
 
-        # adds a new possibile move to the stack of game states
-        for value in possibilities:
-            new_move = copy.deepcopy(game)
-            new_board = new_move.board.get_board()
+        previous_move = game.previous_move()
 
-            if new_move.move(value[0], value[1]) and new_board not in self.archive:
-                self.states.append(new_move)
+        for move in moves:
+            new_game = copy.deepcopy(game)
+            # don't move the same car in consecutive moves
+            if move[0] == previous_move[0]:
+                continue
+            
+            new_game.move(move[0], move[1])
+            new_board = new_game.board.get_board()
+            
+            if new_board not in self.archive:
+                self.states.put(new_game)
                 self.archive.append(new_board)
 
     def check_solution(self, new_game):
@@ -52,8 +59,10 @@ class DepthFirst:
         """
         Runs the algorithm untill all possible states are visited.
         """
+        self.states.put(copy.deepcopy(self.game))
         i = 0
-        while self.states:            
+
+        while self.states:
             new_game = self.get_next_state()
 
             i += 1
@@ -61,17 +70,16 @@ class DepthFirst:
             if len(new_game.get_moves()) < self.depth and not new_game.won():
                 xcol = new_game.cars.get('X').col
                 if xcol:
-                    print(f"depth: {len(new_game.get_moves())}        i = {i}      X at {xcol}         archive size: {len(self.archive)}      stack size: {len(self.states)}")
+                    print(f"depth: {len(new_game.get_moves())}        i = {i}      X at {xcol}         archive size: {len(self.archive)}      {self.states.__class__.__name__} size: {self.states.qsize()}")
                 
                 self.build_children(new_game)
             elif new_game.won():
-                # stop if we find a solution
-                # break
-
-                # or continue looking for better game
-                self.check_solution(new_game)
+                if self.__class__.__name__ == "BreadthFirst":
+                    break
+                elif self.__class__.__name__ == "DepthFirst":
+                    self.check_solution(new_game)
 
         # update the input game with the best result found.
         self.game = self.best_solution
-
-        self.game.output()
+        if self.game:
+            self.game.output()

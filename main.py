@@ -54,10 +54,10 @@ if __name__ == "__main__":
     
     # --------------------------- Depth first ----------------------
 
-    # depth_first = df.DepthFirst(game)
-    # depth_first.run()
+    depth_first = df.DepthFirst(game)
+    depth_first.run()
     
     # --------------------------- Breadth first ----------------------
 
-    breadth_first = bf.BreadthFirst(game)
-    breadth_first.run()
+    # breadth_first = bf.BreadthFirst(game)
+    # breadth_first.run()
