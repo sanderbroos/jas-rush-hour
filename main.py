@@ -1,4 +1,5 @@
 from code.classes.game import Game
+from code.heuristics import *
 from code.algorithms import depth_first as df
 from code.algorithms import breadth_first as bf
 # load all utility functions
@@ -42,6 +43,8 @@ if __name__ == "__main__":
     
     # --------------------------- Breadth first ----------------------
 
-    breadth_first = bf.BreadthFirst(game)
-    moves = breadth_first.TEST_best_moves(game,0)
-    print(moves)
+    #breadth_first = bf.BreadthFirst(game)
+    #breadth_first.run()
+
+
+    print(double_block_heuristic(game))

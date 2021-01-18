@@ -26,7 +26,7 @@ class DepthFirst():
         """
         Creates all child states and add to a list
         """
-        moves = all_moves(game)
+        moves = self.TEST_best_moves(game,0)
 
         previous_move = game.previous_move()
 
@@ -54,6 +54,39 @@ class DepthFirst():
             self.best_solution = new_game
             self.best_value = new_value
             print(f"New best value: {self.best_value}")
+
+    def TEST_best_moves(self, game, heuristic):
+        """
+        returns list with 'best moves' using a heuristic
+
+        heurtics variable moet zorgen dat je uit meerdere heurtics kan kiezen
+        nu is block heurtics gehardcoded
+        """
+        moves = all_moves(game)
+        best_moves = []
+        # some surely bigger number (for block!!)
+        best_heur = game.size
+
+        for move in moves:
+            new_game = copy.deepcopy(game)
+            new_game.move(move[0], move[1]) 
+            new_heur = block_heuristic(new_game)
+
+            if new_heur == best_heur:
+                best_moves.append(move)
+            elif new_heur < best_heur:
+                best_heur = new_heur
+                best_moves = []
+                best_moves.append(move)
+            else:
+                continue
+
+        return best_moves
+
+
+
+
+
 
     def run(self):
         """
