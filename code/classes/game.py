@@ -15,7 +15,6 @@ class Game:
         self.cars = self.load_cars(source_file)
         self.board = Board(self.size, self.cars)
         self.moves = []
-        self.previous_move = None
 
     def load_cars(self, source_file):
         """
@@ -78,6 +77,13 @@ class Game:
 
         self.moves.append([car, direction])
         return True
+
+
+    def previous_move(self):
+        if self.moves:
+            return self.moves[-1]
+        
+        return [None, None]
 
 
     def is_valid_move(self, car, move):
