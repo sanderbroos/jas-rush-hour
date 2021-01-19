@@ -73,3 +73,17 @@ def clean_moves(moves):
         i += 1
 
     return moves
+
+def all_movesv1(cars, board):
+    """ Returns list with all possible moves for all cars 
+    like [[car1,move1], [car1,move2], etc]"""
+    
+    moves = []
+    for car in cars.values():
+        possibilities = get_possiblities(car, board)
+
+        for move in possibilities:
+            moves.append([car, move])
+
+    return moves
+
