@@ -16,32 +16,40 @@ class DepthFirst():
         self.depth = 22
         self.archive = [self.game.board.get_board()]
     
+
     def get_next_state(self):
         """
         Choose next state of the game
         """
         return self.states.get()
 
-    def build_children(self, game):
+
+    def build_children(self):
         """
         Creates all child states and add to a list
         """
-        moves = self.TEST_best_moves(game,0)
 
-        previous_move = game.previous_move()
+        original_moves = copy.deepcopy(self.game.get_moves())
+        previous_move = self.game.previous_move()
 
-        for move in moves:
-            new_game = copy.deepcopy(game)
+        for move in all_moves(self.game):
             # don't move the same car in consecutive moves
             if move[0] == previous_move[0]:
                 continue
+                
+            new_moves = original_moves + [move]
             
-            new_game.move(move[0], move[1])
-            new_board = new_game.board.get_board()
+            self.game.reset()
+            self.game.build(new_moves)
+            # new_board = copy.deepcopy(self.game.board.get_board())
             
-            if new_board not in self.archive:
-                self.states.put(new_game)
-                self.archive.append(new_board)
+            # if new_board not in self.archive:
+            self.states.put(new_moves)
+                # self.archive.append(new_board)
+
+        self.game.reset()
+        self.game.build(original_moves)
+
 
     def check_solution(self, new_game):
         """
@@ -54,6 +62,7 @@ class DepthFirst():
             self.best_solution = new_game
             self.best_value = new_value
             print(f"New best value: {self.best_value}")
+
 
     def TEST_best_moves(self, game, heuristic):
         """
@@ -84,33 +93,31 @@ class DepthFirst():
         return best_moves
 
 
-
-
-
-
     def run(self):
         """
         Runs the algorithm untill all possible states are visited.
         """
-        self.states.put(copy.deepcopy(self.game))
+        self.states.put(self.game.get_moves())
         i = 0
 
         while self.states:
-            new_game = self.get_next_state()
+            new_state = self.get_next_state()
+            self.game.build(new_state)
 
             i += 1
             
-            if len(new_game.get_moves()) < self.depth and not new_game.won():
-                xcol = new_game.cars.get('X').col
-                if xcol:
-                    print(f"depth: {len(new_game.get_moves())}        i = {i}      X at {xcol}         archive size: {len(self.archive)}      {self.states.__class__.__name__} size: {self.states.qsize()}")
+            if len(self.game.get_moves()) < self.depth and not self.game.won():
+                if i%100==0:
+                    print(f"depth: {len(self.game.get_moves())}        i = {i}      X at {self.game.cars['X'].col}         archive size: {len(self.archive)}      {self.states.__class__.__name__} size: {self.states.qsize()}")
                 
-                self.build_children(new_game)
-            elif new_game.won():
+                self.build_children()
+            elif self.game.won():
                 if self.__class__.__name__ == "BreadthFirst":
                     break
                 elif self.__class__.__name__ == "DepthFirst":
-                    self.check_solution(new_game)
+                    self.check_solution(self.game)
+
+            self.game.reset()
 
         # update the input game with the best result found.
         self.game = self.best_solution

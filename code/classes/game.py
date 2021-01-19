@@ -87,6 +87,8 @@ class Game:
     def reset(self):
         for move in reversed(self.moves):
             self.move(move[0], -move[1])
+        
+        self.moves = []
 
 
     def previous_move(self):
