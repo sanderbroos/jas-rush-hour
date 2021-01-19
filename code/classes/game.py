@@ -79,6 +79,16 @@ class Game:
         return True
 
 
+    def build(self, moves):
+        for move in moves:
+            self.move(move[0], move[1])
+        
+
+    def reset(self):
+        for move in reversed(self.moves):
+            self.move(move[0], -move[1])
+
+
     def previous_move(self):
         if self.moves:
             return self.moves[-1]
