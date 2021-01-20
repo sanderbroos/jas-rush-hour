@@ -12,18 +12,6 @@ class BreadthFirst(DepthFirst):
     """
 
     def __init__(self, game):
-        self.game = copy.deepcopy(game)
         super().__init__(game)
         self.states = Queue()
- 
-            
-            
-            
-
-
-
-
-
-
-
-
+        self.depth = float('inf')

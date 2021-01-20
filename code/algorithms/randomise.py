@@ -60,7 +60,7 @@ class RandomAlgorithm():
             algorithm = RandomAlgorithm(game)
             numb_moves.append(algorithm.run())
         
-        # output doesn't work like this
+        # output and draw_board dont work
         self.game.output()
         self.game.draw_board()
 

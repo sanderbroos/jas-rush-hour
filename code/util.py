@@ -5,12 +5,7 @@ def get_lane(car, board):
     """
 
     if car.orientation == 'V':
-        column = []
-
-        for i in range(0,len(board)):
-            column.append(board[i][car.col])
-
-        return column
+        return [row[car.col] for row in board]
     
     return board[car.row]
 
@@ -26,7 +21,7 @@ def get_possiblities(car, board):
 
     if car.orientation == 'H':
         index = car.col
-    if car.orientation == 'V':
+    elif car.orientation == 'V':
         index = car.row
 
     for i in range(1, size - 1):
@@ -37,9 +32,9 @@ def get_possiblities(car, board):
             break
     
     for i in range(1, size - 1): 
-        if (index - i > -1
+        if (index - i >= 0
                 and lane[index - i] == None):
-            moves[:0] = [-i]
+            moves.append(-i)
         else:
             break
         
@@ -50,8 +45,11 @@ def all_moves(game):
     like [[car1,move1], [car1,move2], etc]"""
     
     moves = []
-    for car in game.cars.keys():
-        possibilities = get_possiblities(game.cars.get(car), game.board.get_board())
+    cars = game.cars
+    board = game.board.get_board()
+
+    for car in cars.keys():
+        possibilities = get_possiblities(cars.get(car), board)
 
         for move in possibilities:
             moves.append([car, move])

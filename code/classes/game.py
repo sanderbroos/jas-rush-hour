@@ -9,12 +9,11 @@ class Game:
     Class which facilitates the playability of the game
     """
     def __init__ (self, size, source_file):
-        self.size = size
-
         # load board and everything on it
         self.cars = self.load_cars(source_file)
-        self.board = Board(self.size, self.cars)
+        self.board = Board(size, self.cars)
         self.moves = []
+
 
     def load_cars(self, source_file):
         """
@@ -104,6 +103,7 @@ class Game:
         """
         return self.moves
 
+
     def won(self):
         """
         Returns true when the game is won, if no cars are blocking the exit
@@ -116,7 +116,7 @@ class Game:
             return False
 
         # otherwise the path is free, so move the car to the exit
-        self.move(car_x.name, self.size - car_x.col - car_x.length)
+        self.move(car_x.name, self.board.size - car_x.col - car_x.length)
 
         self.moves = clean_moves(self.moves)
 

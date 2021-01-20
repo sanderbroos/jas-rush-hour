@@ -13,7 +13,7 @@ class DepthFirst():
         self.best_value = float('inf')
         
         # the maximum number of moves to try
-        self.depth = float('inf')
+        self.depth = 22
         self.archive = set(str(self.game.board))
     
 
@@ -47,21 +47,19 @@ class DepthFirst():
                 self.states.put(new_moves)
                 self.archive.add(str_board)
             
-                
-
         self.game.reset()
         self.game.build(original_moves)
 
 
-    def check_solution(self, new_game):
+    def check_solution(self):
         """
         Checks and accepts better solutions than the current solution.
         """
-        new_value = len(new_game.get_moves())
+        new_value = len(self.game.get_moves())
         
         # looking for solutions with the least amount of moves
         if new_value < self.best_value:
-            self.best_solution = new_game
+            self.best_solution = copy.deepcopy(self.game)
             self.best_value = new_value
             print(f"New best value: {self.best_value}")
 
@@ -105,8 +103,6 @@ class DepthFirst():
         while self.states:
             new_state = self.get_next_state()
             self.game.build(new_state)
-            #self.game.draw_board()
-            
 
             i += 1
             
@@ -118,16 +114,12 @@ class DepthFirst():
             elif self.game.won():
                 print(f"{i} iterations made")
                 self.game.draw_board()
-                self.game.output()
+                self.check_solution()
                 if self.__class__.__name__ == "BreadthFirst":
                     break
-                elif self.__class__.__name__ == "DepthFirst":
-                    self.check_solution(self.game)
 
             self.game.reset()
 
-            
-        # update the input game with the best result found. Needed for depth first?
-        # self.game = self.best_solution
-        # if self.game:
-        #     self.game.output()
+        # update the input game with the best result found.
+        if self.best_solution:
+            self.best_solution.output()
