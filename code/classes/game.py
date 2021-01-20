@@ -36,15 +36,7 @@ class Game:
         Draws board and everthing on it
         """
 
-        to_draw = self.board.get_board()
-
-        for row in to_draw:
-            for item in row:
-                if item == None:
-                    print('_', end=' ')
-                else:
-                    print(item.name, end=' ')
-            print('')
+        print(str(self.board))
     
 
     def move(self, car, direction):

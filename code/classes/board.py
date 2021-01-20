@@ -4,6 +4,20 @@ class Board:
     """
     def __init__ (self, size, cars):
         self.board = self.create_board(size,cars)
+    
+
+    def __str__(self):
+        to_draw = self.board
+        string = ''
+        for row in to_draw:
+            for item in row:
+                if item == None:
+                    string += "_ "
+                else:
+                    string += f"{item.name} "
+            string += '\n'
+        
+        return string
         
         
     def create_board(self, size, cars):
@@ -23,3 +37,5 @@ class Board:
 
     def set_item(self, row, col, value):
         self.board[row][col] = value
+    
+    
