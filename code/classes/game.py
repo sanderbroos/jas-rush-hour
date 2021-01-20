@@ -54,8 +54,8 @@ class Game:
 
         moved_car = self.cars.get(car)
 
-        if not self.is_valid_move(moved_car, direction):
-            return False
+        # if not self.is_valid_move(moved_car, direction):
+        #     return False
 
         if moved_car.orientation == 'H':
             moved_car.col = moved_car.col + direction

@@ -37,18 +37,15 @@ class DepthFirst():
             if move[0] == previous_move[0]:
                 continue
                 
-            new_moves = original_moves + [move]
+            # new_moves = original_moves + [move]
             
-            self.game.reset()
-            self.game.build(new_moves)
+            # self.game.reset()
+            # self.game.build(new_moves)
             # new_board = copy.deepcopy(self.game.board.get_board())
             
             # if new_board not in self.archive:
-            self.states.put(new_moves)
+            self.states.put(original_moves + [move])
                 # self.archive.append(new_board)
-
-        self.game.reset()
-        self.game.build(original_moves)
 
 
     def check_solution(self, new_game):
