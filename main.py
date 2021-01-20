@@ -9,7 +9,20 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 if __name__ == "__main__":
-    game = Game(9, "data/Rushhour9x9_5.csv")
+    game_nr = 0
+    while not 1 <= game_nr <= 7:
+        try:
+            game_nr = int(input("Which board do you want to use? (1-7)\n"))
+        except:
+            pass
+
+    game = {1: Game(6, "data/Rushhour6x6_1.csv"),
+            2: Game(6, "data/Rushhour6x6_2.csv"),
+            3: Game(6, "data/Rushhour6x6_3.csv"),
+            4: Game(9, "data/Rushhour9x9_4.csv"),
+            5: Game(9, "data/Rushhour9x9_5.csv"),
+            6: Game(9, "data/Rushhour9x9_6.csv"),
+            7: Game(12, "data/Rushhour12x12_7.csv")}[game_nr]
     game.draw_board()
 
     # --------------------------- Manual -----------------------------
