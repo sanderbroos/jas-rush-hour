@@ -47,24 +47,25 @@ class RandomAlgorithm():
             move = self.get_move(car)
             self.game.move(car.name, move)
 
-        # do we want this in run, gets looped by benchmark? in main better?
-        # self.game.output()
-        # self.game.draw_board()
         return len(self.game.get_moves())
 
 
-def Benchmark_random(game, repeats):
-    """ Benchmarks the random algorithm
-    using choose car first then move method"""
+    def Benchmark_random(self, game, repeats):
+        """ Benchmarks the random algorithm
+        using choose car first then move method"""
 
-    numb_moves = []
+        numb_moves = []
 
-    for _ in itertools.repeat(None,repeats):
-        algorithm = RandomAlgorithm(game)
-        numb_moves.append(algorithm.run())
-    
-    return (f"mean: {int(np.mean(numb_moves))}\n"
-            f"std:  {int(np.std(numb_moves))}\n"
-            f"min:  {min(numb_moves)}\n"
-            f"max:  {max(numb_moves)}",
-            numb_moves)
+        for _ in itertools.repeat(None,repeats):
+            algorithm = RandomAlgorithm(game)
+            numb_moves.append(algorithm.run())
+        
+        # output doesn't work like this
+        self.game.output()
+        self.game.draw_board()
+
+        return (f"mean: {int(np.mean(numb_moves))}\n"
+                f"std:  {int(np.std(numb_moves))}\n"
+                f"min:  {min(numb_moves)}\n"
+                f"max:  {max(numb_moves)}",
+                numb_moves)

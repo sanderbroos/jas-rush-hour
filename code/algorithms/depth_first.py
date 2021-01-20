@@ -111,12 +111,14 @@ class DepthFirst():
             i += 1
             
             if len(self.game.get_moves()) < self.depth and not self.game.won():
-                if i%100==0:
+                if i%1000==0:
                     print(f"depth: {len(self.game.get_moves())}        i = {i}      X at {self.game.cars['X'].col}         archive size: {len(self.archive)}      {self.states.__class__.__name__} size: {self.states.qsize()}")
 
                 self.build_children()
             elif self.game.won():
+                print(f"{i} iterations made")
                 self.game.draw_board()
+                self.game.output()
                 if self.__class__.__name__ == "BreadthFirst":
                     break
                 elif self.__class__.__name__ == "DepthFirst":
@@ -125,7 +127,7 @@ class DepthFirst():
             self.game.reset()
 
             
-        # update the input game with the best result found.
-        self.game = self.best_solution
-        if self.game:
-            self.game.output()
+        # update the input game with the best result found. Needed for depth first?
+        # self.game = self.best_solution
+        # if self.game:
+        #     self.game.output()

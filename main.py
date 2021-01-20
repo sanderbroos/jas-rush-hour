@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 if __name__ == "__main__":
-    game = Game(9, "data/Rushhour9x9_5.csv")
+    game = Game(6, "data/Rushhour6x6_1.csv")
     game.draw_board()
 
     # --------------------------- Manual -----------------------------
@@ -27,13 +27,10 @@ if __name__ == "__main__":
     # game.output()
 
     # --------------------------- Randomise -----------------------------
-
-    #randomiser = RandomAlgorithm(game)
-    #print(f"{randomiser.run()} moves made")
-
-    # --------------------------- Benchmark test randomise -----------------------------
-    
-    # bench = Benchmark_random(game,100)
+    # N is amount of iterations to run randomise algorithm
+    # N = 100
+    # randomiser = RandomAlgorithm(game)
+    # bench = randomiser.Benchmark_random(game, N)
     # print(bench[0])
     
     # --------------------------- Depth first ----------------------
