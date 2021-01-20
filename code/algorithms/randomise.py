@@ -7,27 +7,18 @@ import copy
 
 
 class RandomAlgorithm():
+    """
+    A randomise algortithm that completes the puzzle with random moves
+    """
     def __init__(self,game):
+        # no need for deepcopy?
         self.game = copy.deepcopy(game)
 
 
-    def get_car(self):
-        """ Randomly chooses a car"""
-        return random.choice(list(self.game.cars.values()))
-
-
-    def get_move(self,car):
-        """ Randomly chooses a move for a given car """
-        possibilities = get_possiblities(car, self.game.board.get_board())
-
-        if not possibilities:
-            return None
-
-        return random.choice(possibilities)
-
-
-    def all_moves(self):
-        """Randomly chooses a move from all possible moves for all cars """
+    def random_move(self):
+        """
+        Randomly chooses a move from all possible moves for all cars
+        """
     
         moves = []
         for car in self.game.cars.keys():
@@ -40,19 +31,20 @@ class RandomAlgorithm():
 
 
     def run(self):
-        """ Chooses a car then a move and returns the number
-        of moves needed to win the game """
+        """ 
+        Chooses a car then a move and returns the number of moves needed to win the game 
+        """
         while not self.game.won():
-            car = self.get_car()
-            move = self.get_move(car)
-            self.game.move(car.name, move)
+            move = self.random_move()
+            self.game.move(move[0],move[1])
 
         return len(self.game.get_moves())
 
 
     def Benchmark_random(self, game, repeats):
-        """ Benchmarks the random algorithm
-        using choose car first then move method"""
+        """ 
+        Benchmarks the random algorithm using choose car first then move method
+        """
 
         numb_moves = []
 

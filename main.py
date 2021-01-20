@@ -53,8 +53,8 @@ if __name__ == "__main__":
     
     # --------------------------- Breadth first ----------------------
 
-    breadth_first = bf.BreadthFirst(game)
-    breadth_first.run()
+    # breadth_first = bf.BreadthFirst(game)
+    # breadth_first.run()
 
 
     # print(double_block_heuristic(game))
