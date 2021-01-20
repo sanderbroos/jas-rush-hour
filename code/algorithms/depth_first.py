@@ -14,7 +14,7 @@ class DepthFirst():
         
         # the maximum number of moves to try
         self.depth = 22
-        self.archive = set(str(self.game.board))
+        self.archive = set()
     
 
     def get_next_state(self):
@@ -30,13 +30,8 @@ class DepthFirst():
         """
 
         original_moves = copy.deepcopy(self.game.get_moves())
-        previous_move = self.game.previous_move()
 
         for move in all_moves(self.game):
-            # don't move the same car in consecutive moves
-            if move[0] == previous_move[0]:
-                continue
-                
             new_moves = original_moves + [move]
             
             self.game.reset()
@@ -108,10 +103,11 @@ class DepthFirst():
             
             if len(self.game.get_moves()) < self.depth and not self.game.won():
                 if i%100==0:
-                    print(f"depth: {len(self.game.get_moves())}        i = {i}      X at {self.game.cars['X'].col}         archive size: {len(self.archive)}      {self.states.__class__.__name__} size: {self.states.qsize()}")
+                    self.print_status(i)
 
                 self.build_children()
             elif self.game.won():
+                self.print_status(i)
                 self.game.draw_board()
                 self.check_solution()
                 if self.__class__.__name__ == "BreadthFirst":
@@ -122,3 +118,7 @@ class DepthFirst():
         # update the input game with the best result found.
         if self.best_solution:
             self.best_solution.output()
+
+    
+    def print_status(self, i):
+        print(f"depth: {len(self.game.get_moves())}        i = {i}      X at {self.game.cars['X'].col}         archive size: {len(self.archive)}      {self.states.__class__.__name__} size: {self.states.qsize()}")
