@@ -13,8 +13,8 @@ class DepthFirst():
         self.best_value = float('inf')
         
         # the maximum number of moves to try
-        self.depth = float('inf')
-        self.archive = set(str(self.game.board))
+        self.depth = 22
+        self.archive = [self.game.board.get_board()]
     
 
     def get_next_state(self):
@@ -39,15 +39,13 @@ class DepthFirst():
                 
             # new_moves = original_moves + [move]
             
-            self.game.reset()
-            self.game.build(new_moves)
-            str_board = str(self.game.board)
+            # self.game.reset()
+            # self.game.build(new_moves)
+            # new_board = copy.deepcopy(self.game.board.get_board())
             
-            if str_board not in self.archive:
-                self.states.put(new_moves)
-                self.archive.add(str_board)
-            
-                
+            # if new_board not in self.archive:
+            self.states.put(original_moves + [move])
+                # self.archive.append(new_board)
 
 
     def check_solution(self, new_game):
@@ -102,18 +100,15 @@ class DepthFirst():
         while self.states:
             new_state = self.get_next_state()
             self.game.build(new_state)
-            #self.game.draw_board()
-            
 
             i += 1
             
             if len(self.game.get_moves()) < self.depth and not self.game.won():
                 if i%100==0:
                     print(f"depth: {len(self.game.get_moves())}        i = {i}      X at {self.game.cars['X'].col}         archive size: {len(self.archive)}      {self.states.__class__.__name__} size: {self.states.qsize()}")
-
+                
                 self.build_children()
             elif self.game.won():
-                self.game.draw_board()
                 if self.__class__.__name__ == "BreadthFirst":
                     break
                 elif self.__class__.__name__ == "DepthFirst":
@@ -121,7 +116,6 @@ class DepthFirst():
 
             self.game.reset()
 
-            
         # update the input game with the best result found.
         self.game = self.best_solution
         if self.game:

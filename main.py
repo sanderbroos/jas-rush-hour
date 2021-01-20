@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 if __name__ == "__main__":
-    game = Game(9, "data/Rushhour9x9_5.csv")
+    game = Game(6, "data/Rushhour6x6_1.csv")
     game.draw_board()
 
     # --------------------------- Manual -----------------------------
