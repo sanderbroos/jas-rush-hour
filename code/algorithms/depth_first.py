@@ -121,4 +121,4 @@ class DepthFirst():
 
         # update the input game with the best result found.
         if self.best_solution:
-            self.game.output()
+            self.best_solution.output()
