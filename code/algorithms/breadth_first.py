@@ -57,7 +57,8 @@ class BreadthFirst():
         if new_value < self.best_value:
             self.best_solution = copy.deepcopy(self.game)
             self.best_value = new_value
-            print(f"New best value: {self.best_value}")
+            self.game.draw_board()
+            print(f"New best value: {self.best_value}\n")
 
     def run(self):
         """
@@ -80,7 +81,6 @@ class BreadthFirst():
                 
             elif self.game.won():
                 self.print_status(i)
-                self.game.draw_board()
                 self.check_solution()
                 if self.__class__.__name__ == "BreadthFirst":
                     break
