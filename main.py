@@ -31,11 +31,16 @@ if __name__ == "__main__":
                   "D": DepthFirst(game),
                   "B": BreadthFirst(game),
                   "I": IterativeDeepening(game),
-                  "AS" : Astar(game)}
-    
+                  "S": Astar(game)}
+
     print("Available algorithms:")
     for key, value in algorithms.items():
         print(f"    {key:>2}: {value.__class__.__name__}")
+
+    algo_id = "None"
+    while algo_id not in algorithms:
+        algo_id = input("Which algorithm do you want to use? ").upper()
+    print()
 
     algorithm = algorithms[algo_id]
     algorithm.run()
