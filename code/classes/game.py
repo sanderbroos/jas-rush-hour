@@ -35,7 +35,7 @@ class Game:
         Draws board and everthing on it
         """
 
-        print(str(self.board))
+        print(f"\n{str(self.board)}")
     
 
     def move(self, car, direction):
