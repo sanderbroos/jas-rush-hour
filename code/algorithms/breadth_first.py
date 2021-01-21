@@ -83,7 +83,7 @@ class BreadthFirst():
             elif self.game.won():
                 self.print_status(i)
                 self.check_solution()
-                if self.__class__.__name__ == "BreadthFirst":
+                if self.__class__.__name__ == "BreadthFirst" or self.__class__.__name__ == "Astar":
                     break
 
             self.game.reset()

@@ -8,10 +8,12 @@ from code.util import *
 from code.algorithms.randomise import * 
 import matplotlib.pyplot as plt
 import numpy as np
+import time
+from dataclasses import dataclass, field
+import queue
+
 
 if __name__ == "__main__":
     game = Game(6, "data/Rushhour6x6_1.csv")
     board = game.board.board
     cars = game.cars
-
-algorithm = Astar()

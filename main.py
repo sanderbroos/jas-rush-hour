@@ -43,7 +43,7 @@ if __name__ == "__main__":
     print()
 
     if algo_id == "S":
-        heuristics = { "NULL" : "No heuristic", 
+        heuristics = { "NULL" : "No heuristic (BreathFirst)",
                         "BL" : "Blocking cars",
                         "2BL" : "Double blocking cars"}
 
