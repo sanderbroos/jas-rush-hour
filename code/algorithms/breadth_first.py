@@ -57,30 +57,31 @@ class BreadthFirst():
         if new_value < self.best_value:
             self.best_solution = copy.deepcopy(self.game)
             self.best_value = new_value
-            print(f"New best value: {self.best_value}")
+            print()
+            self.game.draw_board()
+            print(f"Best solution: {self.best_value}\n")
 
     def run(self):
         """
-        Runs the algorithm untill all possible states are visited.
+        Runs the algorithm until all possible states are visited.
         """
         self.enqueue(self.game.get_moves())
         i = 0
 
-        while self.states:
-            new_state = self.dequeue()
-            self.game.build(new_state)
+        if not self.depth:
+            self.depth = int(input("What's the maximum depth to search? "))
+
+        while not self.states.empty():
+            self.game.build(self.dequeue())
 
             i += 1
+            if i%100==0:
+                self.print_status(i)
             
             if len(self.game.get_moves()) < self.depth and not self.game.won():
-                if i%100==0:
-                    self.print_status(i)
-
                 self.build_children()
-                
             elif self.game.won():
                 self.print_status(i)
-                self.game.draw_board()
                 self.check_solution()
                 if self.__class__.__name__ == "BreadthFirst":
                     break
@@ -90,7 +91,11 @@ class BreadthFirst():
         # update the input game with the best result found.
         if self.best_solution:
             self.best_solution.output()
+            return True
+
+        print("\nFailed to find a solution.\n")
+        return False
 
     
     def print_status(self, i):
-        print(f"depth: {len(self.game.get_moves()):<12} i = {i:<12} X at {self.game.cars['X'].col:<10} archive size: {len(self.archive):<12} {self.states.__class__.__name__} size: {self.states.qsize()}")
+        print(f"depth: {len(self.game.get_moves()):<12} i = {i:<12} X at {self.game.cars['X'].col:<10} archive size: {len(self.archive):<12} {self.states.__class__.__name__} size: {self.states.qsize()}", end="\r")

@@ -7,19 +7,29 @@ class DepthFirst(BreadthFirst):
     """
     A Depth First algorithm that builds a stack of games each with cars in an unique position
     """
-    def __init__(self, game):
+    def __init__(self, game, depth=None):
         super().__init__(game)
         self.states = LifoQueue()
-        self.depth = 22
-  
-    def check_solution(self):
+        self.depth = depth
+        self.archive = {}
+
+    def build_children(self):
         """
-        Checks and accepts better solutions than the current solution.
+        Creates all child states and add to a list
         """
-        new_value = len(self.game.get_moves())
-        
-        # looking for solutions with the least amount of moves
-        if new_value < self.best_value:
-            self.best_solution = copy.deepcopy(self.game)
-            self.best_value = new_value
-            print(f"New best value: {self.best_value}")
+
+        original_moves = copy.deepcopy(self.game.get_moves())
+
+        for move in all_moves(self.game):
+            new_moves = original_moves + [move]
+            
+            self.game.reset()
+            self.game.build(new_moves)
+            str_board = str(self.game.board)
+            
+            if str_board not in self.archive or len(new_moves) < self.archive[str_board]:
+                self.states.put(new_moves)
+                self.archive[str_board] = len(new_moves)
+            
+        self.game.reset()
+        self.game.build(original_moves)
