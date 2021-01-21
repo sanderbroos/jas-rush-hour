@@ -6,7 +6,7 @@ import numpy as np
 import copy
 
 
-class Random():
+class RandomOnce():
     def __init__(self,game):
         self.game = copy.deepcopy(game)
         
@@ -22,7 +22,7 @@ class Random():
         print(f"{len(self.game.get_moves())} moves made")
 
 
-class BenchmarkRandom:
+class Random:
     """ 
     Benchmarks the random algorithm by repeating the same algortihm for a select amount
     """
@@ -35,9 +35,10 @@ class BenchmarkRandom:
     
     def run(self):
         repeats = int(input("How many times should the randomise algorithm be executed? "))
+        print()
         
         for _ in itertools.repeat(None, repeats):
-            algorithm = Random(self.game)
+            algorithm = RandomOnce(self.game)
             algorithm.run()
             moves_made = algorithm.game.get_moves()
             self.numb_moves.append(len(moves_made))
@@ -47,7 +48,8 @@ class BenchmarkRandom:
                 self.best_value = len(moves_made)
                 algorithm.game.output()
         
-        print(f"\nmean: {int(np.mean(self.numb_moves))}\n"
-                f"std:  {int(np.std(self.numb_moves))}\n"
-                f"min:  {min(self.numb_moves)}\n"
-                f"max:  {max(self.numb_moves)}")
+        if repeats > 1:
+            print(f"\nmean: {int(np.mean(self.numb_moves))}\n"
+                    f"std:  {int(np.std(self.numb_moves))}\n"
+                    f"min:  {min(self.numb_moves)}\n"
+                    f"max:  {max(self.numb_moves)}")

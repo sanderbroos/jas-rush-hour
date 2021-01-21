@@ -30,7 +30,6 @@ if __name__ == "__main__":
 
     algorithms = {"M": Manual(game),
                   "R": Random(game),
-                  "BR": BenchmarkRandom(game),
                   "DF": DepthFirst(game),
                   "BF": BreadthFirst(game),
                   "ID": IterativeDeepening(game)}
