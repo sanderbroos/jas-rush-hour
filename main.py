@@ -49,11 +49,12 @@ if __name__ == "__main__":
 
         print("Available heuristics:")
         for key, value in heuristics.items():
-            print(f"    {key:>2}: {value.__class__.__name__}")
+            print(f"    {key:>2}: {value}")
         
         heuristic = "None"
         while heuristic not in heuristics:
             heuristic = input(f"Which heuristic do you want to use? Possiblities are: {', '.join(heuristics)}. ").upper()
+
         Astar(game, heuristic).run()
 
     else:

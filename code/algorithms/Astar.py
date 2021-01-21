@@ -22,8 +22,9 @@ class Astar(BreadthFirst):
         return self.heuristic(game)
 
     def enqueue(self, move):
+        depth = len(move)
         priority = self.set_priority(self.game)
-        return self.states.put((priority, move))
+        return self.states.put((depth, priority, move))
    
     def dequeue(self):
-        return self.states.get()[1]
+        return self.states.get()[2]
