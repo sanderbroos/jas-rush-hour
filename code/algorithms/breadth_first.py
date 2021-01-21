@@ -66,7 +66,7 @@ class BreadthFirst():
         self.states.put(self.game.get_moves())
         i = 0
 
-        while self.states:
+        while not self.states.empty():
             new_state = self.get_next_state()
             self.game.build(new_state)
 
@@ -90,6 +90,8 @@ class BreadthFirst():
         # update the input game with the best result found.
         if self.best_solution:
             self.best_solution.output()
+        else:
+            print("\nFailed to find a solution.")
 
     
     def print_status(self, i):
