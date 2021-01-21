@@ -7,10 +7,10 @@ class DepthFirst(BreadthFirst):
     """
     A Depth First algorithm that builds a stack of games each with cars in an unique position
     """
-    def __init__(self, game):
+    def __init__(self, game, depth=None):
         super().__init__(game)
         self.states = LifoQueue()
-        self.depth = 22
+        self.depth = depth
         self.archive = {}
 
     def build_children(self):

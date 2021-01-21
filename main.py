@@ -3,6 +3,7 @@ from code.algorithms.manual import *
 from code.algorithms.depth_first import *
 from code.algorithms.breadth_first import *
 from code.algorithms.randomise import * 
+from code.algorithms.iterative_deepening import * 
 from code.heuristics import *
 # load all utility functions
 from code.util import *
@@ -25,12 +26,14 @@ if __name__ == "__main__":
         game_nr = int(input("Which board do you want to use? (1-8) "))
 
     game = games[game_nr]
+    game.draw_board()
 
     algorithms = {"M": Manual(game),
                   "R": Random(game),
                   "BR": BenchmarkRandom(game),
                   "DF": DepthFirst(game),
-                  "BF": BreadthFirst(game)}
+                  "BF": BreadthFirst(game),
+                  "ID": IterativeDeepening(game)}
                   
     print("\nAvailable algorithms:")
     for key, value in algorithms.items():
@@ -42,3 +45,4 @@ if __name__ == "__main__":
 
     algorithm = algorithms[algo_id]
     algorithm.run()
+    print()
