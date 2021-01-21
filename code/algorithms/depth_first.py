@@ -95,7 +95,7 @@ class DepthFirst():
         self.states.put(self.game.get_moves())
         i = 0
 
-        while self.states:
+        while not self.states.empty():
             new_state = self.get_next_state()
             self.game.build(new_state)
 
@@ -118,7 +118,9 @@ class DepthFirst():
         # update the input game with the best result found.
         if self.best_solution:
             self.best_solution.output()
+        else:
+            print("\nFailed to find a solution.")
 
     
     def print_status(self, i):
-        print(f"depth: {len(self.game.get_moves())}        i = {i}      X at {self.game.cars['X'].col}         archive size: {len(self.archive)}      {self.states.__class__.__name__} size: {self.states.qsize()}")
+        print(f"depth: {len(self.game.get_moves()):<12} i = {i:<12} X at {self.game.cars['X'].col:<10} archive size: {len(self.archive):<12} {self.states.__class__.__name__} size: {self.states.qsize()}")
