@@ -81,14 +81,6 @@ class Game:
         
         self.moves = []
 
-
-    def previous_move(self):
-        if self.moves:
-            return self.moves[-1]
-        
-        return [None, None]
-
-
     def is_valid_move(self, car, move):
         """
         Checks for validity of the to be played move
