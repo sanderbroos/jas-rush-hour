@@ -2,39 +2,31 @@ import copy
 from code.util import *
 from queue import Queue, PriorityQueue
 from code.classes.board import Board
+from code.heuristics import *
+from code.algorithms.breadth_first import BreadthFirst
 
-class Astar():
+class Astar(BreadthFirst):
 
-    def __init__(self, game):
-        self.cars = copy.deepcopy(game.cars)
-        self.size = game.size
-        self.queue = PriorityQueue()
-        self.archive = set()
-    
-    def TEST_best_moves(self, game, heuristic):
-        """
-        returns list with 'best moves' using a heuristic
+    def __init__(self, game, heuristic = 'NULL'):
+        super().__init__(game)
+        self.states = PriorityQueue()
+        self.heuristics = {
+            'NULL' : null_heuristic,
+            'BL' : block_heuristic,
+            '2BL' : double_block_heuristic
+        }
+        self.heuristic = self.heuristics[heuristic]
 
-        heurtics variable moet zorgen dat je uit meerdere heurtics kan kiezen
-        nu is block heurtics gehardcoded
-        """
-        moves = all_moves(game)
-        best_moves = []
-        # some surely bigger number (for block!!)
-        best_heur = game.size
 
-        for move in moves:
-            new_game = copy.deepcopy(game)
-            new_game.move(move[0], move[1]) 
-            new_heur = block_heuristic(new_game)
+    def set_priority(self, game):
+        return self.heuristic(game)
 
-            if new_heur == best_heur:
-                best_moves.append(move)
-            elif new_heur < best_heur:
-                best_heur = new_heur
-                best_moves = []
-                best_moves.append(move)
-            else:
-                continue
 
-        return best_moves
+    def enqueue(self, move):
+        priority = self.set_priority(self.game)
+        print(priority, move)
+        return self.states.put((priority, move))
+
+   
+    def dequeue(self):
+        return self.states.get()[1]

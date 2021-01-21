@@ -19,10 +19,10 @@ class BreadthFirst():
         self.depth = float('inf')
         
 
-    def get_next_state(self):
-        """
-        Choose next state of the game
-        """
+    def enqueue(self, moves):
+        return self.states.put(moves)
+
+    def dequeue(self):
         return self.states.get()
 
 
@@ -41,7 +41,7 @@ class BreadthFirst():
             str_board = str(self.game.board)
             
             if str_board not in self.archive:
-                self.states.put(new_moves)
+                self.enqueue(new_moves)
                 self.archive.add(str_board)
             
         self.game.reset()
@@ -63,11 +63,11 @@ class BreadthFirst():
         """
         Runs the algorithm untill all possible states are visited.
         """
-        self.states.put(self.game.get_moves())
+        self.enqueue(self.game.get_moves())
         i = 0
 
         while self.states:
-            new_state = self.get_next_state()
+            new_state = self.dequeue()
             self.game.build(new_state)
 
             i += 1

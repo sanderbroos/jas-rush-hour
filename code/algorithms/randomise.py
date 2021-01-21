@@ -7,6 +7,7 @@ import copy
 
 
 class Random():
+    
     def __init__(self,game):
         self.game = copy.deepcopy(game)
 
@@ -24,19 +25,6 @@ class Random():
             return None
 
         return random.choice(possibilities)
-
-
-    def all_moves(self):
-        """Randomly chooses a move from all possible moves for all cars """
-    
-        moves = []
-        for car in self.game.cars.keys():
-            possibilities = get_possiblities(self.game.cars.get(car), self.game.board.get_board())
-
-            for move in possibilities:
-                moves.append([car, move])
-
-        return random.choice(moves)
 
 
     def run(self):

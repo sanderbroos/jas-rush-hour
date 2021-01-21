@@ -1,5 +1,9 @@
 from code.util import *
 
+
+def null_heuristic(game):
+    return 0
+
 def block_heuristic(game):
     """
     The number of cars blocking the carX
