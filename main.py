@@ -30,9 +30,9 @@ if __name__ == "__main__":
 
     algorithms = {"M": Manual(game),
                   "R": Random(game),
-                  "DF": DepthFirst(game),
-                  "BF": BreadthFirst(game),
-                  "ID": IterativeDeepening(game)}
+                  "D": DepthFirst(game),
+                  "B": BreadthFirst(game),
+                  "I": IterativeDeepening(game)}
                   
     print("\nAvailable algorithms:")
     for key, value in algorithms.items():
