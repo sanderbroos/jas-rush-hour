@@ -14,7 +14,7 @@ class Board:
                 if item == None:
                     string += "_ "
                 else:
-                    string += f"{item.name} "
+                    string += f"{item.name:<2}"
             string += '\n'
         
         return string

@@ -1,20 +1,16 @@
 from code.classes.game import Game
+from code.algorithms.manual import *
+from code.algorithms.depth_first import *
+from code.algorithms.breadth_first import *
+from code.algorithms.randomise import * 
 from code.heuristics import *
-from code.algorithms import depth_first as df
-from code.algorithms import breadth_first as bf
 # load all utility functions
 from code.util import *
-from code.algorithms.randomise import * 
-import matplotlib.pyplot as plt
-import numpy as np
 
 if __name__ == "__main__":
     game_nr = 0
     while not 1 <= game_nr <= 7:
-        try:
-            game_nr = int(input("Which board do you want to use? (1-7)\n"))
-        except:
-            pass
+        game_nr = int(input("Which board do you want to use? (1-7) "))
 
     game = {1: Game(6, "data/Rushhour6x6_1.csv"),
             2: Game(6, "data/Rushhour6x6_2.csv"),
@@ -23,41 +19,19 @@ if __name__ == "__main__":
             5: Game(9, "data/Rushhour9x9_5.csv"),
             6: Game(9, "data/Rushhour9x9_6.csv"),
             7: Game(12, "data/Rushhour12x12_7.csv")}[game_nr]
-    game.draw_board()
 
-    # --------------------------- Manual -----------------------------
+    algorithms = {"M": Manual(game),
+                  "R": Random(game),
+                  "BR": BenchmarkRandom(game),
+                  "DF": DepthFirst(game),
+                  "BF": BreadthFirst(game)}
+                  
+    print("Available algorithms:")
+    for key, value in algorithms.items():
+        print(f"    {key}: {value.__class__.__name__}")
 
-    # while not game.won():
-    #     print('Instructions: Left and down are negative numbers, right and up are positive numbers')
-    #     car = input("Please the name of the car that should be moved:\n")
-    #     if car == "stop":
-    #         break
-            
-    #     direction = input("Please enter your move from -4 to 4:\n")
-    #     game.move(car.upper(), int(direction))
-    #     game.draw_board()
+    algorithm = "None"
+    while algorithm not in algorithms:
+        algorithm = input("Which algorithm do you want to use? ").upper()
 
-    # game.output()
-
-    # --------------------------- Randomise -----------------------------
-
-    #randomiser = RandomAlgorithm(game)
-    #print(f"{randomiser.run()} moves made")
-
-    # --------------------------- Benchmark test randomise -----------------------------
-    
-    # bench = Benchmark_random(game,100)
-    # print(bench[0])
-    
-    # --------------------------- Depth first ----------------------
-
-    #depth_first = df.DepthFirst(game)
-    #depth_first.run()
-    
-    # --------------------------- Breadth first ----------------------
-
-    breadth_first = bf.BreadthFirst(game)
-    breadth_first.run()
-
-
-    # print(double_block_heuristic(game))
+    algorithms[algorithm].run()
