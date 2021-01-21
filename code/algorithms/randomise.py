@@ -9,53 +9,23 @@ import copy
 class Random():
     def __init__(self,game):
         self.game = copy.deepcopy(game)
-
-
-    def get_car(self):
-        """ Randomly chooses a car"""
-        return random.choice(list(self.game.cars.values()))
-
-
-    def get_move(self,car):
-        """ Randomly chooses a move for a given car """
-        possibilities = get_possiblities(car, self.game.board.get_board())
-
-        if not possibilities:
-            return None
-
-        return random.choice(possibilities)
-
-
-    def all_moves(self):
-        """Randomly chooses a move from all possible moves for all cars """
-    
-        moves = []
-        for car in self.game.cars.keys():
-            possibilities = get_possiblities(self.game.cars.get(car), self.game.board.get_board())
-
-            for move in possibilities:
-                moves.append([car, move])
-
-        return random.choice(moves)
-
+        
 
     def run(self):
-        """ Chooses a car then a move and returns the number
-        of moves needed to win the game """
+        """ 
+        Continues to selects a random move from all_moves untill the game is won
+        """
         while not self.game.won():
-            car = self.get_car()
-            move = self.get_move(car)
-            self.game.move(car.name, move)
-
-        # do we want this in run, gets looped by benchmark? in main better?
-        # self.game.output()
-        # self.game.draw_board()
+            move = random.choice(all_moves(self.game))
+            self.game.move(move[0], move[1])
+  
         print(f"{len(self.game.get_moves())} moves made")
 
 
 class BenchmarkRandom:
-    """ Benchmarks the random algorithm
-    using choose car first then move method"""
+    """ 
+    Benchmarks the random algorithm by repeating the same algortihm for a select amount
+    """
 
     def __init__(self, game):
         self.game = game
