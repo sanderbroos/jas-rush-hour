@@ -21,12 +21,9 @@ class Astar(BreadthFirst):
     def set_priority(self, game):
         return self.heuristic(game)
 
-
     def enqueue(self, move):
         priority = self.set_priority(self.game)
-        print(priority, move)
         return self.states.put((priority, move))
-
    
     def dequeue(self):
         return self.states.get()[1]
