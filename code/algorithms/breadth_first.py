@@ -1,5 +1,4 @@
-from code.util import *
-from code.heuristics import *
+from code.util import all_moves
 from queue import Queue
 import copy
 
@@ -61,6 +60,9 @@ class BreadthFirst():
             self.game.draw_board()
             print(f"Best solution: {self.best_value}\n")
 
+    def win(self):
+        return self.game.won()
+
     def run(self):
         """
         Runs the algorithm until all possible states are visited.
@@ -78,9 +80,9 @@ class BreadthFirst():
             if i%100==0:
                 self.print_status(i)
             
-            if len(self.game.get_moves()) < self.depth and not self.game.won():
+            if len(self.game.get_moves()) < self.depth and not self.win():
                 self.build_children()
-            elif self.game.won():
+            elif self.win():
                 self.print_status(i)
                 self.check_solution()
                 if self.__class__.__name__ == "BreadthFirst" or self.__class__.__name__ == "Astar":

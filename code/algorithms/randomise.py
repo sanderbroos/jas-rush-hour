@@ -5,31 +5,9 @@ import itertools
 import numpy as np
 import copy
 
-
-class Random():
-    
-    def __init__(self,game):
-        self.game = copy.deepcopy(game)
-
-
-    def get_car(self):
-        """ Randomly chooses a car"""
-        return random.choice(list(self.game.cars.values()))
-
-
-    def get_move(self,car):
-        """ Randomly chooses a move for a given car """
-        possibilities = get_possiblities(car, self.game.board.get_board())
-
-        if not possibilities:
-            return None
-
-        return random.choice(possibilities)
-
 class RandomOnce():
     def __init__(self,game):
         self.game = copy.deepcopy(game)
-        
 
     def run(self):
         """ 
@@ -38,11 +16,12 @@ class RandomOnce():
         while not self.game.won():
             move = random.choice(all_moves(self.game))
             self.game.move(move[0], move[1])
-  
-        print(f"{len(self.game.get_moves())} moves made")
+        
+        return len(self.game.get_moves())
+        
 
 
-class Random:
+class Random():
     """ 
     Benchmarks the random algorithm by repeating the same algortihm for a select amount
     """
@@ -59,7 +38,7 @@ class Random:
         
         for _ in itertools.repeat(None, repeats):
             algorithm = RandomOnce(self.game)
-            algorithm.run()
+            print( f"{algorithm.run()} moves made")
             moves_made = algorithm.game.get_moves()
             self.numb_moves.append(len(moves_made))
 
