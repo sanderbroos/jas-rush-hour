@@ -36,9 +36,9 @@ class Random():
         repeats = int(input("How many times should the randomise algorithm be executed? "))
         print()
         
-        for _ in itertools.repeat(None, repeats):
+        for i in range(repeats):
             algorithm = RandomOnce(self.game)
-            print( f"{algorithm.run()} moves made")
+            print(f"{i}: {algorithm.run()} moves made")
             moves_made = algorithm.game.get_moves()
             self.numb_moves.append(len(moves_made))
 

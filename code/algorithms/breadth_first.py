@@ -1,7 +1,7 @@
 from code.util import all_moves
 from queue import Queue
 import copy
-
+import time
 
 
 class BreadthFirst():
@@ -16,6 +16,8 @@ class BreadthFirst():
         self.best_value = float('inf')     
         self.archive = set()
         self.depth = float('inf')
+
+        self.start = time.time()
         
 
     def enqueue(self, moves):
@@ -100,4 +102,4 @@ class BreadthFirst():
 
     
     def print_status(self, i):
-        print(f"depth: {len(self.game.get_moves()):<12} i = {i:<12} X at {self.game.cars['X'].col:<10} archive size: {len(self.archive):<12} {self.states.__class__.__name__} size: {self.states.qsize()}", end="\r")
+        print(f"depth: {len(self.game.get_moves()):<12} i = {i:<12} X at {self.game.cars['X'].col:<10} archive size: {len(self.archive):<12} {self.states.__class__.__name__} size: {self.states.qsize():<12} time elapsed: {time.time() - self.start:.1f} s", end="\r")
