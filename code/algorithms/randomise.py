@@ -38,7 +38,7 @@ class Random():
         
         for i in range(repeats):
             algorithm = RandomOnce(self.game)
-            print(f"{i}: {algorithm.run()} moves made")
+            print(f"{i + 1}: {algorithm.run()} moves made")
             moves_made = algorithm.game.get_moves()
             self.numb_moves.append(len(moves_made))
 

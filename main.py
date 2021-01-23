@@ -6,6 +6,7 @@ from code.algorithms.randomise import *
 from code.algorithms.Astar import Astar
 from code.algorithms.iterative_deepening import * 
 from code.heuristics import *
+from code.visualisation import visualise as vis
 # load all utility functions
 from code.util import *
 
@@ -24,6 +25,7 @@ if __name__ == "__main__":
             8: Game(6, "data/Hardest6x6.csv")}
 
     game = games[game_nr]
+    # draw board zie je momenteel erg slecht
     game.draw_board()
 
     algorithms = {"M": Manual(game),
@@ -62,3 +64,5 @@ if __name__ == "__main__":
         algorithm.run()
     print()
 
+    # --------------------------- Visualisation --------------------------------
+    # vis.visualise(game)
