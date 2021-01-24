@@ -7,6 +7,7 @@ from code.algorithms.Astar import Astar
 from code.algorithms.iterative_deepening import * 
 from code.algorithms.hill_climber import * 
 from code.heuristics import *
+from code.visualisation import visualise as vis
 # load all utility functions
 from code.util import *
 
@@ -28,6 +29,7 @@ if __name__ == "__main__":
         game_nr = int(input("Which board do you want to use? (1-8) "))
 
     game = games[game_nr]
+    # draw board zie je momenteel erg slecht
     game.draw_board()
 
     algorithms = {"M": Manual(game),
@@ -66,3 +68,5 @@ if __name__ == "__main__":
         algorithm.run()
     print()
 
+    # --------------------------- Visualisation --------------------------------
+    #vis.visualise(game)

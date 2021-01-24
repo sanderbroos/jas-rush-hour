@@ -8,6 +8,9 @@ class Board:
     
 
     def __str__(self):
+        """
+        Creates a string of the board
+        """
         string = ''
         for row in self.board:
             for item in row:
@@ -21,6 +24,9 @@ class Board:
         
         
     def create_board(self, size, cars):
+        """
+        Creates 2D array of the board
+        """
         board = [[None for i in range(size)] for j in range(size)]
 
         for car in cars.values():
@@ -33,8 +39,14 @@ class Board:
 
 
     def get_board(self):
+        """
+        Returns the board
+        """
         return self.board
 
 
     def set_item(self, row, col, value):
+        """
+        Implements a move by changing car placement
+        """
         self.board[row][col] = value
