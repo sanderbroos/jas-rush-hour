@@ -1,9 +1,12 @@
+from code.classes.game import Game
+import copy
+
 import numpy as np
 from matplotlib import colors 
 import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 
-def visualise(game):
+def visualise(game, moves):
     """
     Visualise a rush hour game
     """
@@ -19,16 +22,27 @@ def visualise(game):
     size = game.board.size
     # lijst moves is leeg, gebruik output file
     # print(game.get_moves())
-    board = [[colors.to_rgb('k') for i in range(size)] for j in range(size)]
 
-    for car in game.cars.values():
-        for i in range(car.length):
-            if car.orientation == 'H':
-                board[car.row][car.col + i] = colors.to_rgb(car.colour)
-            if car.orientation == 'V':
-                board[car.row + i][car.col] = colors.to_rgb(car.colour)
+    animation = copy.deepcopy(game)
+    animation.reset()
+
+    plt.figure()
+
+    for move in moves:        
+        animation.move(move[0], move[1])
+
+        board = [[colors.to_rgb('k') for i in range(size)] for j in range(size)]
+
+        for car in animation.cars.values():
+            for i in range(car.length):
+                if car.orientation == 'H':
+                    board[car.row][car.col + i] = colors.to_rgb(car.colour)
+                if car.orientation == 'V':
+                    board[car.row + i][car.col] = colors.to_rgb(car.colour)
+            
+        plt.imshow(board)
+        plt.axis('off')
         
-    fig, ax = plt.subplots(tight_layout=True)
-    ax.imshow(board)
-    ax.axis('off')
-    plt.show()
+        plt.draw()
+        plt.pause(1)
+        plt.clf()

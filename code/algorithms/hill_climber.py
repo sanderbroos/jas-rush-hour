@@ -55,3 +55,5 @@ class HillClimber:
 
         self.game.draw_board()
         self.game.output()
+
+        return self.game.get_moves()

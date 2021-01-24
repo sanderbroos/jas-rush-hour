@@ -69,8 +69,8 @@ if __name__ == "__main__":
 
     else:
         algorithm = algorithms[algo_id]
-        algorithm.run()
+        solution = algorithm.run()
     print(f"\nTotal time: {time() - start:.1f} s")
 
     # --------------------------- Visualisation --------------------------------
-    #vis.visualise(game)
+    vis.visualise(game, solution)

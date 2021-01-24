@@ -7,7 +7,11 @@ class IterativeDeepening:
 
     def run(self):
         depth = 1
+        solution = None
 
-        while not DepthFirst(self.game, depth).run():
+        while not solution:
+            solution = DepthFirst(self.game, depth).run()
             print(f"\nMaximum depth: {depth}")
             depth += 1
+
+        return solution
