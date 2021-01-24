@@ -52,3 +52,5 @@ class Random():
                     f"std:  {int(np.std(self.numb_moves))}\n"
                     f"min:  {min(self.numb_moves)}\n"
                     f"max:  {max(self.numb_moves)}")
+
+        return self.best_moves

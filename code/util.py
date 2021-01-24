@@ -70,4 +70,4 @@ def clean_moves(moves):
 
         i += 1
 
-    return moves
+    return [move for move in moves if move[1] != 0]

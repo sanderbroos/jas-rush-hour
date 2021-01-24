@@ -123,8 +123,7 @@ class Game:
 
         output_string = "car,move"
         for move in self.moves:
-            if move[1] != 0:
-                output_string += f'\n{move[0]},{move[1]}'
+            output_string += f'\n{move[0]},{move[1]}'
 
         f = open("output.csv", "w")
         f.write(output_string)
