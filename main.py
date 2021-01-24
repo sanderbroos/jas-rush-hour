@@ -50,26 +50,9 @@ if __name__ == "__main__":
         algo_id = input("Which algorithm do you want to use? ").upper()
     print()
 
+    algorithm = algorithms[algo_id]
     start = time()
-
-    if algo_id == "S":
-        heuristics = { "NULL" : "No heuristic (BreathFirst)",
-                        "BL" : "Blocking cars",
-                        "2BL" : "Double blocking cars"}
-
-        print("Available heuristics:")
-        for key, value in heuristics.items():
-            print(f"    {key:>2}: {value}")
-        
-        heuristic = "None"
-        while heuristic not in heuristics:
-            heuristic = input(f"Which heuristic do you want to use? Possiblities are: {', '.join(heuristics)}. ").upper()
-
-        Astar(game, heuristic).run()
-
-    else:
-        algorithm = algorithms[algo_id]
-        solution = algorithm.run()
+    solution = algorithm.run()
     print(f"\nTotal time: {time() - start:.1f} s")
 
     # --------------------------- Visualisation --------------------------------
