@@ -11,6 +11,8 @@ from code.visualisation import visualise as vis
 # load all utility functions
 from code.util import *
 
+from time import time
+
 if __name__ == "__main__":
     # set both to 0 to let the user choose
     game_nr = 0
@@ -48,6 +50,8 @@ if __name__ == "__main__":
         algo_id = input("Which algorithm do you want to use? ").upper()
     print()
 
+    start = time()
+
     if algo_id == "S":
         heuristics = { "NULL" : "No heuristic (BreathFirst)",
                         "BL" : "Blocking cars",
@@ -66,7 +70,7 @@ if __name__ == "__main__":
     else:
         algorithm = algorithms[algo_id]
         algorithm.run()
-    print()
+    print(f"\nTotal time: {time() - start:.1f} s")
 
     # --------------------------- Visualisation --------------------------------
     #vis.visualise(game)

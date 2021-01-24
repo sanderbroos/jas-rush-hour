@@ -23,6 +23,7 @@ class BreadthFirst():
     def enqueue(self, moves):
         return self.states.put(moves)
 
+
     def dequeue(self):
         return self.states.get()
 
@@ -69,6 +70,8 @@ class BreadthFirst():
         """
         Runs the algorithm until all possible states are visited.
         """
+        self.start = time.time()
+
         self.enqueue(self.game.get_moves())
         i = 0
 
