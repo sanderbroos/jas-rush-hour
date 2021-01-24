@@ -40,6 +40,7 @@ def get_possiblities(car, board):
         
     return moves
 
+
 def all_moves(game):
     """ Returns list with all possible moves for all cars 
     like [[car1,move1], [car1,move2], etc]"""

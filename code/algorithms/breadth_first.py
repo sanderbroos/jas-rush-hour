@@ -49,6 +49,7 @@ class BreadthFirst():
         self.game.reset()
         self.game.build(original_moves)
 
+
     def check_solution(self):
         """
         Checks and accepts better solutions than the current solution.
@@ -63,8 +64,10 @@ class BreadthFirst():
             self.game.draw_board()
             print(f"Best solution: {self.best_value}\n")
 
+
     def win(self):
         return self.game.won()
+
 
     def run(self):
         """

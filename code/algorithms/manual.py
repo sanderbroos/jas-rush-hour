@@ -5,6 +5,7 @@ class Manual:
     def __init__(self, game):
         self.game = game
 
+
     def run(self):
         print('\nInstructions: Left and down are negative numbers, right and up are positive numbers\nExecute \'python3 main.py < output.csv\' to watch a solution being played (choose the right game first).')
              

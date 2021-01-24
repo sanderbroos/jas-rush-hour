@@ -4,6 +4,7 @@ class IterativeDeepening:
     def __init__(self, game):
         self.game = game
 
+
     def run(self):
         depth = 1
 

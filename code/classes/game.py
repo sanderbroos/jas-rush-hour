@@ -86,6 +86,7 @@ class Game:
         
         self.moves = []
 
+
     def is_valid_move(self, car, move):
         """
         Checks for validity of the to be played move

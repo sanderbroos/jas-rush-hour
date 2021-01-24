@@ -13,6 +13,7 @@ class DepthFirst(BreadthFirst):
         self.depth = depth
         self.archive = {}
 
+
     def build_children(self):
         """
         Creates all child states and add to a list
