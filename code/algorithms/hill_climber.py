@@ -56,6 +56,25 @@ class HillClimber:
                 i += 1
 
 
+    def remove_redundant_moves(self):
+        i = 0
+        length = len(self.moves)
+
+        while i < length:
+            new_moves = deepcopy(self.moves)
+            new_moves.pop(i)
+
+            self.game.build(new_moves)
+
+            if self.game.won():
+                self.moves = new_moves
+                i -= 1
+                length -= 1
+
+            self.game.reset()
+            i += 1
+
+
     def run(self):
         # initialize any solution
         print("Running Random algorithm 20 times to get a decent \"starting point\" solution...")
@@ -63,10 +82,12 @@ class HillClimber:
 
         self.hill_climb()
         self.hill_climb(reverse = True)
+        self.remove_redundant_moves()
 
         self.game.build(self.moves)
         self.game.won()
 
+        print(self.game.get_moves())
         print(f"Final solution moves length: {len(self.game.get_moves()):<50}")
 
         self.game.draw_board()

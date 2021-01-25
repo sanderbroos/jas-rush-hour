@@ -59,8 +59,6 @@ class Random():
                     self.best_moves = moves_made
                     self.best_value = len(moves_made)
                     algorithm.game.output()
-            else:
-                print(f"{i + 1}: More moves made than current minimum")
         
         if self.repeats > 1 and not self.fastest:
             print(f"\nmean: {int(mean(self.numb_moves))}\n"
