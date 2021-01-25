@@ -47,7 +47,7 @@ class HillClimber:
                             length -= 1
                             changes += 1
 
-                            print(f"Improving solution... Current # of moves: {len(self.moves):<50}", end='\r')
+                            print(f"Improving solution... Current: {len(self.moves)} {'moves':<50}", end='\r')
                         
                         self.game.reset()
                     
@@ -77,7 +77,7 @@ class HillClimber:
 
     def run(self):
         # initialize any solution
-        print("Running Random algorithm 20 times to get a decent \"starting point\" solution...")
+        print("Running Random algorithm multiple times to get a decent \"starting point\" solution...")
         self.moves = Random(self.game, 20, fastest=True).run()
 
         self.hill_climb()
@@ -87,8 +87,7 @@ class HillClimber:
         self.game.build(self.moves)
         self.game.won()
 
-        print(self.game.get_moves())
-        print(f"Final solution moves length: {len(self.game.get_moves()):<50}")
+        print(f"Final solution: {len(self.game.get_moves())} {'moves':<50}")
 
         self.game.draw_board()
         self.game.output()

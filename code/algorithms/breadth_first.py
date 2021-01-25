@@ -62,7 +62,7 @@ class BreadthFirst():
             self.best_value = new_value
             print()
             self.game.draw_board()
-            print(f"Best solution: {self.best_value}\n")
+            print(f"Best solution: {self.best_value} moves\n")
 
 
     def win(self):
@@ -80,6 +80,7 @@ class BreadthFirst():
 
         if not self.depth:
             self.depth = int(input("What's the maximum depth to search? "))
+            print()
 
         while not self.states.empty():
             self.game.build(self.dequeue())

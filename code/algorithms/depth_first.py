@@ -1,5 +1,5 @@
-import copy
-from code.util import *
+from copy import deepcopy
+from code.util import all_moves
 from queue import LifoQueue
 from .breadth_first import BreadthFirst
 
@@ -19,7 +19,7 @@ class DepthFirst(BreadthFirst):
         Creates all child states and add to a list
         """
 
-        original_moves = copy.deepcopy(self.game.get_moves())
+        original_moves = deepcopy(self.game.get_moves())
 
         for move in all_moves(self.game):
             new_moves = original_moves + [move]

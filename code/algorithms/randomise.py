@@ -64,6 +64,6 @@ class Random():
             print(f"\nmean: {int(mean(self.numb_moves))}\n"
                     f"std:  {int(std(self.numb_moves))}\n"
                     f"min:  {min(self.numb_moves)}\n"
-                    f"max:  {max(self.numb_moves)}\n")
+                    f"max:  {max(self.numb_moves)}")
 
         return self.best_moves

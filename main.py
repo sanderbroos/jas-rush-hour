@@ -48,12 +48,14 @@ if __name__ == "__main__":
 
     while algo_id not in algorithms:
         algo_id = input("Which algorithm do you want to use? ").upper()
-    print()
 
     algorithm = algorithms[algo_id]
+    print(f"\n\u001b[1m {algorithm.__class__.__name__} \u001b[0m\n")
+
     start = time()
     solution = algorithm.run()
     print(f"\nTotal time: {time() - start:.1f} s")
 
     # --------------------------- Visualisation --------------------------------
-    vis.visualise(game, solution)
+    if solution:
+        vis.visualise(game, solution)
