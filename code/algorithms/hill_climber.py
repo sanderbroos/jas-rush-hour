@@ -78,7 +78,7 @@ class HillClimber:
     def run(self):
         # initialize any solution
         print("Running Random algorithm multiple times to get a decent \"starting point\" solution...")
-        self.moves = Random(self.game, 20, fastest=True).run()
+        self.moves = Random(self.game, 200, fastest=True).run()
 
         self.hill_climb()
         self.hill_climb(reverse = True)
@@ -90,6 +90,5 @@ class HillClimber:
         print(f"Final solution: {len(self.game.get_moves())} {'moves':<50}")
 
         self.game.draw_board()
-        self.game.output()
 
         return self.game.get_moves()

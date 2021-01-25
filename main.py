@@ -31,7 +31,6 @@ if __name__ == "__main__":
         game_nr = int(input("Which board do you want to use? (1-8) "))
 
     game = games[game_nr]
-    # draw board zie je momenteel erg slecht
     game.draw_board()
 
     algorithms = {"M": Manual(game),
@@ -58,4 +57,5 @@ if __name__ == "__main__":
 
     # --------------------------- Visualisation --------------------------------
     if solution:
+        output(solution)
         vis.visualise(game, solution)

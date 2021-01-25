@@ -119,18 +119,3 @@ class Game:
         self.moves = clean_moves(self.moves)
 
         return True
-
-
-    def output(self):
-        """
-        Cleans and saves the made moves to an output file
-        """
-        self.moves = clean_moves(self.moves)
-
-        output_string = "car,move"
-        for move in self.moves:
-            output_string += f'\n{move[0]},{move[1]}'
-
-        f = open("output.csv", "w")
-        f.write(output_string)
-        f.close()

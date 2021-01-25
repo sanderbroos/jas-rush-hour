@@ -1,3 +1,5 @@
+import random
+
 def get_lane(car, board):
     """
     Gets whole row/col in which the car/truck is located.
@@ -72,4 +74,34 @@ def clean_moves(moves):
         i += 1
 
     return [move for move in moves if move[1] != 0]
+<<<<<<< HEAD
     
+=======
+
+
+def output(moves):
+    """
+    Cleans and saves the made moves to an output file
+    """
+    moves = clean_moves(moves)
+
+    output_string = "car,move"
+    for move in moves:
+        output_string += f'\n{move[0]},{move[1]}'
+
+    f = open("docs/output.csv", "w")
+    f.write(output_string)
+    f.close()
+
+
+def random_move_quick(game):
+    move = None
+    while not move:
+        car = random.choice(list(game.cars.values()))
+        moves = get_possiblities(car, game.board.get_board())
+        # print(moves)
+        if moves:
+            move = [car.name, random.choice(moves)]
+
+    return move
+>>>>>>> 7f8cb16e12a7a075837e6876938d8d1bed308450
