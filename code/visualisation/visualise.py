@@ -17,13 +17,6 @@ def visualise(game, moves):
     print("Loading visualisation...\n")
   
     size = game.board.size
-<<<<<<< HEAD
-    # lijst moves is leeg, gebruik output file
-    # print(game.get_moves())
-    
-=======
-
->>>>>>> 7f8cb16e12a7a075837e6876938d8d1bed308450
     animation = copy.deepcopy(game)
     animation.reset()
 

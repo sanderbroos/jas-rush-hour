@@ -74,9 +74,6 @@ def clean_moves(moves):
         i += 1
 
     return [move for move in moves if move[1] != 0]
-<<<<<<< HEAD
-    
-=======
 
 
 def output(moves):
@@ -104,4 +101,3 @@ def random_move_quick(game):
             move = [car.name, random.choice(moves)]
 
     return move
->>>>>>> 7f8cb16e12a7a075837e6876938d8d1bed308450
