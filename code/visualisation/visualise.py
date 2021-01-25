@@ -12,25 +12,15 @@ from matplotlib.colors import ListedColormap
 
 def visualise(game, moves):
     """
-    Visualise a rush hour game
+    Visualise a rush hour game by animating each move made
     """
     print("Loading visualisation...\n")
-    # Probleem nu is dat alleen een board gegeven niet alle zetten van een game
-    # is het mogelijk om een grid te hebben zonder lijnen door auto’s heen.
-    
-    # loopen over lijst moves van output of game.moves. Elke iteratie van loop visualisatie plotten met toegepaste move, 
-    # deze plots achter elkaar zetten in een gifje om verloop van spel te kunnen laten zien.
-    # nadelen: plot weergave gaat sws trippen als er veel moves zijn en veel 'dubbel code om move te kunnen toepassen'
-    
-    # create get size in boaard and try to remove hardcoded size? wont work cause need size to render board?
+  
     size = game.board.size
-    # lijst moves is leeg, gebruik output file
-    # print(game.get_moves())
 
     animation = copy.deepcopy(game)
     animation.reset()
 
-    # fig,ax = plt.subplots(1)
     plt.figure()
 
     for move in [["A", 0], ["A", 0]] + moves:        
