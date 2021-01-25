@@ -11,21 +11,15 @@ import numpy as np
 import time
 from dataclasses import dataclass, field
 import queue
-from code.algorithms.RandomBFS import RandomBFS, modRandom
+from code.algorithms.modAstar import RanAstar
 
 
 if __name__ == "__main__":
-    game = Game(6, "data/Rushhour6x6_1.csv")
-    board = game.board.board
-    cars = game.cars
+    game = Game(9, "data/Rushhour9x9_5.csv")
+ 
 
-    algorithm = RandomBFS(game,5,10)
-    print(algorithm.checkpoints)
-    print(len(algorithm.random_path))
-    print(len(algorithm.checkpoints))
+    algorithm = RanAstar(game)
+    print(len(algorithm.run()))
 
-    moves = algorithm.BFS_search(game,algorithm.checkpoints[0])
-    print(moves)
-    algorithm.run()
-    
+
 

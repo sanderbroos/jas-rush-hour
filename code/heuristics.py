@@ -31,5 +31,17 @@ def double_block_heuristic(game):
         if not get_possiblities(car,game.board.board):
             blocked_blockingcars +=1
     
-    return len(blocking_cars) + blocked_blockingcars
+    return len(blocking_cars) + blocked_blockingcar
+
+
+def position_heuristic(current_cars, winning_cars):
+        
+    value = 0
+    for key in current_cars.keys():
+        if (current_cars[key].col == winning_cars[key].col and
+                current_cars[key].row == winning_cars[key].row):
+            value -= 1
+                
+    return value
+
 

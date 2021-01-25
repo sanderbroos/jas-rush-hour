@@ -3,7 +3,7 @@ import copy
 import numpy as np
 
 import matplotlib
-matplotlib.use('TkAgg')  
+#matplotlib.use('agg')  
 
 from matplotlib import colors 
 import matplotlib.pyplot as plt
@@ -26,7 +26,7 @@ def visualise(game, moves):
     size = game.board.size
     # lijst moves is leeg, gebruik output file
     # print(game.get_moves())
-
+    
     animation = copy.deepcopy(game)
     animation.reset()
 
@@ -43,7 +43,8 @@ def visualise(game, moves):
                 plt.gca().add_patch(Rectangle((car.col-0.5, car.row-0.5),car.length,1,linewidth=0.3,edgecolor='k',facecolor=car.colour))
             if car.orientation == 'V':
                 plt.gca().add_patch(Rectangle((car.col-0.5, car.row-0.5),1,car.length,linewidth=0.3,edgecolor='k',facecolor=car.colour))
-            
+        
+        
         plt.imshow(board)
         plt.axis('off')
         

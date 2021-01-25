@@ -94,7 +94,7 @@ class BreadthFirst():
             elif self.win():
                 self.print_status(i)
                 self.check_solution()
-                if self.__class__.__name__ == "BreadthFirst" or self.__class__.__name__ == "Astar":
+                if self.__class__.__name__ == "BreadthFirst" or self.__class__.__name__ == "modAstar":
                     break
 
             self.game.reset()
