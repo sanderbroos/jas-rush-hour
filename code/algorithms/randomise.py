@@ -1,14 +1,15 @@
 from random import choice
-from code.util import all_moves, clean_moves
+from code.util import all_moves, clean_moves, random_move_quick
 from numpy import mean, std
 from copy import deepcopy
 
 class RandomOnce():
-    def __init__(self, game, max_moves=float('inf')):
+    def __init__(self, game, max_moves=float('inf'), fastest=False):
         self.game = deepcopy(game)
 
         # abort algorithm if the amount of moves exceeds this value
         self.max_moves = max_moves
+        self.fastest = fastest
 
 
     def run(self):
@@ -16,7 +17,11 @@ class RandomOnce():
         Continues to selects a random move from all_moves untill the game is won
         """
         while not self.game.won():
-            move = choice(all_moves(self.game))
+            if self.fastest:
+                move = random_move_quick(self.game)
+            else:
+                move = choice(all_moves(self.game))
+
             self.game.move(move[0], move[1])
 
             if len(self.game.get_moves()) > self.max_moves:
@@ -48,7 +53,7 @@ class Random():
             print()
         
         for i in range(self.repeats):
-            algorithm = RandomOnce(self.game, max_moves=(self.best_value if self.fastest else float('inf')))
+            algorithm = RandomOnce(self.game, max_moves=(self.best_value if self.fastest else float('inf')), fastest=self.fastest)
             moves_made = clean_moves(algorithm.run())
             
             if moves_made:
@@ -58,7 +63,6 @@ class Random():
                 if len(moves_made) < self.best_value:
                     self.best_moves = moves_made
                     self.best_value = len(moves_made)
-                    algorithm.game.output()
         
         if self.repeats > 1 and not self.fastest:
             print(f"\nmean: {int(mean(self.numb_moves))}\n"

@@ -57,4 +57,5 @@ if __name__ == "__main__":
 
     # --------------------------- Visualisation --------------------------------
     if solution:
+        output(solution)
         vis.visualise(game, solution)
