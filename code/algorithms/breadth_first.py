@@ -1,7 +1,7 @@
 from code.util import all_moves
 from queue import Queue
-import copy
-import time
+from copy import deepcopy
+from time import time
 
 
 class BreadthFirst():
@@ -10,14 +10,14 @@ class BreadthFirst():
     """
 
     def __init__(self, game):
-        self.game = copy.deepcopy(game)
+        self.game = deepcopy(game)
         self.states = Queue()
         self.best_solution = None   
         self.best_value = float('inf')     
         self.archive = set()
         self.depth = float('inf')
 
-        self.start = time.time()
+        self.start = time()
         
 
     def enqueue(self, moves):
@@ -33,7 +33,7 @@ class BreadthFirst():
         Creates all child states and add to a list
         """
 
-        original_moves = copy.deepcopy(self.game.get_moves())
+        original_moves = deepcopy(self.game.get_moves())
 
         for move in all_moves(self.game):
             new_moves = original_moves + [move]
@@ -58,7 +58,7 @@ class BreadthFirst():
         
         # looking for solutions with the least amount of moves
         if new_value < self.best_value:
-            self.best_solution = copy.deepcopy(self.game)
+            self.best_solution = deepcopy(self.game)
             self.best_value = new_value
             print()
             self.game.draw_board()
@@ -73,7 +73,7 @@ class BreadthFirst():
         """
         Runs the algorithm until all possible states are visited.
         """
-        self.start = time.time()
+        self.start = time()
 
         self.enqueue(self.game.get_moves())
         i = 0
@@ -108,4 +108,4 @@ class BreadthFirst():
 
     
     def print_status(self, i):
-        print(f"depth: {len(self.game.get_moves()):<12} i = {i:<12} X at {self.game.cars['X'].col:<10} archive size: {len(self.archive):<12} {self.states.__class__.__name__} size: {self.states.qsize():<12} time elapsed: {time.time() - self.start:.1f} s", end="\r")
+        print(f"depth: {len(self.game.get_moves()):<12} i = {i:<12} X at {self.game.cars['X'].col:<10} archive size: {len(self.archive):<12} {self.states.__class__.__name__} size: {self.states.qsize():<12} time elapsed: {time() - self.start:.1f} s", end="\r")

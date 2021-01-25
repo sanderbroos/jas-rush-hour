@@ -1,5 +1,5 @@
-import time
-import sys
+from time import sleep
+from sys import stdin
 
 class Manual:
     def __init__(self, game):
@@ -15,8 +15,8 @@ class Manual:
                 move = input("Enter the move you want to make in the format \"A,1\": ").split(",") 
                 print("", end="\n")
                 self.game.move(move[0].upper(), int(move[1]))
-                if not sys.stdin.isatty():
-                    time.sleep(1)
+                if not stdin.isatty():
+                    sleep(1)
             except KeyboardInterrupt as e:
                 raise e
             except:

@@ -1,13 +1,9 @@
-import copy
-from code.util import *
-from queue import Queue, PriorityQueue
-from code.classes.board import Board
-from code.heuristics import *
+from queue import PriorityQueue
+from code.heuristics import null_heuristic, block_heuristic, double_block_heuristic
 from code.algorithms.breadth_first import BreadthFirst
 
 
 class Astar(BreadthFirst):
-
     def __init__(self, game, heuristic = 'None'):
         super().__init__(game)
         self.states = PriorityQueue()
