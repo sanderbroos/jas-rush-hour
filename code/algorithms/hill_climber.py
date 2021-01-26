@@ -73,11 +73,8 @@ class HillClimber:
         """
         Keeps going through the entire list until the algorithm has no effect.
         """
-        changes = 1
-
-        # keep repeating until the algorithm doesn't have an effect anymore
-        while changes:
-            changes = self.hill_climb_once(flipped=flipped)
+        while self.hill_climb_once(flipped=flipped):
+            pass
 
 
     def remove_redundant_moves(self):

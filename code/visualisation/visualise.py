@@ -13,7 +13,7 @@ def visualise(game, moves):
 
     plt.figure()
 
-    # Add two empty moves, so the initial board is shown a little longer
+    # add two empty moves, so the initial board is shown a little longer
     for move in [["X", 0], ["X", 0]] + moves:
         game.move(move[0], move[1])
 

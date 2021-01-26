@@ -35,11 +35,11 @@ if __name__ == "__main__":
     # initialize all the algorithms that can be chosen
     algorithms = {'M': Manual(game),
                   'R': Random(game),
-                  'D': DepthFirst(game),
                   'B': BreadthFirst(game),
+                  'D': DepthFirst(game),
                   'I': IterativeDeepening(game),
                   'H': HillClimber(game),
-                  'S': Astar(game)}
+                  'A': Astar(game)}
 
     # show which letter to type for each available algorithm
     print("\nAvailable algorithms:")
