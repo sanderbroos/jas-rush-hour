@@ -37,7 +37,7 @@ Here the structure of the most important folders and files are explained.
 ### Algorithms:
 Short summary of the algorithms this repository contains.
 * Astar (A*):
-    Solves by searching based on priority using heuristic. No heuristic = BFS. Slow and moderately precise
+    Solves by searching based on priority using heuristic. No heuristic = BFS. With Block or Double Block heuristic this algorithm is slow and moderately precise.
 * Breadth First Search (BFS):
     Solves by searching all states per width until a solution is found. Slow and memory intensive but always finds the best solution (100% precise).
 * Depth First Search (DFS):
@@ -47,11 +47,11 @@ Short summary of the algorithms this repository contains.
 * Iterative Deepening:
     Solves by running the DFS for increasing depths until a solution is found. Very slow, but less memory intensive and always finds the best solution (100% precise).
 * Manual:
-    User can try to solve the puzzle manually.
+    User can try to solve the puzzle manually (should be very close to optimal).
 * ModAstar:
-    Solves by improving a random generated solution using Astar and a specific heuristic. Very slow and imprecise.
+    Solves by improving a random generated solution using Astar and a specific heuristic: winning positions cars. Slow and imprecise.
 * Randomise:
-    Solves by randomly trying moves. Very fast but imprecise.
+    Solves by randomly trying moves. Very fast but lightyears away from an acceptable solution.
 
 ### Visualisation:
 To visualise the results...
