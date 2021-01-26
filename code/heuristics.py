@@ -1,4 +1,4 @@
-from code.util import *
+from code.util import get_lane, get_possiblities
 
 
 def null_heuristic(game):
@@ -35,6 +35,10 @@ def double_block_heuristic(game):
 
 
 def position_heuristic(current_cars, winning_cars):
+    """
+    checks which current cars are on the same position as
+    the cars of a winning game. 
+    """
         
     value = 0
     for key in current_cars.keys():
@@ -43,5 +47,4 @@ def position_heuristic(current_cars, winning_cars):
             value -= 1
                 
     return value
-
-
+    

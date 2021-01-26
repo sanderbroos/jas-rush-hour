@@ -1,7 +1,7 @@
 import csv
 from .board import Board
 from .car import Car
-from ..util import *
+from code.util import clean_moves, get_lane, get_possiblities
 
 
 class Game:

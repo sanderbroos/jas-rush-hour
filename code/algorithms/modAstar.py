@@ -1,10 +1,9 @@
-from code.algorithms.breadth_first import BreadthFirst
-from code.algorithms.randomise import Random, RandomOnce
+from code.algorithms.randomise import Random
 from code.algorithms.hill_climber import HillClimber
 from code.algorithms.Astar import Astar
 from code.heuristics import position_heuristic
 from copy import deepcopy
-from itertools import repeat
+
 
 
 class modAstar(Astar):
@@ -52,7 +51,6 @@ class RanAstar():
         # initialize any solution
         #self.path = HillClimber(self.game).run()
         self.path = Random(self.game,5).run()
-        print(len(self.path))
         self.get_checkpoints(6)
         self.path = []
 
