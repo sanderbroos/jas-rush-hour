@@ -10,8 +10,8 @@ class HillClimber:
 
     def try_combining(self, i, j, flipped):
         """
-        Tries to combine the cars from self.moves at index i and j.
-        If it's successful and doesn't change the outcome of the game, return True.
+        Tries to combine the cars from self.moves at index i and j. If 
+        it's successful and doesn't change the outcome of the game, return True.
         """
         # if two different moves involve the same car
         if i != j and self.moves[i][0] == self.moves[j][0]:

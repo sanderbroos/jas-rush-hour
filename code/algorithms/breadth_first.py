@@ -3,10 +3,10 @@ from queue import Queue
 from copy import deepcopy
 from time import time
 
-
 class BreadthFirst():
     """
-    A Breadth First algorithm that builds a queue of games each with cars in an unique position.
+    A Breadth First algorithm that builds a queue of games each with cars in
+     an unique position.
     """
     def __init__(self, game):
         self.game = deepcopy(game)
@@ -105,7 +105,9 @@ class BreadthFirst():
             self.check_solution()
             
             # depth first will keep looking until the queue is empty
-            if self.__class__.__name__ == "BreadthFirst" or self.__class__.__name__ == "modAstar":
+            if (self.__class__.__name__ == "BreadthFirst" or
+                    self.__class__.__name__ == "modAstar" or
+                    self.__class__.__name__ == "Astar"):
                 return True
 
         return False
@@ -151,4 +153,5 @@ class BreadthFirst():
         """
         Prints a status update to show the progress of the algorithm.
         """
-        print(f"depth: {len(self.game.get_moves()):<12} iterations: {self.iterations:<12} archive size: {len(self.archive):<12} {self.states.__class__.__name__} size: {self.states.qsize():<12} time elapsed: {time() - self.start:.1f} s", end="\r")
+
+        print(f"""depth: {len(self.game.get_moves()):<12} iterations: {self.iterations:<12} archive size: {len(self.archive):<12} {self.states.__class__.__name__} size: {self.states.qsize():<12} time elapsed: {time() - self.start:.1f} s""", end="\r")

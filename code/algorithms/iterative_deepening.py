@@ -3,7 +3,8 @@ from .depth_first import DepthFirst
 
 class IterativeDeepening:
     """
-    Algorithm that repeats Depth First Search with increasing depths until a solution is found.
+    Algorithm that repeats Depth First Search with increasing depths until 
+    a solution is found.
     """
     def __init__(self, game):
         self.game = game

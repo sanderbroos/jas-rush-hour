@@ -11,7 +11,8 @@ class RandomOnce():
         # abort algorithm if the amount of moves exceeds this value
         self.max_moves = max_moves
 
-        # if fastest is True, a faster but less accurate way of choosing a move is used
+        # if fastest is True, a faster but less accurate way of choosing 
+        # a move is used
         self.fastest = fastest
 
 
@@ -22,7 +23,8 @@ class RandomOnce():
         self.game.reset()
 
         while not self.game.won():
-            # if fastest is True, a faster but less accurate way of choosing a move is used
+            # if fastest is True, a faster but less accurate way of choosing
+            #  a move is used
             if self.fastest:
                 move = random_move_quick(self.game)
             else:
@@ -39,7 +41,8 @@ class RandomOnce():
 
 class Random():
     """ 
-    Benchmarks the random algorithm by repeating the same algortihm for a select amount
+    Benchmarks the random algorithm by repeating the same algortihm for a 
+    select amount
     """
     def __init__(self, game, repeats=None, fastest=False):
         self.game = game
@@ -48,7 +51,8 @@ class Random():
         self.best_moves = []
         self.repeats = repeats
 
-        # if True, look for fastest solution faster by aborting when # of moves exceeds best_value
+        # if True, look for fastest solution faster by aborting when # of moves 
+        # exceeds best_value
         self.fastest = fastest
     
 
@@ -63,7 +67,10 @@ class Random():
             print()
         
         for i in range(self.repeats):
-            algorithm = RandomOnce(self.game, max_moves=(self.best_value if self.fastest else float('inf')), fastest=self.fastest)
+            algorithm = RandomOnce(self.game, 
+                                    max_moves=(self.best_value if self.fastest else float('inf')),
+                                    fastest=self.fastest)
+
             moves_made = clean_moves(algorithm.run())
             
             # if moves_made is empty, RandomOnce was aborted so ignore this iteration

@@ -71,7 +71,8 @@ def clean_moves(moves):
     while i < len(moves):
         move = moves[i]
         
-        # if one car makes two moves directly after each other, combine these moves into 1
+        # if one car makes two moves directly after each other, combine 
+        # these moves into 1
         if i > 0 and move[0] == moves[i-1][0]:
             move[1] += moves.pop(i-1)[1]
             i -= 1

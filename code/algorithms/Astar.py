@@ -1,21 +1,22 @@
 from queue import PriorityQueue
 from code.heuristics import null_heuristic, block_heuristic, double_block_heuristic
 from code.algorithms.breadth_first import BreadthFirst
+import textwrap
 
 
 class Astar(BreadthFirst):
     """
     Astar algorithm class inherits from Breadthfirst class
     """
-    def __init__(self, game, heuristic='None'):
+    def __init__(self, game):
         super().__init__(game)
         self.states = PriorityQueue()
         self.heuristics = {
-            'NULL': null_heuristic,
-            'BL': block_heuristic,
-            '2BL': double_block_heuristic
+            'NULL': [null_heuristic, "No heuristic (BreathFirst)"],
+            'BL': [block_heuristic, "Blocking cars"],
+            '2BL': [double_block_heuristic, "Double blocking cars"]
         }
-        self.heuristic_str = heuristic
+        self.heuristic = None
         self.counter = 0
 
 
@@ -24,7 +25,7 @@ class Astar(BreadthFirst):
         Use the current heuristic to determine the 
         heuristic value of the given game.
         """
-        return self.heuristic(game)
+        return self.heuristic[0](game)
 
 
     def enqueue(self, moves):
@@ -48,17 +49,15 @@ class Astar(BreadthFirst):
         """
         Ask the user to choose a heuristic, and then execute the algorithm.
         """
-        heuristics = {"NULL": "No heuristic (BreathFirst)",
-                      "BL": "Blocking cars",
-                      "2BL": "Double blocking cars"}
 
         print("Available heuristics:")
-        for key, value in heuristics.items():
-            print(f"    {key:>2}: {value}")
+        for key, value in self.heuristics.items():
+            print(f"    {key:>2}: {value[1]}")
         
-        while self.heuristic_str not in heuristics:
-            self.heuristic_str = input(f"Which heuristic do you want to use? Possiblities are: {', '.join(heuristics)}. ").upper()
+        heuristic = 'None'
+        while heuristic not in self.heuristics:
+            heuristic = input(f"""Which heuristic do you want to use? Possiblities are: {', '.join(self.heuristics)}. """).upper()
 
-        self.heuristic = self.heuristics[self.heuristic_str]
+        self.heuristic = self.heuristics[heuristic]
 
         return super().run()
