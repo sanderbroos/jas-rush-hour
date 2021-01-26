@@ -1,5 +1,4 @@
 from code.algorithms.randomise import Random
-from code.algorithms.hill_climber import HillClimber
 from code.algorithms.Astar import Astar
 from code.heuristics import position_heuristic
 from copy import deepcopy
@@ -13,11 +12,11 @@ class modAstar(Astar):
         self.end_cars = cars
         self.end_board = str_board
 
-    def set_priority(self,game):
-        return position_heuristic(game.cars, self.end_cars)
-
     # def set_priority(self,game):
-    #     return 0
+    #     return position_heuristic(game.cars, self.end_cars)
+
+    def set_priority(self,game):
+        return 0
     
     def win(self):
         current_board = str(self.game.board)
@@ -49,7 +48,6 @@ class RanAstar():
             
     def run(self):
         # initialize any solution
-        #self.path = HillClimber(self.game).run()
         self.path = Random(self.game,5).run()
         self.get_checkpoints(6)
         self.path = []
@@ -62,5 +60,7 @@ class RanAstar():
                 self.game.move(move[0], move[1])
                 self.path.append(move)
             self.game.moves = []
-        
+        print("\n\n")
+        print( f"path length: {len(self.path)}") 
         return self.path
+        
