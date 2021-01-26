@@ -1,9 +1,8 @@
 class Board:
     """
-    Class which facilitates the playability of the game
+    Represents the board of a game.
     """
     def __init__ (self, size, cars):
-        self.size = size
         self.board = self.create_board(size,cars)
     
 
@@ -43,6 +42,10 @@ class Board:
         Returns the board
         """
         return self.board
+
+
+    def get_size(self):
+        return len(self.board)
 
 
     def set_item(self, row, col, value):

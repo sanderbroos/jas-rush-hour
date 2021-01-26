@@ -26,7 +26,7 @@ class HillClimber:
 
                 while j < length:
                     # if two moves involve the same car
-                    if self.moves[i][0] == self.moves[j][0]:
+                    if i != j and self.moves[i][0] == self.moves[j][0]:
                         # try out the new changes on a temporary list
                         new_moves = deepcopy(self.moves)
 

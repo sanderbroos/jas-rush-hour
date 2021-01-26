@@ -37,13 +37,12 @@ class RanAstar():
         counter = 0
         end = len(self.path)
 
-        if self.path:
-            for move in self.path:
-                new_game.move(move[0],move[1])
-                counter += 1
+        for move in self.path:
+            new_game.move(move[0],move[1])
+            counter += 1
 
-                if counter % dist == 0 or counter == end:
-                    self.checkpoints.append([str(new_game.board), new_game.cars])
+            if counter % dist == 0 or counter == end:
+                self.checkpoints.append([str(new_game.board), new_game.cars])
 
             
     def run(self):
