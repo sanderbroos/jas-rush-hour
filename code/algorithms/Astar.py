@@ -25,7 +25,7 @@ class Astar(BreadthFirst):
         Use the current heuristic to determine the 
         heuristic value of the given game.
         """
-        return self.heuristic[0](game)
+        return self.heuristic(game)
 
 
     def enqueue(self, moves):
@@ -58,6 +58,6 @@ class Astar(BreadthFirst):
         while heuristic not in self.heuristics:
             heuristic = input(f"""Which heuristic do you want to use? Possiblities are: {', '.join(self.heuristics)}. """).upper()
 
-        self.heuristic = self.heuristics[heuristic]
+        self.heuristic = self.heuristics[heuristic][0]
 
         return super().run()

@@ -154,4 +154,8 @@ class BreadthFirst():
         Prints a status update to show the progress of the algorithm.
         """
 
-        print(f"""depth: {len(self.game.get_moves()):<12} iterations: {self.iterations:<12} archive size: {len(self.archive):<12} {self.states.__class__.__name__} size: {self.states.qsize():<12} time elapsed: {time() - self.start:.1f} s""", end="\r")
+        print(f"depth: {len(self.game.get_moves()):<12}",
+              f"iterations: {self.iterations:<12}",
+              f"archive size: {len(self.archive):<12}", 
+              f"{self.states.__class__.__name__} size: {self.states.qsize():<12}", 
+              f"time elapsed: {time() - self.start:.1f} s", end="\r")

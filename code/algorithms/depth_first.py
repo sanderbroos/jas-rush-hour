@@ -1,27 +1,27 @@
-import copy
-from code.util import *
 from queue import LifoQueue
 from .breadth_first import BreadthFirst
 
+
 class DepthFirst(BreadthFirst):
     """
-    A Depth First algorithm that builds a stack of games each with cars
-    in an unique position
+    A Depth First algorithm that builds a stack of games each with cars in an unique position
     """
-    def __init__(self, game):
+    def __init__(self, game, depth=None):
         super().__init__(game)
         self.states = LifoQueue()
-        self.depth = 22
-        
-  
-    def check_solution(self):
+        self.depth = depth
+        self.archive = {}
+
+
+    def check_archive(self):
         """
-        Checks and accepts better solutions than the current solution.
+        Add board to archive if it is new.
         """
-        new_value = len(self.game.get_moves())
+        str_board = str(self.game.board)
         
-        # looking for solutions with the least amount of moves
-        if new_value < self.best_value:
-            self.best_solution = copy.deepcopy(self.game)
-            self.best_value = new_value
-            print(f"New best value: {self.best_value}")
+        # save board to the archive if it's the least amount of moves for that board yet
+        if len(self.game.get_moves()) < self.archive.get(str_board, float('inf')):
+            self.archive[str_board] = len(self.game.get_moves())
+            return True
+
+        return False

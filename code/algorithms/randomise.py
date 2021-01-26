@@ -68,8 +68,8 @@ class Random():
         
         for i in range(self.repeats):
             algorithm = RandomOnce(self.game, 
-                                    max_moves=(self.best_value if self.fastest else float('inf')),
-                                    fastest=self.fastest)
+                                   max_moves=(self.best_value if self.fastest else float('inf')),
+                                   fastest=self.fastest)
 
             moves_made = clean_moves(algorithm.run())
             

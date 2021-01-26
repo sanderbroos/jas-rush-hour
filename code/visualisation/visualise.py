@@ -1,43 +1,40 @@
-import copy
-
-import numpy as np
-
-import matplotlib
-#matplotlib.use('agg')  
-
-from matplotlib import colors 
 import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle
-from matplotlib.colors import ListedColormap
+
 
 def visualise(game, moves):
     """
-    Visualise a rush hour game by animating each move made
+    Visualise a given rush hour game by animating each move made.
     """
     print("Loading visualisation...\n")
   
-    size = game.board.size
-    animation = copy.deepcopy(game)
-    animation.reset()
-
+    size = game.board.get_size()
+    game.reset()
     plt.figure()
 
     # add two empty moves, so the initial board is shown a little longer
     for move in [["X", 0], ["X", 0]] + moves:
         game.move(move[0], move[1])
 
-        board = [[colors.to_rgb('k') for i in range(size)] for j in range(size)]
+        # initialize black background grid of the correct size
+        board = [[(0,0,0) for i in range(size)] for j in range(size)]
 
-        for car in animation.cars.values():
+        # add a rectangle to the plot for each car
+        for car in game.cars.values():
             if car.orientation == 'H':
-                plt.gca().add_patch(Rectangle((car.col-0.5, car.row-0.5),
-                                                car.length, 1, linewidth=0.3, 
-                                                edgecolor='k', facecolor=car.colour))
-            if car.orientation == 'V':
-                plt.gca().add_patch(Rectangle((car.col-0.5, car.row-0.5), 1, 
-                                                car.length,linewidth=0.3,
-                                                edgecolor='k', facecolor=car.colour))
-             
+                width = car.length
+                height = 1
+            elif car.orientation == 'V':
+                width = 1
+                height = car.length
+                
+            plt.gca().add_patch(Rectangle(xy=(car.col-0.5, car.row-0.5), 
+                                          width=width, 
+                                          height=height, 
+                                          linewidth=0.3,
+                                          edgecolor='k', 
+                                          facecolor=car.color))
+        
         plt.imshow(board)
         plt.axis('off')
         
