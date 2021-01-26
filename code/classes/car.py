@@ -14,9 +14,7 @@ class Car:
         self.colour = str
 
         # gets a list of colours to choose from and removes red and black
-        colourslist = list(colors.cnames.values())
-        colourslist.remove('#FF0000')
-        colourslist.remove('#000000')
+        colourslist = list(set(colors.cnames.values()) - {'#FF0000', '#000000'})
         if self.name == 'X':
                 self.colour = 'r'
         else:
