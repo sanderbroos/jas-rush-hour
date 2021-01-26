@@ -1,12 +1,17 @@
 from time import sleep
-from sys import stdin
 
 class Manual:
+    """
+    Lets the user play the game by entering moves.
+    """
     def __init__(self, game):
         self.game = game
 
 
     def run(self):
+        """
+        Lets the user enter moves until they have solved the game.
+        """
         print('Instructions: Left and down are negative numbers, right and up are positive numbers\nExecute \'python3 main.py < output.csv\' to watch a solution being played (choose the right game first).')
              
         while not self.game.won():

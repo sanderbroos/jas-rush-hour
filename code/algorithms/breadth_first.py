@@ -106,7 +106,7 @@ class BreadthFirst():
         iterations = 0
         
         while not self.states.empty():
-            # build a game with the first element in the queue
+            # build a game with the first state in the queue
             self.game.build(self.dequeue())
             
             # keep building children until max depth is reached or game is won
