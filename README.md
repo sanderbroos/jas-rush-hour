@@ -54,7 +54,7 @@ Short summary of the algorithms this repository contains.
     Solves by randomly trying moves. Very fast but imprecise.
 
 ### Visualisation:
-To visualise the results...
+Once a soloution has been found the user will be asked whether they want to see an animation of the solution. The animation was made with matplotlib.
 
 ### Authors:
 * Jamie

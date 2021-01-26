@@ -6,7 +6,7 @@ from time import time
 class BreadthFirst():
     """
     A Breadth First algorithm that builds a queue of games each with cars in
-     an unique position.
+    an unique position.
     """
     def __init__(self, game):
         self.game = deepcopy(game)
