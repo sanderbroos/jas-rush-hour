@@ -2,8 +2,6 @@ import csv
 from .board import Board
 from .car import Car
 from ..util import *
-import random
-from matplotlib import colors 
 
 
 class Game:
@@ -27,10 +25,7 @@ class Game:
             reader = csv.DictReader(readfile)
 
             for row in reader:
-                colour = random.choice(list(colors.cnames.values()))
-                if row['car'] == 'X':
-                    colour = 'r'
-                cars[row['car']] = Car(row['car'], row['orientation'], int(row['col']) - 1, int(row['row']) - 1, int(row['length']), colour)
+                cars[row['car']] = Car(row['car'], row['orientation'], int(row['col']) - 1, int(row['row']) - 1, int(row['length']))
 
         return cars
 
