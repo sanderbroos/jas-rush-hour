@@ -36,22 +36,22 @@ Here the structure of the most important folders and files are explained.
 
 ### Algorithms:
 Short summary of the algorithms this repository contains.
-* Astar:
-    Solves by searching based on priority using heuristic. No heuristic = BFS. Slow and moderate precise
-* Breadth_first:
-    Solves by searching the width. Slow but very precise.
-* Depth_first:
-    Solves by searching the depth. 
-* Hill_climber:
-    Solves by improving a random generated solution. Fast and precise
-* Iterative_deepening:
-    Solves by searching deeper and deeper
+* Astar (A*):
+    Solves by searching based on priority using heuristic. No heuristic = BFS. Slow and moderately precise
+* Breadth First Search (BFS):
+    Solves by searching all states per width until a solution is found. Slow and memory intensive but always finds the best solution (100% precise).
+* Depth First Search (DFS):
+    Solves by searching all states up until a certain depth. Very slow, but can be less memory intensive and also finds the best solution (100% precise).
+* Hill Climber:
+    Solves by iteratively improving a randomly generated solution. Fast and precise (always finds good solutions but usually not the best).
+* Iterative Deepening:
+    Solves by running the DFS for increasing depths until a solution is found. Very slow, but less memory intensive and always finds the best solution (100% precise).
 * Manual:
-    User can try to solve the puzzle manualy
+    User can try to solve the puzzle manually.
 * ModAstar:
-    Solves by improving a random generated solution using Astar and a specific heuristic. Very slow and unprecise.
+    Solves by improving a random generated solution using Astar and a specific heuristic. Very slow and imprecise.
 * Randomise:
-    Solves by randomly trying moves. Very fast but unprecise
+    Solves by randomly trying moves. Very fast but imprecise.
 
 ### Visualisation:
 To visualise the results...

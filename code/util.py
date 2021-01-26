@@ -1,5 +1,6 @@
 from random import choice
 
+
 def get_lane(car, board):
     """
     Gets whole row/col in which the car/truck is located.

@@ -88,44 +88,56 @@ class BreadthFirst():
         return self.game.won()
 
 
+    def check_state(self):
+        """
+        Get the next state from the queue and build its children.
+        Check if the algorithm's stop condition is met.
+        """
+        # build a game with the first state in the queue
+        self.game.reset()
+        self.game.build(self.dequeue())
+        
+        # keep building children until max depth is reached or game is won
+        if len(self.game.get_moves()) < self.depth and not self.win():
+            self.build_children()
+        elif self.win():
+            self.print_status()
+            self.check_solution()
+            
+            # depth first will keep looking until the queue is empty
+            if self.__class__.__name__ == "BreadthFirst" or self.__class__.__name__ == "modAstar":
+                return True
+
+        return False
+
+
     def run(self):
         """
         Runs the algorithm until all possible states are visited.
         """
-        # show how long the algorithm takes while running it
-        self.start = time()
-
-        # add the current moves as first item in the queue
-        self.enqueue(self.game.get_moves())
-        
         # if a depth wasn't given, ask the user for it
         if not self.depth:
             self.depth = int(input("What's the maximum depth to search? "))
             print()
-        
-        iterations = 0
-        
-        while not self.states.empty():
-            # build a game with the first state in the queue
-            self.game.build(self.dequeue())
             
-            # keep building children until max depth is reached or game is won
-            if len(self.game.get_moves()) < self.depth and not self.win():
-                self.build_children()
-            elif self.win():
-                self.check_solution()
-                self.print_status(iterations)
+        # add the current moves as first item in the queue
+        self.enqueue(self.game.get_moves())
 
-                # depth first will keep looking until the queue is empty
-                if self.__class__.__name__ == "BreadthFirst" or self.__class__.__name__ == "modAstar":
-                    break
+        # show how long the algorithm takes while running it
+        self.start = time()
+        self.iterations = 0
+        
+        # run the search until the queue is empty or the stop condition is met
+        while not self.states.empty():
+            # periodically print a status update to show the progress
+            self.iterations += 1
+            if self.iterations % 100 == 0:
+                self.print_status()
 
-            # print a status update to show the progress
-            iterations += 1
-            if iterations % 100 == 0:
-                self.print_status(iterations)
-                
-            self.game.reset()
+            # get a new state from the queue and build its children
+            # or check if the stop condition is met
+            if self.check_state():
+                break
 
         # if the whole queue was finished and still no solution found
         if not self.best_solution:
@@ -135,8 +147,8 @@ class BreadthFirst():
         # update the input game with the best result found.
         return self.best_solution.get_moves()
     
-    def print_status(self, iterations):
+    def print_status(self):
         """
         Prints a status update to show the progress of the algorithm.
         """
-        print(f"depth: {len(self.game.get_moves()):<12} iterations: {iterations:<12} archive size: {len(self.archive):<12} {self.states.__class__.__name__} size: {self.states.qsize():<12} time elapsed: {time() - self.start:.1f} s", end="\r")
+        print(f"depth: {len(self.game.get_moves()):<12} iterations: {self.iterations:<12} archive size: {len(self.archive):<12} {self.states.__class__.__name__} size: {self.states.qsize():<12} time elapsed: {time() - self.start:.1f} s", end="\r")

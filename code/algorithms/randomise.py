@@ -3,6 +3,7 @@ from code.util import all_moves, clean_moves, random_move_quick
 from numpy import mean, std
 from copy import deepcopy
 
+
 class RandomOnce():
     def __init__(self, game, max_moves=float('inf'), fastest=False):
         self.game = deepcopy(game)
@@ -36,12 +37,10 @@ class RandomOnce():
         return self.game.get_moves()
         
 
-
 class Random():
     """ 
     Benchmarks the random algorithm by repeating the same algortihm for a select amount
     """
-
     def __init__(self, game, repeats=None, fastest=False):
         self.game = game
         self.numb_moves = []

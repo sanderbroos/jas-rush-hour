@@ -8,56 +8,76 @@ class HillClimber:
         self.moves = []
 
 
-    def hill_climb(self, flipped = False):
+    def try_combining(self, i, j, flipped):
         """
-        Try to combine any 2 moves, which shortens the list of moves by 1.
+        Tries to combine the cars from self.moves at index i and j.
+        If it's successful and doesn't change the outcome of the game, return True.
+        """
+        # if two different moves involve the same car
+        if i != j and self.moves[i][0] == self.moves[j][0]:
+            # try out the new changes on a temporary list
+            new_moves = deepcopy(self.moves)
+
+            # combine move i and j into either j's index or i's index 
+            if flipped:
+                new_moves[j][1] += new_moves.pop(i)[1]
+            else:
+                new_moves[i][1] += new_moves.pop(j)[1]
+
+            # execute the new list of moves
+            self.game.build(new_moves)
+
+            # see if this still makes for a winning solution
+            if self.game.won():
+                # if so, save the changes permanently
+                self.moves = new_moves
+                return True
+
+        return False
+
+
+    def hill_climb_once(self, flipped):
+        """
+        Goes through the list of moves once.
+        Tries to combine any two moves.
+        """
+        changes = 0
+        length = len(self.moves)
+        i = 0
+        
+        # can't use for-loop, since it's deleting elements from the list
+        while i < length:
+            j = i + 1
+
+            while j < length:
+                # try to combine car i and car j
+                if self.try_combining(i, j, flipped=flipped):
+                    if flipped:
+                        i -= 1
+
+                    j -= 1
+                    length -= 1
+                    changes += 1
+
+                    print(f"Improving solution... Current: {len(self.moves)} {'moves':<50}", end='\r')
+                    
+                self.game.reset()
+                j += 1
+
+            i += 1
+        
+        return changes
+
+
+    def hill_climb(self, flipped=False):
+        """
+        Keeps going through the entire list until the algorithm has no effect.
         """
         changes = 1
 
         # keep repeating until the algorithm doesn't have an effect anymore
         while changes:
-            changes = 0
-            length = len(self.moves)
-            i = 0
-            
-            # can't use for-loop, since it's deleting elements from the list
-            while i < length:
-                j = i + 1
-
-                while j < length:
-                    # if two moves involve the same car
-                    if i != j and self.moves[i][0] == self.moves[j][0]:
-                        # try out the new changes on a temporary list
-                        new_moves = deepcopy(self.moves)
-
-                        # combine move i and j into either j's index or i's index 
-                        if flipped:
-                            new_moves[j][1] += new_moves.pop(i)[1]
-                        else:
-                            new_moves[i][1] += new_moves.pop(j)[1]
-
-                        # execute the new list of moves
-                        self.game.build(new_moves)
-
-                        # see if this still makes for a winning solution
-                        if self.game.won():
-                            # if so, save the changes permanently
-                            self.moves = new_moves
-                            
-                            if flipped:
-                                i -= 1
-
-                            j -= 1
-                            length -= 1
-                            changes += 1
-
-                            print(f"Improving solution... Current: {len(self.moves)} {'moves':<50}", end='\r')
-                        
-                        self.game.reset()
-                    
-                    j += 1
-
-                i += 1
+            changes = self.hill_climb_once(flipped=flipped)
 
 
     def remove_redundant_moves(self):

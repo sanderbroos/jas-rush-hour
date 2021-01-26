@@ -8,7 +8,7 @@ class Board:
 
     def __str__(self):
         """
-        Creates a string of the board
+        Creates a string representation of the board.
         """
         string = ''
         for row in self.board:
@@ -24,7 +24,7 @@ class Board:
         
     def create_board(self, size, cars):
         """
-        Creates 2D array of the board
+        Initializes the board with its cars.
         """
         board = [[None for i in range(size)] for j in range(size)]
 
@@ -34,6 +34,7 @@ class Board:
                     board[car.row][car.col + i] = car
                 if car.orientation == 'V':
                     board[car.row + i][car.col] = car
+
         return board
 
 
@@ -45,6 +46,9 @@ class Board:
 
 
     def get_size(self):
+        """
+        Returns the size of the board.
+        """
         return len(self.board)
 
 

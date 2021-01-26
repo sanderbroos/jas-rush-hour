@@ -3,6 +3,7 @@ from code.util import all_moves
 from queue import LifoQueue
 from .breadth_first import BreadthFirst
 
+
 class DepthFirst(BreadthFirst):
     """
     A Depth First algorithm that builds a stack of games each with cars in an unique position

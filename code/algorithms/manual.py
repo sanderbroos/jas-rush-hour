@@ -1,5 +1,6 @@
 from time import sleep
 
+
 class Manual:
     """
     Lets the user play the game by entering moves.
@@ -12,7 +13,7 @@ class Manual:
         """
         Lets the user enter moves until they have solved the game.
         """
-        print('Instructions: Left and down are negative numbers, right and up are positive numbers\nExecute \'python3 main.py < output.csv\' to watch a solution being played (choose the right game first).')
+        print('Instructions: Left and down are negative numbers, right and up are positive numbers\nExecute \'python3 main.py < docs/output.csv\' to watch a solution being played (choose the right game first in the code).')
              
         while not self.game.won():
             self.game.draw_board()

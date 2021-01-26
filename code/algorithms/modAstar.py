@@ -4,7 +4,6 @@ from code.heuristics import position_heuristic
 from copy import deepcopy
 
 
-
 class modAstar(Astar):
     
     def __init__(self, game, cars, str_board):
@@ -19,9 +18,8 @@ class modAstar(Astar):
         return 0
     
     def win(self):
-        current_board = str(self.game.board)
-        return current_board == self.end_board
-    
+        return str(self.game.board) == self.end_board
+
 
 class RanAstar():
 

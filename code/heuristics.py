@@ -1,14 +1,17 @@
 from code.util import get_lane, get_possiblities
 
 
-def null_heuristic(default = None):
+def null_heuristic(default=None):
+    """
+    For comparison - identical to Breadth First Search.
+    """
     return 0
+
 
 def block_heuristic(game):
     """
     The number of cars blocking the carX
     """
-
     car_x = game.cars.get('X')
     lane = get_lane(car_x, game.board.board)[car_x.col + car_x.length:]
     
@@ -20,7 +23,6 @@ def double_block_heuristic(game):
     The number of cars blocking carX + the number of cars
     blocking the previous mentioned cars
     """
-
     car_x = game.cars.get('X')
     lane = get_lane(car_x, game.board.board)[car_x.col + car_x.length:]
     blocking_cars = [car for car in lane if car]
@@ -31,15 +33,14 @@ def double_block_heuristic(game):
         if not get_possiblities(car,game.board.board):
             blocked_blockingcars +=1
     
-    return len(blocking_cars) + blocked_blockingcar
+    return len(blocking_cars) + blocked_blockingcars
 
 
 def position_heuristic(current_cars, winning_cars):
     """
-    checks which current cars are on the same position as
-    the cars of a winning game. 
+    Checks how many current cars are on the same position as
+    the cars of a given winning game. 
     """
-        
     value = 0
     for key in current_cars.keys():
         if (current_cars[key].col == winning_cars[key].col and
