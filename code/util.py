@@ -66,6 +66,9 @@ def all_moves(game):
 
 
 def clean_moves(moves):
+    """
+    If possible adds two moves together in the list of moves
+    """
     i = 0
 
     while i < len(moves):
@@ -96,6 +99,9 @@ def output(moves):
 
 
 def random_move_quick(game):
+    """
+    Returns a random move
+    """
     move = None
     while not move:
         car = choice(list(game.cars.values()))
