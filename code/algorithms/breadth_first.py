@@ -131,7 +131,7 @@ class BreadthFirst():
         
         # run the search until the queue is empty or the stop condition is met
         while not self.states.empty():
-            # periodically print a status update to show the progress
+            # print a status update every 100 iterations to show the progress
             self.iterations += 1
             if self.iterations % 100 == 0:
                 self.print_status()

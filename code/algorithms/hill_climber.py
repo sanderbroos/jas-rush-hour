@@ -73,11 +73,8 @@ class HillClimber:
         """
         Keeps going through the entire list until the algorithm has no effect.
         """
-        changes = 1
-
-        # keep repeating until the algorithm doesn't have an effect anymore
-        while changes:
-            changes = self.hill_climb_once(flipped=flipped)
+        while self.hill_climb_once(flipped=flipped):
+            pass
 
 
     def remove_redundant_moves(self):
@@ -116,7 +113,7 @@ class HillClimber:
         """
         # initialize any solution
         print("Running Random algorithm multiple times to get a decent \"starting point\" solution...")
-        self.moves = Random(self.game, 200, fastest=True).run()
+        self.moves = Random(self.game, repeats=200, fastest=True).run()
 
         # shorten the moves in three different ways
         self.hill_climb(flipped=False)

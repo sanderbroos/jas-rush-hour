@@ -46,18 +46,18 @@ class Game:
 
         # first remove the car from the board, then re-add it in its new position
         if moved_car.orientation == 'H':
-            moved_car.col = moved_car.col + direction
+            for i in range(moved_car.length):
+                self.board.set_item(moved_car.row, moved_car.col + i, None)
+            
+            moved_car.col = moved_car.col + direction 
 
             for i in range(moved_car.length):
-                self.board.set_item(moved_car.row, moved_car.col - direction + i, None)
-
-            for i in range(moved_car.length):
-                self.board.set_item(moved_car.row, moved_car.col + i, moved_car)                  
+                self.board.set_item(moved_car.row, moved_car.col + i, moved_car)
         elif moved_car.orientation == 'V':
-            moved_car.row = moved_car.row + direction
-
             for i in range(moved_car.length):
-                self.board.set_item(moved_car.row - direction + i, moved_car.col, None)
+                self.board.set_item(moved_car.row + i, moved_car.col, None)
+
+            moved_car.row = moved_car.row + direction
 
             for i in range(moved_car.length):
                 self.board.set_item(moved_car.row + i, moved_car.col, moved_car)

@@ -22,8 +22,9 @@ def visualise(game, moves):
 
     plt.figure()
 
-    for move in [["A", 0], ["A", 0]] + moves:        
-        animation.move(move[0], move[1])
+    # add two empty moves, so the initial board is shown a little longer
+    for move in [["X", 0], ["X", 0]] + moves:
+        game.move(move[0], move[1])
 
         board = [[colors.to_rgb('k') for i in range(size)] for j in range(size)]
 
