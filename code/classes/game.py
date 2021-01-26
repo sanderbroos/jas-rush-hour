@@ -109,7 +109,7 @@ class Game:
             return False
 
         # otherwise the path is free, so move the car to the exit
-        self.move(car_x.name, self.board.size - car_x.col - car_x.length)
+        self.move(car_x.name, self.board.get_size() - car_x.col - car_x.length)
 
         self.moves = clean_moves(self.moves)
 

@@ -4,7 +4,6 @@ def get_lane(car, board):
     """
     Gets whole row/col in which the car/truck is located.
     """
-
     if car.orientation == 'V':
         return [row[car.col] for row in board]
     
@@ -13,9 +12,8 @@ def get_lane(car, board):
 
 def get_possiblities(car, board):
     """
-    gives all possible moves of a car in a given lane
+    Gives all possible moves of a car in a given lane.
     """
-
     moves = []
     size = len(board)
     lane = get_lane(car, board)
@@ -25,17 +23,23 @@ def get_possiblities(car, board):
     elif car.orientation == 'V':
         index = car.row
 
+    # add valid moves in the forward direction
     for i in range(1, size - 1):
+        # if the car isn't out of the board and this space is unoccipied
         if (index + i + car.length <= size and
                 lane[index + (i + car.length) - 1] == None):
             moves.append(i)
+        # if the car can't go this far, it also can't go further
         else:
             break
     
+    # add valid moves in the backward direction
     for i in range(1, size - 1): 
+        # if the car isn't out of the board and this space is unoccipied
         if (index - i >= 0
                 and lane[index - i] == None):
             moves.append(-i)
+        # if the car can't go this far, it also can't go further
         else:
             break
         
@@ -43,9 +47,10 @@ def get_possiblities(car, board):
 
 
 def all_moves(game):
-    """ Returns list with all possible moves for all cars
-    like [[car1,move1], [car1,move2], etc]"""
-    
+    """ 
+    Returns list with all possible moves for all cars
+    like [[car1,move1], [car1,move2], etc]
+    """
     moves = []
     cars = game.cars
     board = game.board.get_board()
@@ -79,15 +84,13 @@ def output(moves):
     """
     Cleans and saves the made moves to an output file
     """
-    moves = clean_moves(moves)
-
     output_string = "car,move"
-    for move in moves:
+    for move in clean_moves(moves):
         output_string += f'\n{move[0]},{move[1]}'
 
-    solution = open("docs/output.csv", "w")
-    solution.write(output_string)
-    solution.close()
+    output_file = open("docs/output.csv", "w")
+    output_file.write(output_string)
+    output_file.close()
 
 
 def random_move_quick(game):
@@ -95,7 +98,7 @@ def random_move_quick(game):
     while not move:
         car = choice(list(game.cars.values()))
         moves = get_possiblities(car, game.board.get_board())
-        # print(moves)
+        
         if moves:
             move = [car.name, choice(moves)]
 

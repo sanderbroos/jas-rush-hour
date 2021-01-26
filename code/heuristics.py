@@ -1,7 +1,7 @@
 from code.util import get_lane, get_possiblities
 
 
-def null_heuristic(game):
+def null_heuristic(default = None):
     return 0
 
 def block_heuristic(game):
@@ -47,4 +47,3 @@ def position_heuristic(current_cars, winning_cars):
             value -= 1
                 
     return value
-    
