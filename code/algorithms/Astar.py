@@ -8,15 +8,14 @@ class Astar(BreadthFirst):
     """
     Astar algorithm class inherits from Breadthfirst class
     """
-    def __init__(self, game):
+    def __init__(self, game, heuristic = 'NULL'):
         super().__init__(game)
         self.states = PriorityQueue()
         self.heuristics = {
-            'NULL': [null_heuristic, "No heuristic (BreathFirst)"],
-            'BL': [block_heuristic, "Blocking cars"],
-            '2BL': [double_block_heuristic, "Double blocking cars"]
-        }
-        self.heuristic = None
+            'NULL': null_heuristic,
+            'BL': block_heuristic,
+            '2BL': double_block_heuristic,}
+        self.heuristic = self.heuristics[heuristic]
         self.counter = 0
 
 
@@ -43,21 +42,3 @@ class Astar(BreadthFirst):
         Get the next state from the Priority queue.
         """
         return self.states.get()[3]
-
-
-    def run(self):
-        """
-        Ask the user to choose a heuristic, and then execute the algorithm.
-        """
-
-        print("Available heuristics:")
-        for key, value in self.heuristics.items():
-            print(f"    {key:>2}: {value[1]}")
-        
-        heuristic = 'None'
-        while heuristic not in self.heuristics:
-            heuristic = input(f"""Which heuristic do you want to use? Possiblities are: {', '.join(self.heuristics)}. """).upper()
-
-        self.heuristic = self.heuristics[heuristic][0]
-
-        return super().run()
