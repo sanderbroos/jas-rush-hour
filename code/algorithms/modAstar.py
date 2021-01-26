@@ -45,8 +45,8 @@ class RanAstar():
             
     def run(self):
         # initialize any solution
-        self.path = Random(self.game,5).run()
-        self.get_checkpoints(6)
+        self.path = Random(self.game, repeats=5).run()
+        self.get_checkpoints(dist=6)
         self.path = []
 
         for checkpoint in self.checkpoints:

@@ -113,7 +113,7 @@ class HillClimber:
         """
         # initialize any solution
         print("Running Random algorithm multiple times to get a decent \"starting point\" solution...")
-        self.moves = Random(self.game, 200, fastest=True).run()
+        self.moves = Random(self.game, repeats=200, fastest=True).run()
 
         # shorten the moves in three different ways
         self.hill_climb(flipped=False)

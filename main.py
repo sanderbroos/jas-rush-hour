@@ -61,4 +61,6 @@ if __name__ == "__main__":
     # if there is a solution, write it to output.csv and animate it
     if solution:
         output(solution)
-        visualise(game, solution)
+
+        if input("\nDo you want to see an animation of the solution? y/n ") == "y":
+            visualise(game, solution)
