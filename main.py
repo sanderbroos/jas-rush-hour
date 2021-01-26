@@ -69,7 +69,7 @@ if __name__ == "__main__":
         
         algorithm.__init__(game, heuristic)
 
-        # show a bold header that shows which algorithm was chosen
+        # show a bold header that shows which heuristic was chosen
         print(f"\n\u001b[1m {heuristics[heuristic]} \u001b[0m\n")
 
     # record how long it took for the algorithm to finish

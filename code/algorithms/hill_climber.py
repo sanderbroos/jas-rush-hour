@@ -10,7 +10,7 @@ class HillClimber:
 
     def try_combining(self, i, j, flipped):
         """
-        Tries to combine the cars from self.moves at index i and j. If 
+        Tries to combine the cars from self.moves at index i and j. If
         it's successful and doesn't change the outcome of the game, return True.
         """
         # if two different moves involve the same car
@@ -59,7 +59,8 @@ class HillClimber:
                     length -= 1
                     changes += 1
 
-                    print(f"Improving solution... Current: {len(self.moves)} {'moves':<50}", end='\r')
+                    print("Improving solution... Current:",
+                            f"{len(self.moves)} {'moves':<50}", sep='', end='\r')
                     
                 self.game.reset()
                 j += 1
@@ -112,7 +113,8 @@ class HillClimber:
         Runs the algorithm by shortening a random solution.
         """
         # initialize any solution
-        print("Running Random algorithm multiple times to get a decent \"starting point\" solution...")
+        print("Running Random algorithm multiple times to get a decent ",
+                "\"starting point\" solution...", sep="")
         self.moves = Random(self.game, repeats=200, fastest=True).run()
 
         # shorten the moves in three different ways
