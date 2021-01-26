@@ -1,8 +1,6 @@
 import copy
-from code.util import *
-from queue import Queue, PriorityQueue
-from code.classes.board import Board
-from code.heuristics import *
+from queue import PriorityQueue
+from code.heuristics import null_heuristic, block_heuristic, double_block_heuristic
 from code.algorithms.breadth_first import BreadthFirst
 
 
@@ -19,8 +17,10 @@ class Astar(BreadthFirst):
         self.heuristic = self.heuristics[heuristic]
         self.counter = 0
 
+
     def set_priority(self, game):
         return self.heuristic(game)
+
 
     def enqueue(self, moves):
         """
@@ -32,6 +32,7 @@ class Astar(BreadthFirst):
         priority = self.set_priority(self.game)
         self.counter += 1
         return self.states.put((priority, depth, self.counter, moves))
+   
    
     def dequeue(self):
         return self.states.get()[3]

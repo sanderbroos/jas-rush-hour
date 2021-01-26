@@ -14,23 +14,15 @@ class DepthFirst(BreadthFirst):
         self.archive = {}
 
 
-    def build_children(self):
+    def check_archive(self):
         """
-        Creates all child states and add to a list
+        Add board to archive if it is new.
         """
+        str_board = str(self.game.board)
+        
+        # save board to the archive if it's the least amount of moves for that board yet
+        if len(self.game.get_moves()) < self.archive.get(str_board, float('inf')):
+            self.archive[str_board] = len(self.game.get_moves())
+            return True
 
-        original_moves = deepcopy(self.game.get_moves())
-
-        for move in all_moves(self.game):
-            new_moves = original_moves + [move]
-            
-            self.game.reset()
-            self.game.build(new_moves)
-            str_board = str(self.game.board)
-            
-            if str_board not in self.archive or len(new_moves) < self.archive[str_board]:
-                self.states.put(new_moves)
-                self.archive[str_board] = len(new_moves)
-            
-        self.game.reset()
-        self.game.build(original_moves)
+        return False

@@ -8,17 +8,19 @@ class HillClimber:
         self.moves = []
 
 
-    def hill_climb(self, reverse = False):
+    def hill_climb(self, flipped = False):
+        """
+        Try to combine any 2 moves, which shortens the list of moves by 1.
+        """
         changes = 1
 
         # keep repeating until the algorithm doesn't have an effect anymore
         while changes:
             changes = 0
-            i = 0
-
             length = len(self.moves)
+            i = 0
             
-            # try to combine any 2 moves, thereby shortening the list of moves by 1
+            # can't use for-loop, since it's deleting elements from the list
             while i < length:
                 j = i + 1
 
@@ -28,19 +30,21 @@ class HillClimber:
                         # try out the new changes on a temporary list
                         new_moves = deepcopy(self.moves)
 
-                        if reverse:
+                        # combine move i and j into either j's index or i's index 
+                        if flipped:
                             new_moves[j][1] += new_moves.pop(i)[1]
                         else:
                             new_moves[i][1] += new_moves.pop(j)[1]
 
+                        # execute the new list of moves
                         self.game.build(new_moves)
 
-                        # see if combining these two moves still makes for a winning solution
+                        # see if this still makes for a winning solution
                         if self.game.won():
                             # if so, save the changes permanently
                             self.moves = new_moves
                             
-                            if reverse:
+                            if flipped:
                                 i -= 1
 
                             j -= 1
@@ -57,16 +61,27 @@ class HillClimber:
 
 
     def remove_redundant_moves(self):
+        """
+        For every move, check if it has an effect on the game.
+        If not, remove it.
+        """
         i = 0
         length = len(self.moves)
 
+        # can't use for-loop, since it's deleting elements from the list
         while i < length:
+            # try out the new changes on a temporary list
             new_moves = deepcopy(self.moves)
+
+            # remove this item from the list
             new_moves.pop(i)
 
+            # execute the new list of moves
             self.game.build(new_moves)
 
+            # see if this still makes for a winning solution
             if self.game.won():
+                # if so, save the changes permanently
                 self.moves = new_moves
                 i -= 1
                 length -= 1
@@ -76,14 +91,19 @@ class HillClimber:
 
 
     def run(self):
+        """
+        Runs the algorithm by shortening a random solution.
+        """
         # initialize any solution
         print("Running Random algorithm multiple times to get a decent \"starting point\" solution...")
         self.moves = Random(self.game, 200, fastest=True).run()
 
-        self.hill_climb()
-        self.hill_climb(reverse = True)
+        # shorten the moves in three different ways
+        self.hill_climb(flipped=False)
+        self.hill_climb(flipped=True)
         self.remove_redundant_moves()
 
+        # execute the moves and perform the final move to the exit
         self.game.build(self.moves)
         self.game.won()
 

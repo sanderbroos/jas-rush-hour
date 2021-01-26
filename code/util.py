@@ -93,10 +93,10 @@ def output(moves):
 
 def random_move_quick(game):
     move = None
+    
     while not move:
         car = random.choice(list(game.cars.values()))
         moves = get_possiblities(car, game.board.get_board())
-        # print(moves)
         if moves:
             move = [car.name, random.choice(moves)]
 

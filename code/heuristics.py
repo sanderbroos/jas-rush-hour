@@ -1,4 +1,4 @@
-from code.util import *
+from code.util import get_lane, get_possiblities
 
 
 def null_heuristic(game):
