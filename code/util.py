@@ -1,9 +1,8 @@
-import random
+from random import choice
 
 def get_lane(car, board):
     """
     Gets whole row/col in which the car/truck is located.
-    Makes is_valid function easier to read.
     """
 
     if car.orientation == 'V':
@@ -44,7 +43,7 @@ def get_possiblities(car, board):
 
 
 def all_moves(game):
-    """ Returns list with all possible moves for all cars 
+    """ Returns list with all possible moves for all cars
     like [[car1,move1], [car1,move2], etc]"""
     
     moves = []
@@ -86,18 +85,18 @@ def output(moves):
     for move in moves:
         output_string += f'\n{move[0]},{move[1]}'
 
-    f = open("docs/output.csv", "w")
-    f.write(output_string)
-    f.close()
+    solution = open("docs/output.csv", "w")
+    solution.write(output_string)
+    solution.close()
 
 
 def random_move_quick(game):
     move = None
     while not move:
-        car = random.choice(list(game.cars.values()))
+        car = choice(list(game.cars.values()))
         moves = get_possiblities(car, game.board.get_board())
         # print(moves)
         if moves:
-            move = [car.name, random.choice(moves)]
+            move = [car.name, choice(moves)]
 
     return move
