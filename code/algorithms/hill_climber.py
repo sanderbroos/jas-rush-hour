@@ -1,10 +1,10 @@
-from .randomise import Random 
+from .randomise import Random
 from copy import deepcopy
 
 
 class HillClimber:
     """
-    A Hill Climber algorithm that uses a randomly generated solution 
+    A Hill Climber algorithm that uses a randomly generated solution
     and iteratively tries to combine moves together for improvement.
     """
     def __init__(self, game):
@@ -14,7 +14,7 @@ class HillClimber:
 
     def try_combining(self, i, j, flipped):
         """
-        Tries to combine the cars from self.moves at index i and j. If 
+        Tries to combine the cars from self.moves at index i and j. If
         it's successful and doesn't change the outcome of the game, return True.
         """
         # if two different moves involve the same car
@@ -22,7 +22,7 @@ class HillClimber:
             # try out the new changes on a temporary list
             new_moves = deepcopy(self.moves)
 
-            # combine move i and j into either j's index or i's index 
+            # combine move i and j into either j's index or i's index
             if flipped:
                 new_moves[j][1] += new_moves.pop(i)[1]
             else:

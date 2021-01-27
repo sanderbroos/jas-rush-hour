@@ -22,7 +22,7 @@ To run an algorithm use the following command and follow the instructions in the
 python main.py
 ```
 
-To run check50 go to the directory containing the output file: 
+To run check50 go to the directory containing the output file:
 ```
 cd docs
 ```

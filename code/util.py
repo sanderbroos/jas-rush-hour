@@ -35,7 +35,7 @@ def get_possibilities(car, board):
             break
     
     # add valid moves in the backward direction
-    for i in range(1, size - 1): 
+    for i in range(1, size - 1):
         # if the car isn't out of the board and this space is unoccupied
         if (index - i >= 0
                 and lane[index - i] == None):
@@ -75,7 +75,7 @@ def clean_moves(moves):
     while i < len(moves):
         move = moves[i]
         
-        # if one car makes two moves directly after each other, combine 
+        # if one car makes two moves directly after each other, combine
         # these moves into 1
         if i > 0 and move[0] == moves[i-1][0]:
             move[1] += moves.pop(i-1)[1]
@@ -102,7 +102,7 @@ def output(moves):
 def random_move_quick(game):
     """
     Returns a random move by first choosing a car, then a move for that car.
-    This function is much faster than choosing from all_moves, but here not all 
+    This function is much faster than choosing from all_moves, but here not all
     moves have the same probability of being chosen, so less "true" random.
     """
     move = None
@@ -121,7 +121,7 @@ def direction_to_int(direction):
     Converts a direction to an integer, if it's not already one.
     Returns False if not possible.
     """
-    if (type(direction) == int or direction.isdigit() or 
+    if (type(direction) == int or direction.isdigit() or
        direction[0] == '-' and direction[1:].isdigit()):
         return int(direction)
     

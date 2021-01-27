@@ -23,7 +23,7 @@ moves: []
 load_cars(self, car_file): {string: [Car]}
 draw_board(self): void
 move(self, direction): Bool
-build(self, moves):  Bool
+build(self, moves): Bool
 reset:(self, moves): void
 is_valid_move(self): Bool
 get_moves(self): [moves]

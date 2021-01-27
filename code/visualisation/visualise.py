@@ -28,11 +28,11 @@ def visualise(game, moves):
                 width = 1
                 height = car.length
                 
-            plt.gca().add_patch(Rectangle(xy=(car.col-0.5, car.row-0.5), 
-                                          width=width, 
-                                          height=height, 
+            plt.gca().add_patch(Rectangle(xy=(car.col-0.5, car.row-0.5),
+                                          width=width,
+                                          height=height,
                                           linewidth=0.3,
-                                          edgecolor='k', 
+                                          edgecolor='k',
                                           facecolor=car.color))
         
         plt.imshow(board)

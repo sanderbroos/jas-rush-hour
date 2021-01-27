@@ -20,7 +20,7 @@ class Astar(BreadthFirst):
 
     def set_priority(self, game):
         """
-        Use the current heuristic to determine the 
+        Use the current heuristic to determine the
         heuristic value of the given game.
         """
         return self.heuristic(game)

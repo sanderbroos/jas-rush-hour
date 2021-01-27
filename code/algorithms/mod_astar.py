@@ -16,8 +16,8 @@ class modAstar(Astar):
 
     def set_priority(self,game):
         """
-        Calculate the heuristic by checking how many current cars are in 
-        the same position as the cars of the given game. 
+        Calculate the heuristic by checking how many current cars are in
+        the same position as the cars of the given game.
         """
         return position_heuristic(game.cars, self.end_cars)
 
@@ -80,4 +80,3 @@ class RanAstar():
             
         print(f"path length: {len(self.path)}")
         return self.path
-        

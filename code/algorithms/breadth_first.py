@@ -12,8 +12,8 @@ class BreadthFirst():
     def __init__(self, game):
         self.game = deepcopy(game)
         self.states = Queue()
-        self.best_solution = None   
-        self.best_value = float('inf')     
+        self.best_solution = None
+        self.best_value = float('inf')
         self.archive = set()
 
         # needed for depth first search
@@ -156,6 +156,6 @@ class BreadthFirst():
         """
         print(f"depth: {len(self.game.get_moves()):<12}",
               f"iterations: {self.iterations:<12}",
-              f"archive size: {len(self.archive):<12}", 
-              f"{self.states.__class__.__name__} size: {self.states.qsize():<12}", 
+              f"archive size: {len(self.archive):<12}",
+              f"{self.states.__class__.__name__} size: {self.states.qsize():<12}",
               f"time elapsed: {time() - self.start:.1f} s", end="\r")
