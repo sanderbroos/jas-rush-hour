@@ -13,7 +13,7 @@ class Astar(BreadthFirst):
         self.heuristics = {
             'NULL': null_heuristic,
             'BL': block_heuristic,
-            '2BL': double_block_heuristic,}
+            '2BL': double_block_heuristic}
         self.heuristic = self.heuristics[heuristic]
         self.counter = 0
 

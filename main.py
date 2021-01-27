@@ -3,10 +3,10 @@ from code.algorithms.manual import Manual
 from code.algorithms.depth_first import DepthFirst
 from code.algorithms.breadth_first import BreadthFirst
 from code.algorithms.randomise import Random
-from code.algorithms.Astar import Astar
+from code.algorithms.a_star import Astar
 from code.algorithms.iterative_deepening import IterativeDeepening
 from code.algorithms.hill_climber import HillClimber
-from code.algorithms.modAstar import RanAstar
+from code.algorithms.mod_astar import RanAstar
 from code.visualisation.visualise import visualise
 from code.util import output
 
@@ -47,10 +47,10 @@ if __name__ == "__main__":
     # show which letter to type for each available algorithm
     print("\nAvailable algorithms:", end="")
     for key, value in algorithms.items():
-        print(f"\n    {key:>2}: {value.__class__.__name__}", end="")
+        print(f"\n    {key:>2}: {value.__class__.__name__}", end=" ")
         
         if key == 'S':
-            print(" (experimental)")
+            print("(experimental and very slow)")
 
     while algo_id not in algorithms:
         algo_id = input("Which algorithm do you want to use? ").upper()
