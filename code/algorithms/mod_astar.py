@@ -1,5 +1,5 @@
 from code.algorithms.randomise import Random
-from code.algorithms.Astar import Astar
+from code.algorithms.a_star import Astar
 from code.heuristics import position_heuristic
 from copy import deepcopy
 
