@@ -30,10 +30,11 @@ class Astar(BreadthFirst):
         """
         Priority order: heuristic value, depth, counter.
         """
-        priority = self.set_priority(self.game)
+        heuristic_value = self.set_priority(self.game)
         depth = len(moves)
         self.counter += 1
-        return self.states.put((priority, depth, self.counter, moves))
+
+        return self.states.put((heuristic_value, depth, self.counter, moves))
    
 
     def dequeue(self):

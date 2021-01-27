@@ -8,7 +8,6 @@ class modAstar(Astar):
     """
     Modified Astar algortihm using the winning cars position heuristic
     """
-    
     def __init__(self, game, cars, str_board):
         super().__init__(game)
         self.end_cars = cars
@@ -16,10 +15,17 @@ class modAstar(Astar):
 
 
     def set_priority(self,game):
+        """
+        Calculate the heuristic by checking how many current cars are in 
+        the same position as the cars of the given game. 
+        """
         return position_heuristic(game.cars, self.end_cars)
 
 
     def win(self):
+        """
+        The algorithm stops when the given board is reached.
+        """
         return str(self.game.board) == self.end_board
 
 
@@ -29,7 +35,6 @@ class RanAstar():
     and finds the shortest paths between those checkpoints using the
     modAstar algorithm.
     """
-
     def __init__(self, game):
         self.game = deepcopy(game)
         self.path = []
@@ -38,15 +43,14 @@ class RanAstar():
 
     def get_checkpoints(self, dist):
         """
-        Sets checkpoints with a fixed distance on a path
+        Sets checkpoints with a fixed distance on a path.
         """
-
         new_game = deepcopy(self.game)
         counter = 0
         end = len(self.path)
 
         for move in self.path:
-            new_game.move(move[0],move[1])
+            new_game.move(move[0], move[1])
             counter += 1
 
             if counter % dist == 0 or counter == end:
@@ -55,9 +59,8 @@ class RanAstar():
             
     def run(self):
         """
-        Runs the RandAstar algorithm
+        Runs the RanAstar algorithm
         """
-
         # initialize any solution
         self.path = Random(self.game, repeats=5).run()
         self.get_checkpoints(dist=6)
@@ -69,13 +72,12 @@ class RanAstar():
             moves = modAstar(game, checkpoint[1], checkpoint[0]).run()
 
             # update game
-            for move in moves:
-                self.game.move(move[0], move[1])
-                self.path.append(move)
+            self.game.build(moves)
+            self.path += moves
 
             # see the number of moves needed per checkpoint
             self.game.moves = []
             
-        print( f"path length: {len(self.path)}")
+        print(f"path length: {len(self.path)}")
         return self.path
         

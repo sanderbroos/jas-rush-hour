@@ -42,12 +42,15 @@ if __name__ == "__main__":
                   'I': IterativeDeepening(game),
                   'H': HillClimber(game),
                   'A': Astar(game),
-                  'S' : RanAstar(game),}
+                  'S': RanAstar(game)}
 
     # show which letter to type for each available algorithm
-    print("\nAvailable algorithms:")
+    print("\nAvailable algorithms:", end="")
     for key, value in algorithms.items():
-        print(f"    {key:>2}: {value.__class__.__name__}")
+        print(f"\n    {key:>2}: {value.__class__.__name__}", end="")
+        
+        if key == 'S':
+            print(" (experimental)")
 
     while algo_id not in algorithms:
         algo_id = input("Which algorithm do you want to use? ").upper()
