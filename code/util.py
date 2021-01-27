@@ -67,7 +67,8 @@ def all_moves(game):
 
 def clean_moves(moves):
     """
-    If possible adds two moves together in the list of moves
+    Combines consecutive moves by the same car into one move.
+    Removes moves where a car moves 0 spots.
     """
     i = 0
 
@@ -100,7 +101,9 @@ def output(moves):
 
 def random_move_quick(game):
     """
-    Returns a random move
+    Returns a random move by first choosing a car, then a move for that car.
+    This function is much faster than choosing from all_moves, but here not all 
+    moves have the same probability of being chosen, so less "true" random.
     """
     move = None
     while not move:
