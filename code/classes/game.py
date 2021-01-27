@@ -8,7 +8,7 @@ class Game:
     """
     Class which facilitates the playability of the game.
     """
-    def __init__ (self, size, source_file):
+    def __init__(self, size, source_file):
         self.cars = self.load_cars(source_file)
         self.board = Board(size, self.cars)
         self.moves = []

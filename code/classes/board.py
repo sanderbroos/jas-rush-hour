@@ -2,7 +2,7 @@ class Board:
     """
     Represents the board of a game.
     """
-    def __init__ (self, size, cars):
+    def __init__(self, size, cars):
         self.board = self.create_board(size,cars)
     
 

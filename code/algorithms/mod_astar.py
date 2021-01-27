@@ -6,7 +6,7 @@ from copy import deepcopy
 
 class modAstar(Astar):
     """
-    Modified Astar algortihm using the winning cars position heuristic
+    Modified Astar algortihm using the winning cars position heuristic.
     """
     def __init__(self, game, cars, str_board):
         super().__init__(game)
@@ -59,7 +59,7 @@ class RanAstar():
             
     def run(self):
         """
-        Runs the RanAstar algorithm
+        Runs the RanAstar algorithm.
         """
         # initialize any solution
         self.path = Random(self.game, repeats=5).run()

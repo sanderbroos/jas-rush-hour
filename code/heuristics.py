@@ -39,7 +39,7 @@ def double_block_heuristic(game):
 def position_heuristic(current_cars, winning_cars):
     """
     Checks how many current cars are in the same 
-    position as the cars of the given game. 
+    position as the cars of the given game.
     """
     value = 0
     for key in current_cars.keys():

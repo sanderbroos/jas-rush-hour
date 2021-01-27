@@ -147,7 +147,7 @@ class BreadthFirst():
             print("\nFailed to find a solution.\n")
             return False
         
-        # update the input game with the best result found.
+        # update the input game with the best result found
         return self.best_solution.get_moves()
     
     def print_status(self):

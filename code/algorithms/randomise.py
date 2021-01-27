@@ -5,7 +5,7 @@ from copy import deepcopy
 
 
 class RandomOnce():
-    """ 
+    """
     Random algorithm that randomly selects a move until the game is won.
     """
     def __init__(self, game, max_moves=float('inf'), fastest=False):
@@ -19,7 +19,7 @@ class RandomOnce():
 
 
     def run(self):
-        """ 
+        """
         Continues to perform a random move until the game is won.
         """
         self.game.reset()
@@ -42,7 +42,7 @@ class RandomOnce():
         
 
 class Random():
-    """ 
+    """
     Benchmarks the random algorithm by repeating the same algorithm for a 
     select amount.
     """
