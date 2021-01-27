@@ -56,7 +56,7 @@ Short summary of the algorithms this repository contains.
     Solves by randomly trying moves. Very fast but lightyears away from an acceptable solution.
 
 ### Visualisation:
-Once a solution has been found the user will be asked whether they want to see an animation of the solution. The animation was made with matplotlib.
+Once a solution has been found the user will be asked whether they want to see an animation of the solution. In the animation the car that needs to be unblocked is red and black represents a empty spot. The animation was made with matplotlib.
 
 ### Authors:
 * Jamie
