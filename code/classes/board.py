@@ -40,7 +40,7 @@ class Board:
 
     def get_board(self):
         """
-        Returns the board
+        Returns the board.
         """
         return self.board
 
@@ -54,6 +54,6 @@ class Board:
 
     def set_item(self, row, col, value):
         """
-        Implements a move by changing car placement
+        Implements a move by changing car placement.
         """
         self.board[row][col] = value

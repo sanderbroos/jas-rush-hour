@@ -5,14 +5,16 @@ from copy import deepcopy
 
 
 class RandomOnce():
+    """ 
+    Random algorithm that randomly selects a move until the game is won.
+    """
     def __init__(self, game, max_moves=float('inf'), fastest=False):
         self.game = deepcopy(game)
 
         # abort algorithm if the amount of moves exceeds this value
         self.max_moves = max_moves
 
-        # if fastest is True, a faster but less accurate way of choosing 
-        # a move is used
+        # determines the method of choosing a random move 
         self.fastest = fastest
 
 
@@ -41,8 +43,8 @@ class RandomOnce():
 
 class Random():
     """ 
-    Benchmarks the random algorithm by repeating the same algortihm for a 
-    select amount
+    Benchmarks the random algorithm by repeating the same algorithm for a 
+    select amount.
     """
     def __init__(self, game, repeats=None, fastest=False):
         self.game = game

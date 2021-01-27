@@ -4,7 +4,7 @@ from .breadth_first import BreadthFirst
 
 class DepthFirst(BreadthFirst):
     """
-    A Depth First algorithm that builds a stack of games each with cars in an unique position
+    A Depth First algorithm that builds a stack of games each with cars in an unique position.
     """
     def __init__(self, game, depth=None):
         super().__init__(game)
