@@ -1,6 +1,3 @@
-from time import sleep
-
-
 class Manual:
     """
     Lets the user play the game by entering moves.

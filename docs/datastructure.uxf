@@ -1,12 +1,12 @@
-<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>340</x><y>285</y><w>220</w><h>200</h></coordinates><panel_attributes>Board
+<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>340</x><y>285</y><w>220</w><h>130</h></coordinates><panel_attributes>Board
 --
 board: 2D array
 --
-__str__(self): string
+__str__(self): String
 create_board(self, size, cars): 2D array
 get_board(self): 2D array
 get_size(self): Int
-set_item(self, row, col, value): </panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>350</x><y>35</y><w>190</w><h>200</h></coordinates><panel_attributes>Car
+set_item(self, row, col, value): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>350</x><y>35</y><w>190</w><h>120</h></coordinates><panel_attributes>Car
 --
 name: String
 orientation: String
@@ -14,17 +14,17 @@ col: Int
 row: Int
 length: Int
 colour: Str
---</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>20</x><y>160</y><w>210</w><h>190</h></coordinates><panel_attributes>Game
+--</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>20</x><y>160</y><w>210</w><h>200</h></coordinates><panel_attributes>Game
 --
 cars: {string: [Car]}
 board: 2D array
 moves: []
 --
 load_cars(self, car_file): {string: [Car]}
-draw_board(self): Str
+draw_board(self): void
 move(self, direction): Bool
-won(self): Bool
+build(self, moves):  Bool
+reset:(self, moves): void
 is_valid_move(self): Bool
 get_moves(self): [moves]
-build(self, moves):  
-reset:(self, moves): </panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>220</x><y>110</y><w>150</w><h>120</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;100;130;10</additional_attributes></element><element><id>Relation</id><coordinates><x>220</x><y>280</y><w>140</w><h>70</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;120;50</additional_attributes></element></diagram>
+won(self): Bool</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>220</x><y>110</y><w>150</w><h>120</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;100;130;10</additional_attributes></element><element><id>Relation</id><coordinates><x>220</x><y>280</y><w>140</w><h>70</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;120;50</additional_attributes></element></diagram>

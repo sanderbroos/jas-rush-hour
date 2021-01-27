@@ -25,8 +25,8 @@ class RandomOnce():
         self.game.reset()
 
         while not self.game.won():
-            # if fastest is True, a faster but less accurate way of choosing
-            #  a move is used
+            # if fastest is True, a faster but less accurate 
+            # way of choosing a move is used
             if self.fastest:
                 move = random_move_quick(self.game)
             else:

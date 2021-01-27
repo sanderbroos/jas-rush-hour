@@ -92,21 +92,24 @@ class HillClimber:
 
         # can't use for-loop, since it's deleting elements from the list
         while i < length:
-            # try out the new changes on a temporary list
-            new_moves = deepcopy(self.moves)
+            move = self.moves[i]
 
             # remove this item from the list
-            new_moves.pop(i)
+            self.moves.pop(i)
 
             # execute the new list of moves
-            self.game.build(new_moves)
+            self.game.build(self.moves)
 
             # see if this still makes for a winning solution
             if self.game.won():
-                # if so, save the changes permanently
-                self.moves = new_moves
                 i -= 1
                 length -= 1
+
+                print("Improving solution... Current:",
+                       f"{len(self.moves)} {'moves':<50}", end='\r')
+            else:
+                # otherwise, add the move back
+                self.moves.insert(i, move)
 
             self.game.reset()
             i += 1
@@ -117,11 +120,12 @@ class HillClimber:
         Runs the algorithm by shortening a random solution.
         """
         # initialize any solution
-        print("Running Random algorithm multiple times to get a decent ",
-                "\"starting point\" solution...", sep="")
+        print("Running Random algorithm multiple times to get a decent",
+              "\"starting point\" solution...")
         self.moves = Random(self.game, repeats=200, fastest=True).run()
 
-        # shorten the moves in three different ways
+        # shorten the moves in three different ways (this specific order shortens the most)
+        self.remove_redundant_moves()
         self.hill_climb(flipped=False)
         self.hill_climb(flipped=True)
         self.remove_redundant_moves()

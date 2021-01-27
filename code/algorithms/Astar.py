@@ -1,7 +1,6 @@
 from queue import PriorityQueue
 from code.heuristics import null_heuristic, block_heuristic, double_block_heuristic
 from code.algorithms.breadth_first import BreadthFirst
-import textwrap
 
 
 class Astar(BreadthFirst):

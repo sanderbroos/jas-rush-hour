@@ -73,8 +73,13 @@ class Game:
         """
         Gets a list of moves as input and executes them all in quick succession.
         """
+        all_valid = True
+
         for move in moves:
-            self.move(move[0], move[1])
+            if not self.move(move[0], move[1]):
+                all_valid = False
+
+        return all_valid
         
 
     def reset(self):
