@@ -6,6 +6,7 @@ from code.algorithms.randomise import Random
 from code.algorithms.Astar import Astar
 from code.algorithms.iterative_deepening import IterativeDeepening
 from code.algorithms.hill_climber import HillClimber
+from code.algorithms.modAstar import RanAstar
 from code.visualisation.visualise import visualise
 from code.util import output
 
@@ -40,7 +41,8 @@ if __name__ == "__main__":
                   'D': DepthFirst(game),
                   'I': IterativeDeepening(game),
                   'H': HillClimber(game),
-                  'A': Astar(game)}
+                  'A': Astar(game),
+                  'S' : RanAstar(game),}
 
     # show which letter to type for each available algorithm
     print("\nAvailable algorithms:")
