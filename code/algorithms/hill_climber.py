@@ -60,7 +60,7 @@ class HillClimber:
                     changes += 1
 
                     print("Improving solution... Current:",
-                            f"{len(self.moves)} {'moves':<50}", sep='', end='\r')
+                          f"{len(self.moves)} {'moves':<50}", end='\r')
                     
                 self.game.reset()
                 j += 1

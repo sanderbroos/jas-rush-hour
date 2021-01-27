@@ -3,6 +3,7 @@ from queue import Queue
 from copy import deepcopy
 from time import time
 
+
 class BreadthFirst():
     """
     A Breadth First algorithm that builds a queue of games each with cars in
@@ -153,7 +154,6 @@ class BreadthFirst():
         """
         Prints a status update to show the progress of the algorithm.
         """
-
         print(f"depth: {len(self.game.get_moves()):<12}",
               f"iterations: {self.iterations:<12}",
               f"archive size: {len(self.archive):<12}", 

@@ -1,7 +1,7 @@
 import csv
 from .board import Board
 from .car import Car
-from code.util import clean_moves, get_lane, get_possiblities
+from code.util import clean_moves, get_lane, get_possiblities, direction_to_int
 
 
 class Game:
@@ -40,8 +40,9 @@ class Game:
         If the move is vaild, moves the car and saves the move
         """
         moved_car = self.cars.get(car)
+        direction = direction_to_int(direction)
 
-        if not self.is_valid_move(moved_car, direction):
+        if not (moved_car and direction and self.is_valid_move(moved_car, direction)):
             return False
 
         # first remove the car from the board, then re-add it in its new position

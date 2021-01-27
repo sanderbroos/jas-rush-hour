@@ -111,3 +111,15 @@ def random_move_quick(game):
             move = [car.name, choice(moves)]
 
     return move
+
+
+def direction_to_int(direction):
+    """
+    Converts a direction to an integer, if it's not already one.
+    Returns False if not possible.
+    """
+    if (type(direction) == int or direction.isdigit() or 
+       direction[0] == '-' and direction[1:].isdigit()):
+        return int(direction)
+    
+    return False
