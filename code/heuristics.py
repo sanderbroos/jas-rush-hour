@@ -10,7 +10,7 @@ def null_heuristic(default=None):
 
 def block_heuristic(game):
     """
-    The number of cars blocking the carX
+    The number of cars blocking the car X.
     """
     car_x = game.cars.get('X')
     lane = get_lane(car_x, game.board.board)[car_x.col + car_x.length:]
@@ -21,7 +21,7 @@ def block_heuristic(game):
 def double_block_heuristic(game):
     """
     The number of cars blocking carX + the number of cars
-    blocking theose cars.
+    blocking those cars.
     """
     car_x = game.cars.get('X')
     lane = get_lane(car_x, game.board.board)[car_x.col + car_x.length:]
