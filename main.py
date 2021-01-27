@@ -61,7 +61,7 @@ if __name__ == "__main__":
     
     heuristics = {'NULL': "No heuristic (BreathFirst)",
                   'BL' : "Blocking car",
-                  '2BL' : "Double blocking cars",}
+                  '2BL' : "Double blocking cars"}
 
     # only Astar uses heuristics
     if algorithm.__class__.__name__ == 'Astar':

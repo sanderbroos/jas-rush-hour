@@ -30,7 +30,7 @@ def double_block_heuristic(game):
     # check if blocking cars are blocked
     blocked_blockingcars = 0
     for car in blocking_cars:
-        if not get_possibilities(car,game.board.board):
+        if not get_possibilities(car, game.board.board):
             blocked_blockingcars +=1
     
     return len(blocking_cars) + blocked_blockingcars

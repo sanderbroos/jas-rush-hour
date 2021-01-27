@@ -15,12 +15,12 @@ class modAstar(Astar):
         self.end_board = str_board
 
 
-    def set_priority(self,game):
+    def set_priority(self):
         """	
         Calculate the heuristic by checking how many current cars are in	
         the same position as the cars of the given game.	
         """
-        return position_heuristic(game.cars, self.end_cars)
+        return position_heuristic(self.game.cars, self.end_cars)
 
 
     def win(self):

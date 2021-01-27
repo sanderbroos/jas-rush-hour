@@ -18,19 +18,19 @@ class Astar(BreadthFirst):
         self.counter = 0
 
 
-    def set_priority(self, game):
+    def set_priority(self):
         """
         Use the current heuristic to determine the
         heuristic value of the given game.
         """
-        return self.heuristic(game)
+        return self.heuristic(self.game)
 
 
     def enqueue(self, moves):
         """
         Priority order: heuristic value, depth, counter.
         """
-        heuristic_value = self.set_priority(self.game)
+        heuristic_value = self.set_priority()
         depth = len(moves)
         self.counter += 1
 
