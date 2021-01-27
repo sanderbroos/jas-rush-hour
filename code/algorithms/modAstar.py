@@ -14,12 +14,13 @@ class modAstar(Astar):
         self.end_cars = cars
         self.end_board = str_board
 
+
     def set_priority(self,game):
         return position_heuristic(game.cars, self.end_cars)
 
+
     def win(self):
         return str(self.game.board) == self.end_board
-
 
 
 class RanAstar():
@@ -74,6 +75,7 @@ class RanAstar():
 
             # see the number of moves needed per checkpoint
             self.game.moves = []
+            
         print( f"path length: {len(self.path)}")
         return self.path
         
