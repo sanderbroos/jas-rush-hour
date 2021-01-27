@@ -13,14 +13,14 @@ class Astar(BreadthFirst):
         self.heuristics = {
             'NULL': null_heuristic,
             'BL': block_heuristic,
-            '2BL': double_block_heuristic,}
+            '2BL': double_block_heuristic}
         self.heuristic = self.heuristics[heuristic]
         self.counter = 0
 
 
     def set_priority(self, game):
         """
-        Use the current heuristic to determine the 
+        Use the current heuristic to determine the
         heuristic value of the given game.
         """
         return self.heuristic(game)
@@ -30,10 +30,11 @@ class Astar(BreadthFirst):
         """
         Priority order: heuristic value, depth, counter.
         """
-        priority = self.set_priority(self.game)
+        heuristic_value = self.set_priority(self.game)
         depth = len(moves)
         self.counter += 1
-        return self.states.put((priority, depth, self.counter, moves))
+
+        return self.states.put((heuristic_value, depth, self.counter, moves))
    
 
     def dequeue(self):

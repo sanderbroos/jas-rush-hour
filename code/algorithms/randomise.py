@@ -5,7 +5,7 @@ from copy import deepcopy
 
 
 class RandomOnce():
-    """ 
+    """
     Random algorithm that randomly selects a move until the game is won.
     """
     def __init__(self, game, max_moves=float('inf'), fastest=False):
@@ -14,18 +14,18 @@ class RandomOnce():
         # abort algorithm if the amount of moves exceeds this value
         self.max_moves = max_moves
 
-        # determines the method of choosing a random move 
+        # determines the method of choosing a random move
         self.fastest = fastest
 
 
     def run(self):
-        """ 
+        """
         Continues to perform a random move until the game is won.
         """
         self.game.reset()
 
         while not self.game.won():
-            # if fastest is True, a faster but less accurate 
+            # if fastest is True, a faster but less accurate
             # way of choosing a move is used
             if self.fastest:
                 move = random_move_quick(self.game)
@@ -42,8 +42,8 @@ class RandomOnce():
         
 
 class Random():
-    """ 
-    Benchmarks the random algorithm by repeating the same algorithm for a 
+    """
+    Benchmarks the random algorithm by repeating the same algorithm for a
     select amount.
     """
     def __init__(self, game, repeats=None, fastest=False):
@@ -53,7 +53,7 @@ class Random():
         self.best_moves = []
         self.repeats = repeats
 
-        # if True, look for fastest solution faster by aborting when # of moves 
+        # if True, look for fastest solution faster by aborting when # of moves
         # exceeds best_value
         self.fastest = fastest
     
@@ -69,7 +69,7 @@ class Random():
             print()
         
         for i in range(self.repeats):
-            algorithm = RandomOnce(self.game, 
+            algorithm = RandomOnce(self.game,
                                    max_moves=(self.best_value if self.fastest else float('inf')),
                                    fastest=self.fastest)
 

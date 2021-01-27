@@ -42,17 +42,15 @@ if __name__ == "__main__":
                   'I': IterativeDeepening(game),
                   'H': HillClimber(game),
                   'A': Astar(game),
-                  'S' : RanAstar(game),}
+                  'S': RanAstar(game)}
 
     # show which letter to type for each available algorithm
-    print("\nAvailable algorithms:")
+    print("\nAvailable algorithms:", end="")
     for key, value in algorithms.items():
+        print(f"\n{key:>6}: {value.__class__.__name__}", end=" ")
+        
         if key == 'S':
-            print(f"    {key:>2}: {value.__class__.__name__} (experimental and very slow)")
-        else:
-            print(f"    {key:>2}: {value.__class__.__name__}")
-
-
+            print("(experimental and very slow)")
 
     while algo_id not in algorithms:
         algo_id = input("Which algorithm do you want to use? ").upper()
@@ -69,7 +67,7 @@ if __name__ == "__main__":
     if algorithm.__class__.__name__ == 'Astar':
         print("Available heuristics:")
         for key, value in heuristics.items():
-            print(f"    {key:>2}: {value}")
+            print(f"{key:>6}: {value}")
 
         while heuristic not in heuristics:
             heuristic = input("Which heuristic do you want to use? ").upper()

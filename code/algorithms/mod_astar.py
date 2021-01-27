@@ -75,7 +75,7 @@ class RanAstar():
 
             # see the number of moves needed per checkpoint
             self.game.moves = []
-            
+        
         print( f"Final solution: {len(self.path)}")
         return self.path
         

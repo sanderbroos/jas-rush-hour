@@ -1,5 +1,5 @@
 from random import choice
-from matplotlib import colors 
+from matplotlib import colors
 
 
 class Car:

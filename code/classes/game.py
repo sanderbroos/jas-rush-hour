@@ -8,7 +8,7 @@ class Game:
     """
     Class which facilitates the playability of the game.
     """
-    def __init__ (self, size, source_file):
+    def __init__(self, size, source_file):
         self.cars = self.load_cars(source_file)
         self.board = Board(size, self.cars)
         self.moves = []
@@ -50,7 +50,7 @@ class Game:
             for i in range(moved_car.length):
                 self.board.set_item(moved_car.row, moved_car.col + i, None)
             
-            moved_car.col = moved_car.col + direction 
+            moved_car.col = moved_car.col + direction
 
             for i in range(moved_car.length):
                 self.board.set_item(moved_car.row, moved_car.col + i, moved_car)
