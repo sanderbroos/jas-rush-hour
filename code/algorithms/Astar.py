@@ -6,7 +6,7 @@ import textwrap
 
 class Astar(BreadthFirst):
     """
-    Astar algorithm class inherits from Breadthfirst class
+    Astar algorithm class inherits from Breadthfirst class.
     """
     def __init__(self, game, heuristic = 'NULL'):
         super().__init__(game)

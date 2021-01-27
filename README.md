@@ -1,8 +1,8 @@
-# jas-rush-hour
+# JAS-Rush-Hour
 
 
 ### Description:
-Rush hour is a sliding block game in which you need to free the red car, or in our case the car named 'X'. To free this car you need to unblock the route to the exit, by arranging the cars in a way that the cars blocking the path to the exit can be moved. Our goal is to find an algorithm which can find the most efficient way to move the cars, to solve this puzzle.
+Rush hour is a sliding block game in which you need to free the red car, which is also the car named 'X'. To free this car you need to unblock the route to the exit, by arranging the cars in a way that the cars blocking the path to the exit can be moved. Our goal is to find an algorithm which can find the most efficient way to move the cars, to solve this puzzle. In this repository you will find the classes: Game, Board and Cars. We use these classes to represent the rush hour puzzle in code. You will also find algorithms which each in their own way solve the rush hour puzzle. Currently Hill Climber is the most consistent algorithm we have made.
 
 ### Requirements:
 This code was written in python 3.7.6. In requirements.txt are the required packages to install. To install with pip:
@@ -54,7 +54,7 @@ Short summary of the algorithms this repository contains.
     Solves by randomly trying moves. Very fast but lightyears away from an acceptable solution.
 
 ### Visualisation:
-Once a soloution has been found the user will be asked whether they want to see an animation of the solution. The animation was made with matplotlib.
+Once a solution has been found the user will be asked whether they want to see an animation of the solution. The animation was made with matplotlib.
 
 ### Authors:
 * Jamie

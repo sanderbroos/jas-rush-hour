@@ -1,7 +1,7 @@
 import csv
 from .board import Board
 from .car import Car
-from code.util import clean_moves, get_lane, get_possiblities, direction_to_int
+from code.util import clean_moves, get_lane, get_possibilities, direction_to_int
 
 
 class Game:
@@ -37,7 +37,7 @@ class Game:
 
     def move(self, car, direction):
         """
-        If the move is vaild, moves the car and saves the move
+        If the move is valid, moves the car and saves the move.
         """
         moved_car = self.cars.get(car)
         direction = direction_to_int(direction)
@@ -91,7 +91,7 @@ class Game:
         """
         Checks for validity of a given move on a given car.
         """
-        return move in get_possiblities(car, self.board.get_board())
+        return move in get_possibilities(car, self.board.get_board())
     
 
     def get_moves(self):
@@ -103,7 +103,7 @@ class Game:
 
     def won(self):
         """
-        Returns true when the game is won, if no cars are blocking the exit
+        Returns true when the game is won, if no cars are blocking the exit.
         """
         car_x = self.cars.get('X')
 

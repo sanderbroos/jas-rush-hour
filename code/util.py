@@ -11,7 +11,7 @@ def get_lane(car, board):
     return board[car.row]
 
 
-def get_possiblities(car, board):
+def get_possibilities(car, board):
     """
     Gives all possible moves of a car in a given lane.
     """
@@ -26,7 +26,7 @@ def get_possiblities(car, board):
 
     # add valid moves in the forward direction
     for i in range(1, size - 1):
-        # if the car isn't out of the board and this space is unoccipied
+        # if the car isn't out of the board and this space is unoccupied
         if (index + i + car.length <= size and
                 lane[index + (i + car.length) - 1] == None):
             moves.append(i)
@@ -36,7 +36,7 @@ def get_possiblities(car, board):
     
     # add valid moves in the backward direction
     for i in range(1, size - 1): 
-        # if the car isn't out of the board and this space is unoccipied
+        # if the car isn't out of the board and this space is unoccupied
         if (index - i >= 0
                 and lane[index - i] == None):
             moves.append(-i)
@@ -50,14 +50,14 @@ def get_possiblities(car, board):
 def all_moves(game):
     """ 
     Returns list with all possible moves for all cars
-    like [[car1,move1], [car1,move2], etc]
+    like [[car1,move1], [car1,move2], etc].
     """
     moves = []
     cars = game.cars
     board = game.board.get_board()
 
     for car in cars.keys():
-        possibilities = get_possiblities(cars.get(car), board)
+        possibilities = get_possibilities(cars.get(car), board)
 
         for move in possibilities:
             moves.append([car, move])
@@ -67,7 +67,7 @@ def all_moves(game):
 
 def clean_moves(moves):
     """
-    If possible adds two moves together in the list of moves
+    If possible adds two moves together in the list of moves.
     """
     i = 0
 
@@ -87,7 +87,7 @@ def clean_moves(moves):
 
 def output(moves):
     """
-    Cleans and saves the made moves to an output file
+    Cleans and saves the made moves to an output file.
     """
     output_string = "car,move"
     for move in clean_moves(moves):
@@ -100,12 +100,12 @@ def output(moves):
 
 def random_move_quick(game):
     """
-    Returns a random move
+    Returns a random move.
     """
     move = None
     while not move:
         car = choice(list(game.cars.values()))
-        moves = get_possiblities(car, game.board.get_board())
+        moves = get_possibilities(car, game.board.get_board())
         
         if moves:
             move = [car.name, choice(moves)]
