@@ -62,7 +62,9 @@ class RanAstar():
         Runs the RanAstar algorithm.
         """
         # initialize any solution
-        self.path = Random(self.game, repeats=5).run()
+        print("Running Random algorithm multiple times to get a decent",
+              "\"starting point\" solution...")
+        self.path = Random(self.game, repeats=200, fastest=True).run()
         self.get_checkpoints(dist=6)
         self.path = []
 
