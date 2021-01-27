@@ -47,7 +47,7 @@ if __name__ == "__main__":
     # show which letter to type for each available algorithm
     print("\nAvailable algorithms:", end="")
     for key, value in algorithms.items():
-        print(f"\n    {key:>2}: {value.__class__.__name__}", end=" ")
+        print(f"\n{key:>6}: {value.__class__.__name__}", end=" ")
         
         if key == 'S':
             print("(experimental and very slow)")
@@ -67,7 +67,7 @@ if __name__ == "__main__":
     if algorithm.__class__.__name__ == 'Astar':
         print("Available heuristics:")
         for key, value in heuristics.items():
-            print(f"    {key:>2}: {value}")
+            print(f"{key:>6}: {value}")
 
         while heuristic not in heuristics:
             heuristic = input("Which heuristic do you want to use? ").upper()

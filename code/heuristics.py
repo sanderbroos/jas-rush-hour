@@ -1,5 +1,6 @@
 from code.util import get_lane, get_possibilities
 
+
 def null_heuristic(default=None):
     """
     For comparison - identical to Breadth First Search with Astar.
@@ -20,7 +21,7 @@ def block_heuristic(game):
 def double_block_heuristic(game):
     """
     The number of cars blocking carX + the number of cars
-    blocking the previous mentioned cars
+    blocking theose cars.
     """
     car_x = game.cars.get('X')
     lane = get_lane(car_x, game.board.board)[car_x.col + car_x.length:]
