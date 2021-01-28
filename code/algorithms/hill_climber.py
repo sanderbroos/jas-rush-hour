@@ -40,10 +40,9 @@ class HillClimber:
         return False
 
 
-    def hill_climb_once(self, flipped):
+    def combine_moves(self, flipped):
         """
-        Goes through the list of moves once.
-        Tries to combine any two moves.
+        Tries to combine any two moves in self.moves.
         """
         changes = 0
         length = len(self.moves)
@@ -74,20 +73,13 @@ class HillClimber:
         return changes
 
 
-    def hill_climb(self, flipped=False):
-        """
-        Keeps going through the entire list until the algorithm has no effect.
-        """
-        while self.hill_climb_once(flipped=flipped):
-            pass
-
-
     def remove_redundant_moves(self):
         """
         For every move, check if it has an effect on the game.
         If not, remove it.
         """
         i = 0
+        changes = 0
         length = len(self.moves)
 
         # can't use for-loop, since it's deleting elements from the list
@@ -102,6 +94,7 @@ class HillClimber:
 
             # see if this still makes for a winning solution
             if self.game.won():
+                changes += 1
                 i -= 1
                 length -= 1
 
@@ -114,6 +107,8 @@ class HillClimber:
             self.game.reset()
             i += 1
 
+        return changes
+
 
     def run(self):
         """
@@ -124,11 +119,15 @@ class HillClimber:
               "\"starting point\" solution...")
         self.moves = Random(self.game, repeats=200, fastest=True).run()
 
-        # shorten the moves in three different ways (this specific order shortens the most)
-        self.remove_redundant_moves()
-        self.hill_climb(flipped=False)
-        self.hill_climb(flipped=True)
-        self.remove_redundant_moves()
+        # keep trying to shorten the list until the algorithm has no effect anymore
+        changes = 1
+        while changes > 0:
+            changes = 0
+
+            # shorten the moves in three different ways
+            changes += self.remove_redundant_moves()
+            changes += self.combine_moves(flipped=False)
+            changes += self.combine_moves(flipped=True)
 
         # execute the moves and perform the final move to the exit
         self.game.build(self.moves)
