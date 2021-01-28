@@ -13,7 +13,7 @@ from code.util import output
 from time import time
 
 if __name__ == "__main__":
-    # set both to None to let the user choose - can also be filled in here to skip input
+    # set to None to let the user choose - can also be filled in here to skip input
     board = None
     algo_id = None
     heuristic = None
@@ -29,7 +29,7 @@ if __name__ == "__main__":
              '8': Game(size=6,  source_file="data/Hardest6x6.csv")}
 
     while board not in games:
-        board = input("Which board do you want to use? (1-8) ")
+        board = input(f"Which board do you want to use? (1-{len(games)}) ")
 
     game = games[board]
     game.draw_board()
