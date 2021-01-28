@@ -107,7 +107,7 @@ class BreadthFirst():
             
             # depth first will keep looking until the queue is empty
             if (self.__class__.__name__ == "BreadthFirst" or
-                    self.__class__.__name__ == "modAstar" or
+                    self.__class__.__name__ == "ModAstar" or
                     self.__class__.__name__ == "Astar"):
                 return True
 
